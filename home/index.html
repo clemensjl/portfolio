@@ -148,8 +148,9 @@
     .dns a:hover .arrow { transform: translateX(4px); color: var(--accent); }
     .dns a:hover .prefix { text-decoration: underline; text-underline-offset: 4px; }
 
-    .dns .pending { opacity: 0.55; }
-    .dns .pending .prefix { color: var(--muted); }
+    .dns .pending .prefix,
+    .dns .pending .root,
+    .dns .pending .note { color: #7f8894; }
 
     footer {
       border-top: 1px solid var(--border);
