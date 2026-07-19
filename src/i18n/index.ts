@@ -21,5 +21,5 @@ export const langStaticPaths = [
 ];
 
 export const GITHUB_URL = 'https://github.com/clemensjl';
-// REVIEW: echte E-Mail-Adresse eintragen, sobald geliefert.
-export const EMAIL_HREF = 'mailto:#';
+// Nach Domain-Setup auf mailto:clemens@jele.at umstellen.
+export const EMAIL_HREF = 'mailto:jele.clemens@gmail.com';

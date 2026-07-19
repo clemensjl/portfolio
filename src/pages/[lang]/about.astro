@@ -14,18 +14,18 @@ export function getStaticPaths() {
 const lang = Astro.params.lang as Lang;
 const t = useTranslations(lang);
 
-// REVIEW: Fakten von Clemens bestätigen lassen — Jahrgang/Abteilung an der HTL,
-// Alter, Interessen. Aktuelle Texte sind Drafts auf Basis des GitHub-Profils.
 const paragraphs: Record<Lang, string[]> = {
   de: [
-    'Ich bin Clemens Jele, Schüler an der HTL Mössingerstraße in Klagenfurt und Softwareentwickler.',
+    'Ich bin Clemens Jele, Jahrgang 2010, Schüler an der HTL Mössingerstraße in Klagenfurt in der Abteilung Elektronik & IT — und Softwareentwickler.',
     'Angefangen hat es mit kleinen Tools für den eigenen Rechner — daraus wurden Desktop-Utilities wie WinCleaner, datenlastige Web-Apps wie kina-search und Automatisierung rund um echte Workflows. Mich interessiert Software, die ein konkretes Problem löst und danach einfach läuft.',
-    'Neben der Schule baue ich mit zwei Freunden als JGG Labs an Märchenfuchs und Lifemate.',
+    'Neben der Schule baue ich mit zwei Freunden als Racep Labs an Märchenfuchs und Lifemate.',
+    'Abseits vom Code: Skifahren, Mopedfahren, Fitness — und alles rund um KI-Automation und KI-gestütztes Programmieren.',
   ],
   en: [
-    'I am Clemens Jele, a student at HTL Mössingerstraße in Klagenfurt, Austria, and a software developer.',
+    'I am Clemens Jele, born 2010, a student in the Electronics & IT department at HTL Mössingerstraße in Klagenfurt, Austria — and a software developer.',
     'It started with small tools for my own machine — which turned into desktop utilities like WinCleaner, data-heavy web apps like kina-search and automation around real workflows. I care about software that solves a concrete problem and then just keeps running.',
-    'Outside of school I am building Märchenfuchs and Lifemate with two friends as JGG Labs.',
+    'Outside of school I am building Märchenfuchs and Lifemate with two friends as Racep Labs.',
+    'Away from the keyboard: skiing, riding my moped, fitness — and everything around AI automation and AI-assisted coding.',
   ],
 };
 ---

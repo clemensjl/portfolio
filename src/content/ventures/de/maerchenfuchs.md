@@ -7,8 +7,8 @@ stack: ["Flutter", "Supabase"]
 order: 1
 ---
 
-Märchenfuchs erzählt Kindern Gutenachtgeschichten, die es so nur einmal gibt: mit dem eigenen Namen, den eigenen Lieblingsthemen, angepasst ans Alter. Eltern stellen ein, die App erzählt.
+Märchenfuchs erzählt Kindern Gutenachtgeschichten, die es so nur einmal gibt: mit dem eigenen Namen, den eigenen Lieblingsthemen, angepasst ans Alter. Eltern stellen einmal ein, was das Kind mag — die App macht daraus jeden Abend eine neue Geschichte.
 
-Wir bauen Märchenfuchs zu dritt als JGG Labs. Ich verantworte die technische Umsetzung — App und Backend.
+Dahinter steckt mehr als ein Textgenerator: Die Geschichten folgen altersgerechten Erzählmustern, und Eltern behalten die Kontrolle über Themen und Länge. Das Ziel ist ein Abendritual, auf das sich Kinder freuen.
 
-<!-- REVIEW: Rollenbeschreibung und Status von Clemens bestätigen lassen. -->
+Wir bauen Märchenfuchs zu dritt als Racep Labs. Ich verantworte die technische Umsetzung: die Flutter-App, das Supabase-Backend und die Story-Pipeline dahinter.
