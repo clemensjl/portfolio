@@ -1,0 +1,65 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { useTranslations, langStaticPaths, GITHUB_URL, EMAIL_HREF, type Lang } from '../../i18n';
+import { skills } from '../../data/skills';
+
+export const getStaticPaths = () => langStaticPaths;
+
+const lang = Astro.params.lang as Lang;
+const t = useTranslations(lang);
+
+const featured = (
+  await getCollection('projects', (p) => p.id.startsWith(`${lang}/`) && p.data.featured)
+).sort((a, b) => a.data.order - b.data.order);
+---
+
+<Base lang={lang} title={t('site.title')} description={t('site.description')} path="/">
+  <Header lang={lang} />
+  <main class="container">
+    <section class="hero">
+      <img src="/favicon.svg" alt="" width="88" height="88" />
+      <!-- REVIEW: Foto einsetzen, sobald geliefert (ersetzt das Logo). -->
+      <h1>Clemens Jele</h1>
+      <p class="tagline">{t('hero.tagline')}</p>
+      <div class="cta">
+        <a class="btn btn-primary" href={GITHUB_URL} rel="me noopener">{t('hero.ctaGithub')}</a>
+        <a class="btn" href={EMAIL_HREF}>{t('hero.ctaEmail')}</a>
+      </div>
+    </section>
+
+    <h2 class="section-title">{t('home.featured')}</h2>
+    <div class="grid">
+      {featured.map((p) => <ProjectCard lang={lang} project={p} />)}
+    </div>
+    <p><a href={`/${lang}/projects/`}>{t('home.allProjects')}</a></p>
+
+    <h2 class="section-title">{t('home.startupTitle')}</h2>
+    <div class="card">
+      <p>{t('home.startupTeaser')}</p>
+      <a class="btn" href={`/${lang}/startup/`}>{t('home.startupCta')}</a>
+    </div>
+
+    <h2 class="section-title">{t('home.skills')}</h2>
+    <div class="skills">
+      {skills.map((s) => <span class="tag">{s}</span>)}
+    </div>
+  </main>
+  <Footer lang={lang} path="/" />
+</Base>
+
+<style>
+  .hero { text-align: center; padding-block: 3.5rem 1rem; }
+  .hero h1 { font-size: clamp(2rem, 6vw, 3rem); margin: 1rem 0 0.5rem; }
+  .tagline { color: var(--muted); max-width: 38rem; margin-inline: auto; }
+  .cta { display: flex; gap: 0.8rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+    gap: 1rem;
+  }
+  .skills { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+</style>
