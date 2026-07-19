@@ -1,0 +1,61 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { useTranslations, langStaticPaths, type Lang } from '../../i18n';
+
+// Wichtig: klassische Funktionsform. Ein Arrow-Export (`export const getStaticPaths = () => …`)
+// bringt den Astro-Compiler dazu, die restliche Frontmatter auf Modulebene zu hoisten,
+// wo Astro.params undefined ist — Build bricht mit "Cannot read properties of undefined (reading 'lang')".
+export function getStaticPaths() {
+  return langStaticPaths;
+}
+
+const lang = Astro.params.lang as Lang;
+const t = useTranslations(lang);
+
+const entries = (await getCollection('ventures', (v) => v.id.startsWith(`${lang}/`))).sort(
+  (a, b) => a.data.order - b.data.order
+);
+const ventures = await Promise.all(
+  entries.map(async (entry) => ({ entry, Content: (await render(entry)).Content }))
+);
+---
+
+<Base lang={lang} title={t('startup.title')} description={t('startup.description')} path="/startup/">
+  <Header lang={lang} />
+  <main class="container">
+    <h1>{t('startup.title')}</h1>
+    <p class="intro">{t('home.startupTeaser')}</p>
+    {ventures.map(({ entry, Content }) => (
+      <section class="card venture">
+        <h2>{entry.data.title}</h2>
+        <p class="summary">{entry.data.summary}</p>
+        <dl>
+          <dt>{t('startup.role')}</dt>
+          <dd>{entry.data.role}</dd>
+          <dt>{t('startup.status')}</dt>
+          <dd>{entry.data.status}</dd>
+        </dl>
+        {entry.data.stack.length > 0 && (
+          <div class="tags">{entry.data.stack.map((s) => <span class="tag">{s}</span>)}</div>
+        )}
+        <div class="body"><Content /></div>
+      </section>
+    ))}
+  </main>
+  <Footer lang={lang} path="/startup/" />
+</Base>
+
+<style>
+  .intro { color: var(--muted); max-width: 44rem; }
+  .venture { margin-block: 1.25rem; }
+  .venture h2 { margin-top: 0; color: var(--accent); }
+  .summary { color: var(--muted); }
+  dl { display: grid; grid-template-columns: max-content 1fr; gap: 0.25rem 1rem; margin-block: 0.75rem; }
+  dt { color: var(--muted); }
+  dd { margin: 0; }
+  .tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+  .body { max-width: 44rem; }
+</style>
