@@ -1,0 +1,65 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import { useTranslations, type Lang } from '../../../i18n';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('projects');
+  return entries.map((entry) => {
+    const [lang, slug] = entry.id.split('/');
+    return { params: { lang, slug }, props: { entry } };
+  });
+}
+
+const { entry } = Astro.props;
+const lang = Astro.params.lang as Lang;
+const slug = Astro.params.slug as string;
+const t = useTranslations(lang);
+const { Content } = await render(entry);
+---
+
+<Base
+  lang={lang}
+  title={`${entry.data.title} — Clemens Jele`}
+  description={entry.data.summary}
+  path={`/projects/${slug}/`}
+  image={entry.data.image}
+>
+  <Header lang={lang} />
+  <main class="container">
+    <p><a href={`/${lang}/projects/`}>← {t('projects.backToOverview')}</a></p>
+    <h1>{entry.data.title}</h1>
+    <p class="summary">{entry.data.summary}</p>
+    <img class="shot" src={entry.data.image} alt={`Screenshot: ${entry.data.title}`} width="1200" height="675" />
+    <div class="meta">
+      <h2>{t('projects.stack')}</h2>
+      <div class="tags">{entry.data.stack.map((s) => <span class="tag">{s}</span>)}</div>
+      <div class="links">
+        {entry.data.repo && <a class="btn" href={entry.data.repo} rel="noopener">{t('projects.repo')}</a>}
+        {entry.data.live && <a class="btn btn-primary" href={entry.data.live} rel="noopener">{t('projects.live')}</a>}
+      </div>
+    </div>
+    <article class="prose">
+      <Content />
+    </article>
+  </main>
+  <Footer lang={lang} path={`/projects/${slug}/`} />
+</Base>
+
+<style>
+  .summary { color: var(--muted); max-width: 44rem; }
+  .shot {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-block: 1rem;
+  }
+  .meta h2 { font-size: 1rem; color: var(--muted); margin-bottom: 0.5rem; }
+  .tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  .links { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+  .prose { max-width: 44rem; margin-top: 2rem; }
+  .prose :global(p) { color: var(--text); }
+</style>
