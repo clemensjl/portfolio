@@ -1,0 +1,46 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { useTranslations, langStaticPaths, type Lang } from '../../i18n';
+
+// Wichtig: klassische Funktionsform. Ein Arrow-Export (`export const getStaticPaths = () => …`)
+// bringt den Astro-Compiler dazu, die restliche Frontmatter auf Modulebene zu hoisten,
+// wo Astro.params undefined ist — Build bricht mit "Cannot read properties of undefined (reading 'lang')".
+export function getStaticPaths() {
+  return langStaticPaths;
+}
+
+const lang = Astro.params.lang as Lang;
+const t = useTranslations(lang);
+
+// REVIEW: Fakten von Clemens bestätigen lassen — Jahrgang/Abteilung an der HTL,
+// Alter, Interessen. Aktuelle Texte sind Drafts auf Basis des GitHub-Profils.
+const paragraphs: Record<Lang, string[]> = {
+  de: [
+    'Ich bin Clemens Jele, Schüler an der HTL Mössingerstraße in Klagenfurt und Softwareentwickler.',
+    'Angefangen hat es mit kleinen Tools für den eigenen Rechner — daraus wurden Desktop-Utilities wie WinCleaner, datenlastige Web-Apps wie kina-search und Automatisierung rund um echte Workflows. Mich interessiert Software, die ein konkretes Problem löst und danach einfach läuft.',
+    'Neben der Schule baue ich mit zwei Freunden als JGG Labs an Märchenfuchs und Lifemate.',
+  ],
+  en: [
+    'I am Clemens Jele, a student at HTL Mössingerstraße in Klagenfurt, Austria, and a software developer.',
+    'It started with small tools for my own machine — which turned into desktop utilities like WinCleaner, data-heavy web apps like kina-search and automation around real workflows. I care about software that solves a concrete problem and then just keeps running.',
+    'Outside of school I am building Märchenfuchs and Lifemate with two friends as JGG Labs.',
+  ],
+};
+---
+
+<Base lang={lang} title={`${t('about.title')} — Clemens Jele`} description={t('about.description')} path="/about/">
+  <Header lang={lang} />
+  <main class="container">
+    <h1>{t('about.title')}</h1>
+    <div class="prose">
+      {paragraphs[lang].map((p) => <p>{p}</p>)}
+    </div>
+  </main>
+  <Footer lang={lang} path="/about/" />
+</Base>
+
+<style>
+  .prose { max-width: 44rem; }
+</style>

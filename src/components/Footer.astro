@@ -1,0 +1,39 @@
+---
+import LangSwitch from './LangSwitch.astro';
+import { useTranslations, EMAIL_HREF, GITHUB_URL, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  path: string;
+}
+
+const { lang, path } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<footer>
+  <div class="container inner">
+    <div class="links">
+      <a href={EMAIL_HREF}>{t('footer.email')}</a>
+      <a href={GITHUB_URL} rel="me noopener">{t('footer.github')}</a>
+    </div>
+    <LangSwitch lang={lang} path={path} />
+  </div>
+</footer>
+
+<style>
+  footer {
+    border-top: 1px solid var(--border);
+    margin-top: 4rem;
+    color: var(--muted);
+  }
+  .inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding-block: 1.5rem;
+  }
+  .links { display: flex; gap: 1.1rem; }
+</style>

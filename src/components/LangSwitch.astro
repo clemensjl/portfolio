@@ -1,0 +1,15 @@
+---
+import { languages, otherLang, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  path: string;
+}
+
+const { lang, path } = Astro.props;
+const target = otherLang(lang);
+---
+
+<a href={`/${target}${path}`} hreflang={target} lang={target} rel="alternate">
+  {languages[target]}
+</a>
