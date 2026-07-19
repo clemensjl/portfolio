@@ -1,4 +1,4 @@
-import { spawn } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
 import { mkdirSync } from 'node:fs';
 import { chromium } from 'playwright';
 
@@ -37,10 +37,11 @@ async function waitForServer() {
   throw new Error('Preview-Server nicht erreichbar');
 }
 
+let browser;
 try {
   await waitForServer();
   mkdirSync('screenshots', { recursive: true });
-  const browser = await chromium.launch();
+  browser = await chromium.launch();
   for (const [device, viewport] of Object.entries(viewports)) {
     const page = await browser.newPage({ viewport });
     for (const route of routes) {
@@ -51,7 +52,15 @@ try {
     }
     await page.close();
   }
-  await browser.close();
 } finally {
-  server.kill();
+  if (browser) {
+    try {
+      await browser.close();
+    } catch {}
+  }
+  if (process.platform === 'win32') {
+    spawnSync('taskkill', ['/pid', String(server.pid), '/t', '/f']);
+  } else {
+    server.kill();
+  }
 }
