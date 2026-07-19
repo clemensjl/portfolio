@@ -7,7 +7,9 @@ import ProjectCard from '../../components/ProjectCard.astro';
 import { useTranslations, langStaticPaths, GITHUB_URL, EMAIL_HREF, type Lang } from '../../i18n';
 import { skills } from '../../data/skills';
 
-export const getStaticPaths = () => langStaticPaths;
+export function getStaticPaths() {
+  return langStaticPaths;
+}
 
 const lang = Astro.params.lang as Lang;
 const t = useTranslations(lang);
