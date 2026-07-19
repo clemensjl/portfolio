@@ -13,3 +13,5 @@ Die Community pflegte ihre Produktdaten in 75 verstreuten Spreadsheets — unmö
 Crawler laufen automatisiert über GitHub Actions und halten die Daten aktuell, ohne dass jemand manuell eingreifen muss. Das Frontend ist eine Next.js-App mit schneller Suche über den gesamten Bestand.
 
 <!-- REVIEW: Live-URL nachtragen (`live:`-Frontmatter), sobald bestätigt. -->
+
+<!-- REVIEW: Platzhalter-SVG durch echten Screenshot ersetzen (PNG, 1200x675). -->

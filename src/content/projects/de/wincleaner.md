@@ -13,3 +13,5 @@ WinCleaner räumt volle Windows-Datenträger auf, ohne blind zu löschen. Statt 
 Der Scan liest die NTFS-Strukturen direkt und ist dadurch deutlich schneller als ein klassischer Verzeichnis-Walk. Gefundene Duplikate werden nicht gelöscht, sondern per Hard-Link dedupliziert: Der Platz wird frei, alle Pfade funktionieren weiter.
 
 Das Ergebnis landet in einem HTML-Report mit Treemap, der auf einen Blick zeigt, wo der Platz hingeht.
+
+<!-- REVIEW: Platzhalter-SVG durch echten Screenshot ersetzen (PNG, 1200x675). -->

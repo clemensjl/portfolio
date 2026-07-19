@@ -13,3 +13,5 @@ WinCleaner cleans up full Windows drives without blindly deleting things. Instea
 The scan reads NTFS structures directly, which makes it much faster than a classic directory walk. Duplicates are not deleted but deduplicated via hard links: space is freed while every path keeps working.
 
 Results end up in an HTML report with a treemap that shows at a glance where the space went.
+
+<!-- REVIEW: replace placeholder SVG with a real screenshot (PNG, 1200x675). -->

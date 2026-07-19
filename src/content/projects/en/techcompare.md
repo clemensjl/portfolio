@@ -13,3 +13,5 @@ TechCompare puts current tech products side by side and makes specs directly com
 Built with TypeScript, deployed on Vercel.
 
 <!-- REVIEW: add live URL (Vercel) once confirmed. -->
+
+<!-- REVIEW: replace placeholder SVG with a real screenshot (PNG, 1200x675). -->

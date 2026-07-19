@@ -13,3 +13,5 @@ Anyone collecting the Panini album for the 2026 World Cup quickly loses track: w
 Deliberately minimal: a single HTML file, no build step, hosted on GitHub Pages. Collection progress stays local in the browser.
 
 <!-- REVIEW: add live URL (GitHub Pages) once confirmed. -->
+
+<!-- REVIEW: replace placeholder SVG with a real screenshot (PNG, 1200x675). -->

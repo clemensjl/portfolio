@@ -13,3 +13,5 @@ Wer das Panini-Album zur WM 2026 sammelt, verliert schnell den Überblick: Welch
 Bewusst minimalistisch gebaut: eine einzige HTML-Datei, kein Build-Schritt, gehostet auf GitHub Pages. Der Sammelstand bleibt lokal im Browser.
 
 <!-- REVIEW: Live-URL (GitHub Pages) nachtragen (`live:`-Frontmatter), sobald bestätigt. -->
+
+<!-- REVIEW: Platzhalter-SVG durch echten Screenshot ersetzen (PNG, 1200x675). -->

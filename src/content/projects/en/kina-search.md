@@ -13,3 +13,5 @@ The community kept its product data scattered across 75 spreadsheets — impossi
 Crawlers run automatically via GitHub Actions and keep the data current without manual intervention. The frontend is a Next.js app with fast search across the whole dataset.
 
 <!-- REVIEW: add live URL (`live:` frontmatter) once confirmed. -->
+
+<!-- REVIEW: replace placeholder SVG with a real screenshot (PNG, 1200x675). -->

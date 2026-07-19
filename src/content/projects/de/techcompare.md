@@ -13,3 +13,5 @@ TechCompare stellt aktuelle Tech-Produkte nebeneinander und macht Spezifikatione
 Gebaut mit TypeScript, deployt auf Vercel.
 
 <!-- REVIEW: Live-URL (Vercel) nachtragen (`live:`-Frontmatter), sobald bestätigt. -->
+
+<!-- REVIEW: Platzhalter-SVG durch echten Screenshot ersetzen (PNG, 1200x675). -->
