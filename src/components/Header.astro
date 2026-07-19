@@ -1,0 +1,54 @@
+---
+import { useTranslations, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const items = [
+  { href: `/${lang}/`, label: t('nav.home') },
+  { href: `/${lang}/projects/`, label: t('nav.projects') },
+  { href: `/${lang}/startup/`, label: t('nav.startup') },
+  { href: `/${lang}/about/`, label: t('nav.about') },
+];
+const current = Astro.url.pathname;
+---
+
+<header class="container site-header">
+  <a class="brand" href={`/${lang}/`}>
+    <img src="/favicon.svg" alt="" width="28" height="28" />
+    <span>Clemens Jele</span>
+  </a>
+  <nav aria-label={lang === 'de' ? 'Hauptnavigation' : 'Main navigation'}>
+    {items.map((item) => (
+      <a href={item.href} aria-current={current === item.href ? 'page' : undefined}>
+        {item.label}
+      </a>
+    ))}
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding-block: 1.1rem;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--text);
+    font-weight: 600;
+  }
+  .brand:hover { text-decoration: none; }
+  nav { display: flex; gap: 1.1rem; flex-wrap: wrap; }
+  nav a { color: var(--muted); }
+  nav a:hover { color: var(--text); text-decoration: none; }
+  nav a[aria-current='page'] { color: var(--accent); }
+</style>

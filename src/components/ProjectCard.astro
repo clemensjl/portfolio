@@ -1,0 +1,28 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  project: CollectionEntry<'projects'>;
+}
+
+const { lang, project } = Astro.props;
+const slug = project.id.split('/')[1];
+---
+
+<a class="card project-card" href={`/${lang}/projects/${slug}/`}>
+  <h3>{project.data.title}</h3>
+  <p>{project.data.summary}</p>
+  <div class="tags">
+    {project.data.stack.map((s) => <span class="tag">{s}</span>)}
+  </div>
+</a>
+
+<style>
+  .project-card { display: block; color: var(--text); }
+  .project-card:hover { text-decoration: none; }
+  .project-card h3 { margin: 0 0 0.4rem; color: var(--accent); }
+  .project-card p { margin: 0 0 0.9rem; color: var(--muted); }
+  .tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+</style>
