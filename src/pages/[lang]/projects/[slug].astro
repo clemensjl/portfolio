@@ -25,7 +25,7 @@ const { Content } = await render(entry);
   title={`${entry.data.title} — Clemens Jele`}
   description={entry.data.summary}
   path={`/projects/${slug}/`}
-  image={entry.data.image}
+  image={entry.data.image.endsWith('.svg') ? undefined : entry.data.image}
 >
   <Header lang={lang} />
   <main class="container">

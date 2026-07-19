@@ -87,11 +87,12 @@ html { scrollbar-color: var(--surface-2) var(--bg); scrollbar-width: thin; }
 .btn:hover { background: var(--surface-2); text-decoration: none; }
 
 .btn-primary {
-  background: var(--accent-dim);
-  border-color: var(--accent-dim);
-  color: #fff;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+  font-weight: 600;
 }
-.btn-primary:hover { background: var(--accent); border-color: var(--accent); }
+.btn-primary:hover { background: var(--accent-dim); border-color: var(--accent-dim); }
 
 .card {
   background: var(--surface);
