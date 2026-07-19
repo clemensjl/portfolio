@@ -2,8 +2,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  // REVIEW: nach Domainkauf durch https://jele.at ersetzen (auch in public/robots.txt)
-  site: 'https://portfolio-clemens-jeles-projects.vercel.app',
+  site: 'https://jele.at',
   output: 'static',
   trailingSlash: 'always',
   integrations: [
