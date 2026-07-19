@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Clemens Jele — jele.at</title>
+  <meta name="description" content="Die Haustür zu allem, was unter jele.at wohnt: Clemens Jele — Softwareentwickler, Schüler an der HTL Mössingerstraße, Mitgründer von Racep Labs." />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="canonical" href="https://jele.at/" />
+  <meta property="og:title" content="Clemens Jele — jele.at" />
+  <meta property="og:description" content="Die Haustür zu allem, was unter jele.at wohnt." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://jele.at/" />
+  <meta property="og:image" content="https://jele.at/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <style>
+    @font-face {
+      font-family: 'Inter Variable';
+      font-style: normal;
+      font-weight: 100 900;
+      font-display: swap;
+      src: url('/fonts/inter-latin-wght-normal.woff2') format('woff2-variations');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2212;
+    }
+    @font-face {
+      font-family: 'Inter Variable';
+      font-style: normal;
+      font-weight: 100 900;
+      font-display: swap;
+      src: url('/fonts/inter-latin-ext-wght-normal.woff2') format('woff2-variations');
+      unicode-range: U+0100-02AF, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    :root {
+      --bg: #16191d;
+      --surface: #1e2228;
+      --border: #30363d;
+      --text: #e6e9ec;
+      --muted: #9aa3ad;
+      --accent: #3fb950;
+      --accent-dim: #2ea043;
+      --font-sans: 'Inter Variable', system-ui, sans-serif;
+      --font-mono: ui-monospace, 'Cascadia Code', Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+      width: 100%;
+      max-width: 40rem;
+      margin-inline: auto;
+      padding: 4.5rem 1.5rem 3rem;
+    }
+
+    ::selection { background: var(--accent-dim); color: #fff; }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+
+    .intro {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .intro img {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    h1 {
+      font-size: clamp(1.6rem, 5vw, 2.1rem);
+      font-weight: 650;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin: 0;
+    }
+
+    .lede {
+      color: var(--muted);
+      max-width: 34rem;
+      margin: 0 0 3.5rem;
+    }
+    .lede strong { color: var(--text); font-weight: 550; }
+
+    /* Signature: DNS-Wegweiser */
+    .dns {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-mono);
+      border-top: 1px solid var(--border);
+    }
+
+    .dns li { border-bottom: 1px solid var(--border); }
+
+    .dns a,
+    .dns .pending {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      padding: 1.4rem 0.25rem;
+      font-size: clamp(1.05rem, 3.6vw, 1.45rem);
+      color: var(--text);
+    }
+
+    .dns .prefix { color: var(--accent); font-weight: 600; }
+    .dns .root { color: var(--muted); font-weight: 400; }
+
+    .dns .note {
+      margin-left: auto;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    .dns .arrow {
+      color: var(--muted);
+      transition: transform 150ms ease, color 150ms ease;
+    }
+
+    .dns a:hover .arrow { transform: translateX(4px); color: var(--accent); }
+    .dns a:hover .prefix { text-decoration: underline; text-underline-offset: 4px; }
+
+    .dns .pending { opacity: 0.55; }
+    .dns .pending .prefix { color: var(--muted); }
+
+    footer {
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    footer .inner {
+      max-width: 40rem;
+      margin-inline: auto;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    footer a { color: var(--muted); }
+    footer a:hover { color: var(--text); }
+
+    @media (max-width: 480px) {
+      .dns .note { display: none; }
+      .intro { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="intro">
+      <img src="/images/clemens.jpg" alt="Porträt von Clemens Jele" width="72" height="72" />
+      <h1>Hallo, ich bin Clemens.</h1>
+    </div>
+    <p class="lede">
+      Softwareentwickler, Schüler an der HTL Mössingerstraße in Klagenfurt und
+      Mitgründer von <strong>Racep Labs</strong>. Das hier ist die Haustür zu allem,
+      was unter <strong>jele.at</strong> wohnt.
+    </p>
+
+    <ul class="dns">
+      <li>
+        <a href="https://portfolio.jele.at/">
+          <span><span class="prefix">portfolio.</span><span class="root">jele.at</span></span>
+          <span class="note">Projekte, Startup, über mich</span>
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/clemensjl" rel="me noopener">
+          <span><span class="prefix">github</span><span class="root">/clemensjl</span></span>
+          <span class="note">Code</span>
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
+      </li>
+      <li>
+        <a href="mailto:clemens@jele.at">
+          <span><span class="prefix">clemens@</span><span class="root">jele.at</span></span>
+          <span class="note">Schreib mir</span>
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
+      </li>
+      <!-- REVIEW: Familien-Bereich — Inhalte und Subdomain-Name mit Clemens klären.
+           Platzhalter bewusst ohne Fakten über Familienmitglieder. -->
+      <li>
+        <span class="pending">
+          <span><span class="prefix">familie.</span><span class="root">jele.at</span></span>
+          <span class="note">bald</span>
+        </span>
+      </li>
+    </ul>
+  </main>
+
+  <footer>
+    <div class="inner">
+      <span>© 2026 Clemens Jele</span>
+      <a href="https://portfolio.jele.at/de/about/">Über mich</a>
+    </div>
+  </footer>
+</body>
+</html>
