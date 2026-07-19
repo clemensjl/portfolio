@@ -943,7 +943,12 @@ import ProjectCard from '../../components/ProjectCard.astro';
 import { useTranslations, langStaticPaths, GITHUB_URL, EMAIL_HREF, type Lang } from '../../i18n';
 import { skills } from '../../data/skills';
 
-export const getStaticPaths = () => langStaticPaths;
+// Wichtig: klassische Funktionsform. Ein Arrow-Export (`export const getStaticPaths = () => …`)
+// bringt den Astro-Compiler dazu, die restliche Frontmatter auf Modulebene zu hoisten,
+// wo Astro.params undefined ist — Build bricht mit "Cannot read properties of undefined (reading 'lang')".
+export function getStaticPaths() {
+  return langStaticPaths;
+}
 
 const lang = Astro.params.lang as Lang;
 const t = useTranslations(lang);
@@ -1040,7 +1045,12 @@ import Footer from '../../../components/Footer.astro';
 import ProjectCard from '../../../components/ProjectCard.astro';
 import { useTranslations, langStaticPaths, type Lang } from '../../../i18n';
 
-export const getStaticPaths = () => langStaticPaths;
+// Wichtig: klassische Funktionsform. Ein Arrow-Export (`export const getStaticPaths = () => …`)
+// bringt den Astro-Compiler dazu, die restliche Frontmatter auf Modulebene zu hoisten,
+// wo Astro.params undefined ist — Build bricht mit "Cannot read properties of undefined (reading 'lang')".
+export function getStaticPaths() {
+  return langStaticPaths;
+}
 
 const lang = Astro.params.lang as Lang;
 const t = useTranslations(lang);
@@ -1185,7 +1195,12 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { useTranslations, langStaticPaths, type Lang } from '../../i18n';
 
-export const getStaticPaths = () => langStaticPaths;
+// Wichtig: klassische Funktionsform. Ein Arrow-Export (`export const getStaticPaths = () => …`)
+// bringt den Astro-Compiler dazu, die restliche Frontmatter auf Modulebene zu hoisten,
+// wo Astro.params undefined ist — Build bricht mit "Cannot read properties of undefined (reading 'lang')".
+export function getStaticPaths() {
+  return langStaticPaths;
+}
 
 const lang = Astro.params.lang as Lang;
 const t = useTranslations(lang);
@@ -1270,7 +1285,12 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { useTranslations, langStaticPaths, type Lang } from '../../i18n';
 
-export const getStaticPaths = () => langStaticPaths;
+// Wichtig: klassische Funktionsform. Ein Arrow-Export (`export const getStaticPaths = () => …`)
+// bringt den Astro-Compiler dazu, die restliche Frontmatter auf Modulebene zu hoisten,
+// wo Astro.params undefined ist — Build bricht mit "Cannot read properties of undefined (reading 'lang')".
+export function getStaticPaths() {
+  return langStaticPaths;
+}
 
 const lang = Astro.params.lang as Lang;
 const t = useTranslations(lang);
