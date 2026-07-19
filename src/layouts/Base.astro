@@ -1,0 +1,41 @@
+---
+import '@fontsource-variable/inter';
+import '../styles/global.css';
+import type { Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  path: string;
+  image?: string;
+}
+
+const { lang, title, description, path, image = '/og-default.png' } = Astro.props;
+const site = (Astro.site?.href ?? '').replace(/\/$/, '');
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={`${site}/${lang}${path}`} />
+    <link rel="alternate" hreflang="de" href={`${site}/de${path}`} />
+    <link rel="alternate" hreflang="en" href={`${site}/en${path}`} />
+    <link rel="alternate" hreflang="x-default" href={`${site}/de${path}`} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={`${site}/${lang}${path}`} />
+    <meta property="og:image" content={`${site}${image}`} />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
