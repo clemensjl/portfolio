@@ -1,8 +1,25 @@
 ---
-// Platzhalter — wird in Task 10 durch Sprach-Redirect ersetzt.
+import '../styles/global.css';
 ---
+
 <!doctype html>
 <html lang="de">
-  <head><meta charset="utf-8" /><title>Clemens Jele</title></head>
-  <body><a href="/de/">Deutsch</a></body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Clemens Jele</title>
+    <meta name="robots" content="noindex" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script is:inline>
+      var first = (navigator.languages && navigator.languages[0]) || navigator.language || 'de';
+      var target = first.toLowerCase().indexOf('de') === 0 ? 'de' : 'en';
+      location.replace('/' + target + '/');
+    </script>
+    <noscript><meta http-equiv="refresh" content="0; url=/de/" /></noscript>
+  </head>
+  <body>
+    <p style="padding: 2rem; text-align: center">
+      <a href="/de/">Deutsch</a> · <a href="/en/">English</a>
+    </p>
+  </body>
 </html>
