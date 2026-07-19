@@ -2,8 +2,8 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  // REVIEW: nach erstem Vercel-Deploy durch echte URL ersetzen, nach Domainkauf durch https://jele.at
-  site: 'https://portfolio-clemensjl.vercel.app',
+  // REVIEW: nach Domainkauf durch https://jele.at ersetzen (auch in public/robots.txt)
+  site: 'https://portfolio-clemens-jeles-projects.vercel.app',
   output: 'static',
   trailingSlash: 'always',
   integrations: [

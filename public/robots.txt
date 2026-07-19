@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://portfolio-clemensjl.vercel.app/sitemap-index.xml
+Sitemap: https://portfolio-clemens-jeles-projects.vercel.app/sitemap-index.xml
