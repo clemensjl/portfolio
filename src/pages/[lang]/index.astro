@@ -23,8 +23,13 @@ const featured = (
   <Header lang={lang} />
   <main class="container">
     <section class="hero">
-      <img src="/favicon.svg" alt="" width="88" height="88" />
-      <!-- REVIEW: Foto einsetzen, sobald geliefert (ersetzt das Logo). -->
+      <img
+        class="portrait"
+        src="/images/clemens.jpg"
+        alt={lang === 'de' ? 'Porträt von Clemens Jele' : 'Portrait of Clemens Jele'}
+        width="128"
+        height="128"
+      />
       <h1>Clemens Jele</h1>
       <p class="tagline">{t('hero.tagline')}</p>
       <div class="cta">
@@ -55,6 +60,11 @@ const featured = (
 
 <style>
   .hero { text-align: center; padding-block: 3.5rem 1rem; }
+  .portrait {
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    object-fit: cover;
+  }
   .hero h1 { font-size: clamp(2rem, 6vw, 3rem); margin: 1rem 0 0.5rem; }
   .tagline { color: var(--muted); max-width: 38rem; margin-inline: auto; }
   .cta { display: flex; gap: 0.8rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
