@@ -25,14 +25,16 @@ const { Content } = await render(entry);
   title={`${entry.data.title} — Clemens Jele`}
   description={entry.data.summary}
   path={`/projects/${slug}/`}
-  image={entry.data.image.endsWith('.svg') ? undefined : entry.data.image}
+  image={entry.data.image && !entry.data.image.endsWith('.svg') ? entry.data.image : undefined}
 >
   <Header lang={lang} />
   <main class="container">
     <p><a href={`/${lang}/projects/`}>← {t('projects.backToOverview')}</a></p>
     <h1>{entry.data.title}</h1>
     <p class="summary">{entry.data.summary}</p>
-    <img class="shot" src={entry.data.image} alt={`Screenshot: ${entry.data.title}`} width="1200" height="675" />
+    {entry.data.image && (
+      <img class="shot" src={entry.data.image} alt={`Screenshot: ${entry.data.title}`} width="1200" height="675" />
+    )}
     <div class="meta">
       <h2>{t('projects.stack')}</h2>
       <div class="tags">{entry.data.stack.map((s) => <span class="tag">{s}</span>)}</div>

@@ -5,7 +5,7 @@ stack: ["JavaScript", "GitHub Pages"]
 repo: https://github.com/clemensjl/panini-tracker
 live: https://clemensjl.github.io/panini-tracker/
 image: /images/projects/panini-tracker.png
-order: 3
+order: 6
 featured: false
 ---
 

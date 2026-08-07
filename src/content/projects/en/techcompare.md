@@ -5,7 +5,7 @@ stack: ["TypeScript", "Vercel"]
 repo: https://github.com/clemensjl/TechCompare
 live: https://tech-compare-j1k5.vercel.app
 image: /images/projects/techcompare.png
-order: 4
+order: 5
 featured: true
 ---
 

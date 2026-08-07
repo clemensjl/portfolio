@@ -13,6 +13,10 @@ const routes = [
   '/de/projects/kina-search/', '/en/projects/kina-search/',
   '/de/projects/panini-tracker/', '/en/projects/panini-tracker/',
   '/de/projects/techcompare/', '/en/projects/techcompare/',
+  '/de/projects/claude-skills/', '/en/projects/claude-skills/',
+  '/de/projects/agentfenster/', '/en/projects/agentfenster/',
+  '/de/projects/garmopol-web/', '/en/projects/garmopol-web/',
+  '/de/projects/authcodegenerator/', '/en/projects/authcodegenerator/',
   '/de/startup/', '/en/startup/',
   '/de/about/', '/en/about/',
 ];
