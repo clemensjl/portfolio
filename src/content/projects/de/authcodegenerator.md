@@ -9,4 +9,4 @@ featured: false
 
 Ein kleines Kommandozeilen-Tool in Python, das Auth-Codes erzeugt. Der Algorithmus dahinter ist selbst entwickelt und so gebaut, dass sich die Codes leicht merken lassen.
 
-Keine Abhängigkeiten, ein Skript, Aufruf direkt aus der Shell.
+Aufgebaut als Python-Package mit pytest-Tests und ohne Laufzeit-Abhängigkeiten.
