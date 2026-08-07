@@ -4,6 +4,7 @@ summary: Landing page for garmopol.net — static HTML and CSS, deployed on Verc
 stack: ["HTML", "CSS", "Vercel"]
 repo: https://github.com/clemensjl/garmopol-web
 live: https://garmopol.net
+image: /images/projects/garmopol-web.png
 order: 7
 featured: false
 ---

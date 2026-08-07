@@ -3,6 +3,7 @@ title: claude-skills
 summary: Agent Skills for Claude Code, Cursor and Codex — focused on Austrian law.
 stack: ["Agent Skills", "Claude Code", "Markdown"]
 repo: https://github.com/clemensjl/claude-skills
+image: /images/projects/claude-skills.png
 order: 3
 featured: true
 ---

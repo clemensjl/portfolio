@@ -4,6 +4,7 @@ summary: Landing-Page für garmopol.net — statisches HTML und CSS, deployt auf
 stack: ["HTML", "CSS", "Vercel"]
 repo: https://github.com/clemensjl/garmopol-web
 live: https://garmopol.net
+image: /images/projects/garmopol-web.png
 order: 7
 featured: false
 ---
