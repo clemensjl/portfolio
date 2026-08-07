@@ -55,21 +55,17 @@ const t = useTranslations(lang);
 <script>
   // "System" löscht den Override — danach regelt CSS (prefers-color-scheme)
   // das Theme wieder allein, inklusive Live-Wechsel bei OS-Umstellung.
+  // Die VISUELLE Hervorhebung des aktiven Segments kommt rein aus CSS
+  // (data-theme-Attribut, siehe global.css) — dieses Script pflegt nur noch
+  // aria-pressed für assistive Technologien.
   const root = document.documentElement;
   const buttons = document.querySelectorAll<HTMLButtonElement>('.theme-seg [data-set-theme]');
 
-  function stored(): string {
-    try {
-      const t = localStorage.getItem('theme');
-      if (t === 'light' || t === 'dark') return t;
-    } catch {
-      /* localStorage gesperrt — dann gibt es nie einen Override */
-    }
-    return 'system';
-  }
-
+  // Zustand aus dem DOM ableiten, nicht aus localStorage: Wenn setItem
+  // scheitert (gesperrter Storage), zeigt die Seite trotzdem das gewählte
+  // Theme — und aria-pressed muss dazu passen, nicht zum Storage.
   function sync(): void {
-    const active = stored();
+    const active = root.getAttribute('data-theme') ?? 'system';
     buttons.forEach((b) => {
       b.setAttribute('aria-pressed', String(b.dataset.setTheme === active));
     });

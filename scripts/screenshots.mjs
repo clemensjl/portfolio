@@ -78,6 +78,30 @@ try {
   }
   await lightPage.close();
 
+  // Attribut-Pfad-Check (:root[data-theme='light']): gespeicherte Wahl "light"
+  // bei OS-dark — deckt den zweiten Light-Tokenblock ab, den der
+  // Media-Query-Pass oben nie trifft. Mit Assertion, nicht nur Screenshot.
+  const attrPage = await browser.newPage({
+    viewport: viewports.desktop,
+    reducedMotion: 'reduce',
+    colorScheme: 'dark',
+  });
+  await attrPage.addInitScript(() => localStorage.setItem('theme', 'light'));
+  await attrPage.goto(BASE + '/de/', { waitUntil: 'networkidle' });
+  const attrState = await attrPage.evaluate(() => ({
+    theme: document.documentElement.getAttribute('data-theme'),
+    bg: getComputedStyle(document.documentElement).backgroundColor,
+  }));
+  if (attrState.theme !== 'light' || attrState.bg !== 'rgb(255, 255, 255)') {
+    throw new Error(
+      `Attribut-Light-Check /de/: data-theme=${attrState.theme}, background=${attrState.bg} — ` +
+        'erwartet data-theme="light" mit weißem Hintergrund trotz OS-dark'
+    );
+  }
+  await attrPage.screenshot({ path: 'screenshots/light-attr-desktop-de.png', fullPage: true });
+  console.log('OK light-attr /de/ (data-theme="light" bei OS-dark)');
+  await attrPage.close();
+
   // Motion-Pfad-Check: ein Kontext OHNE reducedMotion — deckt den einzigen
   // Mechanismus ab, der Inhalte dauerhaft verstecken kann (js-reveal +
   // IntersectionObserver). Bis ans Seitenende scrollen, dann darf kein

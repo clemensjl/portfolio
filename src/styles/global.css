@@ -217,6 +217,9 @@ a.card:active {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  /* WCAG 2.5.8: Zielgröße mindestens 24×24px */
+  min-width: 24px;
+  min-height: 24px;
   padding: 0.22rem 0.5rem;
   border: 0;
   border-radius: 999px;
@@ -231,11 +234,22 @@ a.card:active {
   transition: color 150ms ease, background-color 150ms ease;
 }
 .seg-item:hover { color: var(--text); text-decoration: none; }
+/*
+ * Aktives Segment. Beim Theme-Umschalter hängt die Hervorhebung direkt am
+ * data-theme-Attribut, das das Pre-Paint-Script setzt — so stimmt sie schon
+ * beim ersten Paint, bevor das (deferred) Toggle-Script aria-pressed pflegt.
+ * Der Akzent-Ring ist der Zustandsindikator: erfüllt WCAG 1.4.11 (≥3:1 gegen
+ * Pill-Füllung und Umgebung) in beiden Themes, wo Surface-auf-Surface und
+ * muted→text allein zu schwach wären.
+ */
 .seg-item.is-active,
-.seg-item[aria-pressed='true'] {
+:root:not([data-theme]) .theme-seg [data-set-theme='system'],
+:root[data-theme='light'] .theme-seg [data-set-theme='light'],
+:root[data-theme='dark'] .theme-seg [data-set-theme='dark'] {
   background: var(--surface-2);
   color: var(--text);
   cursor: default;
+  box-shadow: inset 0 0 0 1px var(--accent-dim);
 }
 /* pillenförmigen Fokus-Ring behalten (globales :focus-visible setzt radius 2px) */
 .seg-item:focus-visible { border-radius: 999px; }
