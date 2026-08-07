@@ -47,6 +47,10 @@ const neutralPath = current.replace(/^\/(de|en)(?=\/|$)/, '') || '/';
     width: 100%;
     display: flex;
     align-items: center;
+    /* Fallback für Zeilen ohne Auto-Margin (z. B. .tools allein bei stark
+       vergrößerter Root-Schrift): rechtsbündig statt links gestrandet.
+       In Zeile 1 wirkungslos — die Auto-Margins schlucken den Freiraum. */
+    justify-content: flex-end;
     gap: 0.9rem 1.4rem;
     flex-wrap: wrap;
     padding-block: 1.4rem;
