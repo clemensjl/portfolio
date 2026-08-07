@@ -10,6 +10,7 @@ const VIEWPORT = { width: 1280, height: 800 };
 const targets = {
   'garmopol-web': 'https://garmopol.net',
   'claude-skills': 'https://github.com/clemensjl/claude-skills',
+  techcompare: 'https://tech-compare-j1k5.vercel.app',
 };
 
 const only = process.argv.slice(2);
