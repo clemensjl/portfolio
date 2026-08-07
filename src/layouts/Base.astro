@@ -34,6 +34,44 @@ const site = (Astro.site?.href ?? '').replace(/\/$/, '');
     <meta property="og:url" content={`${site}/${lang}${path}`} />
     <meta property="og:image" content={`${site}${image}`} />
     <meta name="twitter:card" content="summary_large_image" />
+    <script is:inline>
+      // Scroll-Reveal: läuft vor dem ersten Paint (kein FOUC). Ohne JS,
+      // ohne IntersectionObserver oder mit prefers-reduced-motion bleibt
+      // alles sichtbar — die Seite funktioniert dann einfach ohne Effekt.
+      (function () {
+        if (!('IntersectionObserver' in window)) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        document.documentElement.classList.add('js-reveal');
+        var start = function () {
+          try {
+            observe();
+          } catch (e) {
+            // Sicherheitsnetz: nie Inhalte versteckt zurücklassen.
+            document.documentElement.classList.remove('js-reveal');
+          }
+        };
+        var observe = function () {
+          var io = new IntersectionObserver(
+            function (entries) {
+              for (var i = 0; i < entries.length; i++) {
+                if (entries[i].isIntersecting) {
+                  entries[i].target.classList.add('is-visible');
+                  io.unobserve(entries[i].target);
+                }
+              }
+            },
+            { rootMargin: '0px 0px -10% 0px', threshold: 0.05 }
+          );
+          var els = document.querySelectorAll('.reveal');
+          for (var i = 0; i < els.length; i++) io.observe(els[i]);
+        };
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', start);
+        } else {
+          start();
+        }
+      })();
+    </script>
   </head>
   <body>
     <slot />

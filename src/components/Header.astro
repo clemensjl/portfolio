@@ -48,7 +48,26 @@ const current = Astro.url.pathname;
   }
   .brand:hover { text-decoration: none; }
   nav { display: flex; gap: 1.1rem; flex-wrap: wrap; }
-  nav a { color: var(--muted); }
+  nav a {
+    position: relative;
+    color: var(--muted);
+    transition: color 150ms ease;
+  }
+  nav a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.25em;
+    height: 2px;
+    border-radius: 1px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 200ms ease;
+  }
   nav a:hover { color: var(--text); text-decoration: none; }
+  nav a:hover::after { transform: scaleX(1); }
   nav a[aria-current='page'] { color: var(--accent); }
+  nav a[aria-current='page']::after { transform: scaleX(1); background: var(--accent-dim); }
 </style>

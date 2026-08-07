@@ -5,14 +5,23 @@ import type { Lang } from '../i18n';
 interface Props {
   lang: Lang;
   project: CollectionEntry<'projects'>;
+  /** Position im Grid — steuert die gestaffelte Scroll-Reveal-Verzögerung. */
+  index?: number;
 }
 
-const { lang, project } = Astro.props;
+const { lang, project, index = 0 } = Astro.props;
 const slug = project.id.split('/')[1];
+// Stagger pro Grid-Reihe (max. 3 Spalten), nicht pro absoluter Position —
+// sonst warten Karten in tieferen Reihen unnötig lange nach dem Intersect.
+const delay = (index % 3) * 80;
 ---
 
-<a class="card project-card" href={`/${lang}/projects/${slug}/`}>
-  <h3>{project.data.title}</h3>
+<a
+  class="card project-card reveal"
+  href={`/${lang}/projects/${slug}/`}
+  style={`--reveal-delay: ${delay}ms`}
+>
+  <h3>{project.data.title}<span class="arrow" aria-hidden="true">→</span></h3>
   <p>{project.data.summary}</p>
   <div class="tags">
     {project.data.stack.map((s) => <span class="tag">{s}</span>)}
@@ -25,4 +34,16 @@ const slug = project.id.split('/')[1];
   .project-card h3 { margin: 0 0 0.4rem; color: var(--accent); }
   .project-card p { margin: 0 0 0.9rem; color: var(--muted); }
   .tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+  .arrow {
+    display: inline-block;
+    margin-left: 0.35em;
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: opacity 180ms ease, transform 180ms ease;
+  }
+  .project-card:hover .arrow,
+  .project-card:focus-visible .arrow {
+    opacity: 0.9;
+    transform: translateX(0);
+  }
 </style>

@@ -82,9 +82,19 @@ html { scrollbar-color: var(--surface-2) var(--bg); scrollbar-width: thin; }
   color: var(--text);
   background: var(--surface);
   font-weight: 500;
-  transition: background-color 150ms ease, border-color 150ms ease;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
 }
-.btn:hover { background: var(--surface-2); text-decoration: none; }
+.btn:hover {
+  background: var(--surface-2);
+  border-color: var(--muted);
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+.btn:active { transform: translateY(0) scale(0.98); }
 
 .btn-primary {
   background: var(--accent);
@@ -92,18 +102,37 @@ html { scrollbar-color: var(--surface-2) var(--bg); scrollbar-width: thin; }
   color: var(--bg);
   font-weight: 600;
 }
-.btn-primary:hover { background: var(--accent-dim); border-color: var(--accent-dim); }
+.btn-primary:hover {
+  background: var(--accent-dim);
+  border-color: var(--accent-dim);
+  box-shadow: 0 4px 18px -6px rgb(63 185 80 / 0.45);
+}
 
 .card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 1.25rem;
-  transition: border-color 150ms ease, box-shadow 150ms ease;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
 }
 .card:hover {
   border-color: var(--accent-dim);
   box-shadow: 0 4px 20px -8px rgb(0 0 0 / 0.4);
+}
+/* Nur verlinkte Cards heben ab und geben Klick-Feedback — ein Lift auf
+   nicht-klickbaren Cards würde fälschlich Interaktivität signalisieren. */
+a.card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 12px 28px -12px rgb(0 0 0 / 0.55),
+    0 0 24px -14px rgb(63 185 80 / 0.4);
+}
+a.card:active {
+  transform: translateY(-1px) scale(0.99);
+  transition-duration: 80ms;
 }
 
 .tag {
@@ -116,13 +145,40 @@ html { scrollbar-color: var(--surface-2) var(--bg); scrollbar-width: thin; }
   background: var(--surface-2);
   color: var(--muted);
   border: 1px solid var(--border);
+  transition: border-color 150ms ease, color 150ms ease;
+}
+.tag:hover { border-color: var(--accent-dim); color: var(--text); }
+
+/*
+ * Scroll-Reveal — progressive enhancement.
+ * Inhalte sind per Default sichtbar. Das Inline-Script in Base.astro setzt
+ * `js-reveal` auf <html> nur, wenn JS läuft, IntersectionObserver existiert
+ * und prefers-reduced-motion NICHT aktiv ist. Erst dann werden .reveal-Elemente
+ * versteckt; der Observer blendet sie beim Scrollen wieder ein.
+ * Die Einblendung läuft als Animation mit fill-mode "backwards", damit nach
+ * Abschluss keine transform/opacity-Werte hängen bleiben, die mit den
+ * Hover-Transitions der Cards kollidieren würden.
+ */
+html.js-reveal .reveal { opacity: 0; }
+html.js-reveal .reveal.is-visible {
+  opacity: 1;
+  animation: reveal-in 550ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+@keyframes reveal-in {
+  from { opacity: 0; transform: translateY(16px); }
+}
+@media print {
+  html.js-reveal .reveal { opacity: 1 !important; animation: none !important; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
     transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
     scroll-behavior: auto !important;
   }
 }

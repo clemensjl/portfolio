@@ -29,7 +29,7 @@ const ventures = await Promise.all(
     <h1>{t('startup.title')}</h1>
     <p class="intro">{t('home.startupTeaser')}</p>
     {ventures.map(({ entry, Content }) => (
-      <section class="card venture">
+      <section class="card venture reveal">
         <h2>{entry.data.title}</h2>
         <p class="summary">{entry.data.summary}</p>
         <dl>

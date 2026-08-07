@@ -47,7 +47,10 @@ try {
   mkdirSync('screenshots', { recursive: true });
   browser = await chromium.launch();
   for (const [device, viewport] of Object.entries(viewports)) {
-    const page = await browser.newPage({ viewport });
+    // reducedMotion: deterministische Screenshots (kein Mid-Animation-Zustand)
+    // und zugleich Nachweis, dass bei prefers-reduced-motion alle Inhalte
+    // sichtbar bleiben (Scroll-Reveal deaktiviert sich dann komplett).
+    const page = await browser.newPage({ viewport, reducedMotion: 'reduce' });
     for (const route of routes) {
       const name = (route === '/' ? 'root' : route.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, ''));
       await page.goto(BASE + route, { waitUntil: 'networkidle' });

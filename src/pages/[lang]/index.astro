@@ -38,20 +38,20 @@ const featured = (
       </div>
     </section>
 
-    <h2 class="section-title">{t('home.featured')}</h2>
+    <h2 class="section-title reveal">{t('home.featured')}</h2>
     <div class="grid">
-      {featured.map((p) => <ProjectCard lang={lang} project={p} />)}
+      {featured.map((p, i) => <ProjectCard lang={lang} project={p} index={i} />)}
     </div>
-    <p><a href={`/${lang}/projects/`}>{t('home.allProjects')}</a></p>
+    <p class="reveal"><a href={`/${lang}/projects/`}>{t('home.allProjects')}</a></p>
 
-    <h2 class="section-title">{t('home.startupTitle')}</h2>
-    <div class="card">
+    <h2 class="section-title reveal">{t('home.startupTitle')}</h2>
+    <div class="card reveal">
       <p>{t('home.startupTeaser')}</p>
       <a class="btn" href={`/${lang}/startup/`}>{t('home.startupCta')}</a>
     </div>
 
-    <h2 class="section-title">{t('home.skills')}</h2>
-    <div class="skills">
+    <h2 class="section-title reveal">{t('home.skills')}</h2>
+    <div class="skills reveal">
       {skills.map((s) => <span class="tag">{s}</span>)}
     </div>
   </main>
@@ -64,10 +64,27 @@ const featured = (
     border-radius: 50%;
     border: 2px solid var(--border);
     object-fit: cover;
+    transition: border-color 250ms ease, box-shadow 250ms ease;
+  }
+  .portrait:hover {
+    border-color: var(--accent-dim);
+    box-shadow: 0 0 0 4px rgb(63 185 80 / 0.15), 0 0 32px -6px rgb(63 185 80 / 0.35);
   }
   .hero h1 { font-size: clamp(2rem, 6vw, 3rem); margin: 1rem 0 0.5rem; }
   .tagline { color: var(--muted); max-width: 38rem; margin-inline: auto; }
   .cta { display: flex; gap: 0.8rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+
+  /* Hero-Entrance: rein CSS-basiert, läuft also auch ohne JS und endet immer
+     im sichtbaren Zustand. prefers-reduced-motion wird global auf 0.01ms
+     Dauer + 0ms Delay gesetzt — der Inhalt steht dann sofort. */
+  .hero > * { animation: hero-in 600ms cubic-bezier(0.16, 1, 0.3, 1) backwards; }
+  .hero .portrait { animation-delay: 0ms; }
+  .hero h1 { animation-delay: 90ms; }
+  .hero .tagline { animation-delay: 180ms; }
+  .hero .cta { animation-delay: 270ms; }
+  @keyframes hero-in {
+    from { opacity: 0; transform: translateY(12px); }
+  }
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
