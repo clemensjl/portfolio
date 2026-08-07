@@ -22,21 +22,19 @@ const neutralPath = current.replace(/^\/(de|en)(?=\/|$)/, '') || '/';
 
 <header class="container site-header">
   <a class="brand" href={`/${lang}/`}>
-    <img src="/favicon.svg" alt="" width="28" height="28" />
+    <img src="/favicon.svg" alt="" width="30" height="30" />
     <span>Clemens Jele</span>
   </a>
-  <div class="header-right">
-    <nav aria-label={lang === 'de' ? 'Hauptnavigation' : 'Main navigation'}>
-      {items.map((item) => (
-        <a href={item.href} aria-current={current === item.href ? 'page' : undefined}>
-          {item.label}
-        </a>
-      ))}
-    </nav>
-    <div class="tools">
-      <LangSwitch lang={lang} path={neutralPath} />
-      <ThemeToggle lang={lang} />
-    </div>
+  <nav aria-label={lang === 'de' ? 'Hauptnavigation' : 'Main navigation'}>
+    {items.map((item) => (
+      <a href={item.href} aria-current={current === item.href ? 'page' : undefined}>
+        {item.label}
+      </a>
+    ))}
+  </nav>
+  <div class="tools">
+    <LangSwitch lang={lang} path={neutralPath} />
+    <ThemeToggle lang={lang} />
   </div>
 </header>
 
@@ -49,10 +47,9 @@ const neutralPath = current.replace(/^\/(de|en)(?=\/|$)/, '') || '/';
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
+    gap: 0.9rem 1.4rem;
     flex-wrap: wrap;
-    padding-block: 1.1rem;
+    padding-block: 1.4rem;
   }
   .brand {
     display: flex;
@@ -60,19 +57,39 @@ const neutralPath = current.replace(/^\/(de|en)(?=\/|$)/, '') || '/';
     gap: 0.6rem;
     color: var(--text);
     font-weight: 600;
+    font-size: 1.05rem;
+    /* schiebt Nav + Tools nach rechts — die Regler sitzen damit als letztes
+       Element bündig am rechten Rand (Google-Translate-Popup-Zone meiden) */
+    margin-right: auto;
   }
   .brand:hover { text-decoration: none; }
-  .header-right {
+  .tools { display: flex; align-items: center; gap: 0.6rem; }
+  nav {
     display: flex;
-    align-items: center;
     gap: 1.25rem;
     flex-wrap: wrap;
+    /* Wenn Nav + Tools auf eine eigene Zeile umbrechen, bleiben sie rechtsbündig. */
+    margin-left: auto;
   }
-  .tools { display: flex; align-items: center; gap: 0.5rem; }
-  nav { display: flex; gap: 1.1rem; flex-wrap: wrap; }
+  /* Schmale Viewports: Brand + Regler in Zeile 1 (Regler ganz rechts),
+     Navigation als eigene Zeile darunter — statt drei unruhiger Zeilen.
+     Breakpoint 740px: darüber passt alles sicher in eine Zeile (~694px nötig).
+     Engere Lücke + Brand auf 1rem, damit Zeile 1 bei 390px wirklich passt;
+     margin-left:auto hält die Regler auch dann rechts, falls sie doch umbrechen. */
+  @media (max-width: 740px) {
+    .site-header { column-gap: 0.6rem; }
+    .brand { font-size: 1rem; gap: 0.5rem; }
+    .tools { margin-left: auto; gap: 0.5rem; }
+    nav {
+      order: 3;
+      flex-basis: 100%;
+      margin-left: 0;
+    }
+  }
   nav a {
     position: relative;
     color: var(--muted);
+    font-weight: 500;
     transition: color 150ms ease;
   }
   nav a::after {

@@ -207,8 +207,8 @@ a.card:active {
 .seg {
   display: inline-flex;
   align-items: center;
-  gap: 2px;
-  padding: 2px;
+  gap: 3px;
+  padding: 3px;
   border: 1px solid var(--border);
   border-radius: 999px;
   background: var(--surface);
@@ -217,15 +217,15 @@ a.card:active {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  /* WCAG 2.5.8: Zielgröße mindestens 24×24px */
-  min-width: 24px;
-  min-height: 24px;
-  padding: 0.22rem 0.5rem;
+  /* 30×30px Ziele — komfortabel über der WCAG-2.5.8-Untergrenze (24×24px) */
+  min-width: 30px;
+  min-height: 30px;
+  padding: 0.32rem 0.66rem;
   border: 0;
   border-radius: 999px;
   background: transparent;
   font: inherit;
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   line-height: 1;
@@ -254,7 +254,13 @@ a.card:active {
 /* pillenförmigen Fokus-Ring behalten (globales :focus-visible setzt radius 2px) */
 .seg-item:focus-visible { border-radius: 999px; }
 /* Icon-Segmente (Theme) quadratischer halten */
-.seg-item.seg-icon { padding: 0.24rem; }
+.seg-item.seg-icon { padding: 0.3rem; }
+/* Schmale Viewports: Textsegmente minimal schmaler, damit Brand + Regler im
+   Header nebeneinander in Zeile 1 passen — Ziele bleiben ≥30px hoch.
+   (Breakpoint synchron zum Header-Umbruch in Header.astro.) */
+@media (max-width: 740px) {
+  .seg-item { padding-inline: 0.55rem; }
+}
 .seg-item svg { display: block; }
 /* Ohne JS ist der Theme-Umschalter wirkungslos — dann gar nicht erst zeigen.
    Die Klasse setzt das Pre-Paint-Script (ThemeInit), also kein Layout-Shift. */
