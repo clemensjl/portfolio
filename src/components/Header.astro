@@ -1,4 +1,6 @@
 ---
+import LangSwitch from './LangSwitch.astro';
+import ThemeToggle from './ThemeToggle.astro';
 import { useTranslations, type Lang } from '../i18n';
 
 interface Props {
@@ -14,6 +16,8 @@ const items = [
   { href: `/${lang}/about/`, label: t('nav.about') },
 ];
 const current = Astro.url.pathname;
+// Sprachneutraler Pfad für den Sprachumschalter: "/de/projects/" → "/projects/".
+const neutralPath = current.replace(/^\/(de|en)(?=\/|$)/, '') || '/';
 ---
 
 <header class="container site-header">
@@ -21,17 +25,28 @@ const current = Astro.url.pathname;
     <img src="/favicon.svg" alt="" width="28" height="28" />
     <span>Clemens Jele</span>
   </a>
-  <nav aria-label={lang === 'de' ? 'Hauptnavigation' : 'Main navigation'}>
-    {items.map((item) => (
-      <a href={item.href} aria-current={current === item.href ? 'page' : undefined}>
-        {item.label}
-      </a>
-    ))}
-  </nav>
+  <div class="header-right">
+    <nav aria-label={lang === 'de' ? 'Hauptnavigation' : 'Main navigation'}>
+      {items.map((item) => (
+        <a href={item.href} aria-current={current === item.href ? 'page' : undefined}>
+          {item.label}
+        </a>
+      ))}
+    </nav>
+    <div class="tools">
+      <LangSwitch lang={lang} path={neutralPath} />
+      <ThemeToggle lang={lang} />
+    </div>
+  </div>
 </header>
 
 <style>
   .site-header {
+    /* Als Flex-Kind von <body> verhindern die Auto-Margins des .container das
+       Stretchen — der Header schrumpfte auf Inhaltsbreite und wirkte zentriert.
+       width: 100% stellt das gedachte Layout her: Brand links, Tools rechts,
+       bündig mit Content und Footer. */
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -47,6 +62,13 @@ const current = Astro.url.pathname;
     font-weight: 600;
   }
   .brand:hover { text-decoration: none; }
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+  .tools { display: flex; align-items: center; gap: 0.5rem; }
   nav { display: flex; gap: 1.1rem; flex-wrap: wrap; }
   nav a {
     position: relative;

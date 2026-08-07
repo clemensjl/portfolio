@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import ThemeInit from '../components/ThemeInit.astro';
 import { useTranslations } from '../i18n';
 
 const de = useTranslations('de');
@@ -14,6 +15,7 @@ const en = useTranslations('en');
     <title>404 — Clemens Jele</title>
     <meta name="robots" content="noindex" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <ThemeInit />
   </head>
   <body>
     <main class="container notfound">

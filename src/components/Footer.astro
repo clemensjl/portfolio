@@ -1,13 +1,11 @@
 ---
-import LangSwitch from './LangSwitch.astro';
 import { useTranslations, EMAIL_HREF, GITHUB_URL, type Lang } from '../i18n';
 
 interface Props {
   lang: Lang;
-  path: string;
 }
 
-const { lang, path } = Astro.props;
+const { lang } = Astro.props;
 const t = useTranslations(lang);
 ---
 
@@ -18,7 +16,6 @@ const t = useTranslations(lang);
       <a href={GITHUB_URL} rel="me noopener">{t('footer.github')}</a>
       <a href="https://jele.at/">jele.at</a>
     </div>
-    <LangSwitch lang={lang} path={path} />
   </div>
 </footer>
 

@@ -34,7 +34,7 @@ const projects = (await getCollection('projects', (p) => p.id.startsWith(`${lang
       {projects.map((p, i) => <ProjectCard lang={lang} project={p} index={i} />)}
     </div>
   </main>
-  <Footer lang={lang} path="/projects/" />
+  <Footer lang={lang} />
 </Base>
 
 <style>

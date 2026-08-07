@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import ThemeInit from '../components/ThemeInit.astro';
 ---
 
 <!doctype html>
@@ -10,6 +11,7 @@ import '../styles/global.css';
     <title>Clemens Jele</title>
     <meta name="robots" content="noindex" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <ThemeInit />
     <script is:inline>
       var first = (navigator.languages && navigator.languages[0]) || navigator.language || 'de';
       var target = first.toLowerCase().indexOf('de') === 0 ? 'de' : 'en';

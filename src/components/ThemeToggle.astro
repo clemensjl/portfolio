@@ -1,0 +1,94 @@
+---
+import { useTranslations, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+// SSR-Default: "System" aktiv — stimmt für Erstbesucher; bei gespeicherter
+// Wahl korrigiert das Script unten den Zustand direkt nach dem Parsen.
+---
+
+<div class="seg theme-seg" role="group" aria-label={t('theme.label')}>
+  <button
+    class="seg-item seg-icon"
+    type="button"
+    data-set-theme="light"
+    aria-pressed="false"
+    aria-label={t('theme.light')}
+    title={t('theme.light')}
+  >
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+    </svg>
+  </button>
+  <button
+    class="seg-item seg-icon"
+    type="button"
+    data-set-theme="system"
+    aria-pressed="true"
+    aria-label={t('theme.system')}
+    title={t('theme.system')}
+  >
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="2" y="3" width="20" height="14" rx="2" />
+      <path d="M8 21h8m-4-4v4" />
+    </svg>
+  </button>
+  <button
+    class="seg-item seg-icon"
+    type="button"
+    data-set-theme="dark"
+    aria-pressed="false"
+    aria-label={t('theme.dark')}
+    title={t('theme.dark')}
+  >
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+    </svg>
+  </button>
+</div>
+
+<script>
+  // "System" löscht den Override — danach regelt CSS (prefers-color-scheme)
+  // das Theme wieder allein, inklusive Live-Wechsel bei OS-Umstellung.
+  const root = document.documentElement;
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.theme-seg [data-set-theme]');
+
+  function stored(): string {
+    try {
+      const t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') return t;
+    } catch {
+      /* localStorage gesperrt — dann gibt es nie einen Override */
+    }
+    return 'system';
+  }
+
+  function sync(): void {
+    const active = stored();
+    buttons.forEach((b) => {
+      b.setAttribute('aria-pressed', String(b.dataset.setTheme === active));
+    });
+  }
+
+  buttons.forEach((b) => {
+    b.addEventListener('click', () => {
+      const value = b.dataset.setTheme;
+      try {
+        if (value === 'light' || value === 'dark') localStorage.setItem('theme', value);
+        else localStorage.removeItem('theme');
+      } catch {
+        /* nicht speicherbar — wenigstens für diese Seite anwenden */
+      }
+      if (value === 'light' || value === 'dark') root.setAttribute('data-theme', value);
+      else root.removeAttribute('data-theme');
+      sync();
+    });
+  });
+
+  sync();
+</script>

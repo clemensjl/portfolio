@@ -1,0 +1,19 @@
+<script is:inline>
+  // Theme: läuft vor dem ersten Paint (kein Theme-Flash beim Navigieren).
+  // Nur eine explizite Wahl (localStorage "theme" = light|dark) setzt
+  // data-theme auf <html>. Ohne Eintrag ("System") bleibt das Attribut weg —
+  // CSS folgt dann prefers-color-scheme live, ganz ohne JS-Listener.
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') {
+        document.documentElement.setAttribute('data-theme', t);
+      }
+    } catch (e) {
+      // localStorage gesperrt (z. B. strikte Privacy-Settings): System-Theme.
+    }
+    // Signal "JS läuft" für den Theme-Umschalter (ohne JS wäre er wirkungslos
+    // und bleibt per CSS versteckt). Pre-Paint, also kein Layout-Shift.
+    document.documentElement.classList.add('theme-js');
+  })();
+</script>

@@ -50,7 +50,9 @@ try {
     // reducedMotion: deterministische Screenshots (kein Mid-Animation-Zustand)
     // und zugleich Nachweis, dass bei prefers-reduced-motion alle Inhalte
     // sichtbar bleiben (Scroll-Reveal deaktiviert sich dann komplett).
-    const page = await browser.newPage({ viewport, reducedMotion: 'reduce' });
+    // colorScheme 'dark' explizit: Playwright emuliert sonst 'light', und seit
+    // es ein Light-Theme gibt, würden alle Baselines stillschweigend kippen.
+    const page = await browser.newPage({ viewport, reducedMotion: 'reduce', colorScheme: 'dark' });
     for (const route of routes) {
       const name = (route === '/' ? 'root' : route.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, ''));
       await page.goto(BASE + route, { waitUntil: 'networkidle' });
@@ -59,6 +61,22 @@ try {
     }
     await page.close();
   }
+
+  // Light-Theme-Pass: OS-Präferenz "light" ohne gespeicherte Wahl (= System)
+  // muss die Light-Palette liefern. Stichprobe statt aller Routen — die
+  // Palette ist global, mehr Routen brächten keine zusätzliche Abdeckung.
+  const lightPage = await browser.newPage({
+    viewport: viewports.desktop,
+    reducedMotion: 'reduce',
+    colorScheme: 'light',
+  });
+  for (const route of ['/de/', '/de/projects/wincleaner/', '/404.html']) {
+    const name = route.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '');
+    await lightPage.goto(BASE + route, { waitUntil: 'networkidle' });
+    await lightPage.screenshot({ path: `screenshots/light-desktop-${name}.png`, fullPage: true });
+    console.log(`OK light ${route}`);
+  }
+  await lightPage.close();
 
   // Motion-Pfad-Check: ein Kontext OHNE reducedMotion — deckt den einzigen
   // Mechanismus ab, der Inhalte dauerhaft verstecken kann (js-reveal +

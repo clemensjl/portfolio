@@ -11,10 +11,6 @@ export function useTranslations(lang: Lang) {
   return (key: UiKey): string => ui[lang][key];
 }
 
-export function otherLang(lang: Lang): Lang {
-  return lang === 'de' ? 'en' : 'de';
-}
-
 export const langStaticPaths = [
   { params: { lang: 'de' as Lang } },
   { params: { lang: 'en' as Lang } },

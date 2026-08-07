@@ -1,6 +1,7 @@
 ---
 import '@fontsource-variable/inter';
 import '../styles/global.css';
+import ThemeInit from '../components/ThemeInit.astro';
 import type { Lang } from '../i18n';
 
 interface Props {
@@ -34,6 +35,7 @@ const site = (Astro.site?.href ?? '').replace(/\/$/, '');
     <meta property="og:url" content={`${site}/${lang}${path}`} />
     <meta property="og:image" content={`${site}${image}`} />
     <meta name="twitter:card" content="summary_large_image" />
+    <ThemeInit />
     <script is:inline>
       // Scroll-Reveal: läuft vor dem ersten Paint (kein FOUC). Ohne JS,
       // ohne IntersectionObserver oder mit prefers-reduced-motion bleibt
