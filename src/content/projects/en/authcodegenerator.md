@@ -1,12 +1,12 @@
 ---
 title: authcodegenerator
-summary: CLI that generates auth codes from a self-designed, easy-to-remember algorithm.
+summary: Python package that generates auth codes from a self-designed, easy-to-remember algorithm.
 stack: ["Python"]
 repo: https://github.com/clemensjl/authcodegenerator
 order: 8
 featured: false
 ---
 
-A small Python command-line tool that generates auth codes. The algorithm behind it is self-designed and built so the codes are easy to remember.
+A small Python library that generates auth codes. The algorithm behind it is self-designed and built so the codes are easy to remember.
 
-Built as a Python package with pytest tests and no runtime dependencies.
+Built as a package with pytest tests and no runtime dependencies.
