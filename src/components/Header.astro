@@ -20,7 +20,7 @@ const current = Astro.url.pathname;
 const neutralPath = current.replace(/^\/(de|en)(?=\/|$)/, '') || '/';
 ---
 
-<header class="container site-header">
+<header class="site-header">
   <a class="brand" href={`/${lang}/`}>
     <img src="/favicon.svg" alt="" width="30" height="30" />
     <span>Clemens Jele</span>
@@ -40,11 +40,14 @@ const neutralPath = current.replace(/^\/(de|en)(?=\/|$)/, '') || '/';
 
 <style>
   .site-header {
-    /* Als Flex-Kind von <body> verhindern die Auto-Margins des .container das
-       Stretchen — der Header schrumpfte auf Inhaltsbreite und wirkte zentriert.
-       width: 100% stellt das gedachte Layout her: Brand links, Tools rechts,
-       bündig mit Content und Footer. */
+    /* Bewusst KEIN .container: Der Header läuft full-bleed über die volle
+       Viewport-Breite, damit die Regler (.tools) wirklich ganz rechts am
+       Viewport-Rand sitzen — nicht am Rand des zentrierten 64rem-Containers,
+       wo auf breiten Screens Browser-Extension-Popups (Chrome-Übersetzer,
+       oben rechts) sie überdecken. Inset 1.25rem = padding-inline des
+       Containers, dadurch identisches Bild bis ~1064px Viewport-Breite. */
     width: 100%;
+    padding-inline: 1.25rem;
     display: flex;
     align-items: center;
     /* Fallback für Zeilen ohne Auto-Margin (z. B. .tools allein bei stark
