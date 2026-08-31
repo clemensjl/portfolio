@@ -20,6 +20,7 @@ npm run dev        # Dev-Server
 npm run build      # Statischer Build nach dist/
 npm run shots      # Playwright-Screenshots aller Seiten (Desktop + Mobile)
 npm run og         # OG-Default-Image neu generieren
+npm run covers     # Cover-Karten für Projekte ohne Screenshot
 ```
 
 Deploy: Vercel (Projekte `portfolio` und `jele-home`).

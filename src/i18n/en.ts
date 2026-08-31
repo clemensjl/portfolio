@@ -23,6 +23,8 @@ const en: Record<keyof typeof de, string> = {
   'projects.description': 'All projects by Clemens Jele: desktop tools, web apps and automation.',
   'projects.repo': 'Repository',
   'projects.live': 'View live',
+  'projects.download': 'Download',
+  'projects.role': 'Role',
   'projects.stack': 'Stack',
   'projects.backToOverview': 'Back to overview',
   'startup.title': 'Startup — Racep Labs',

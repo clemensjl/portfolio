@@ -32,14 +32,21 @@ const { Content } = await render(entry);
     <p><a href={`/${lang}/projects/`}>← {t('projects.backToOverview')}</a></p>
     <h1>{entry.data.title}</h1>
     <p class="summary">{entry.data.summary}</p>
-    <img class="shot" src={entry.data.image} alt={`Screenshot: ${entry.data.title}`} width="1200" height="675" />
+    <!-- dekorativ: Titel und Zusammenfassung stehen direkt darüber, das Bild trägt nichts nach -->
+    <img class="shot" src={entry.data.image} alt={entry.data.imageAlt ?? ''} width="1200" height="675" loading="eager" fetchpriority="high" />
     <div class="meta">
       <h2>{t('projects.stack')}</h2>
       <div class="tags">{entry.data.stack.map((s) => <span class="tag">{s}</span>)}</div>
-      <div class="links">
-        {entry.data.repo && <a class="btn" href={entry.data.repo} rel="noopener">{t('projects.repo')}</a>}
-        {entry.data.live && <a class="btn btn-primary" href={entry.data.live} rel="noopener">{t('projects.live')}</a>}
-      </div>
+      {entry.data.role && (
+        <p class="role"><span>{t('projects.role')}:</span> {entry.data.role}</p>
+      )}
+      {(entry.data.repo || entry.data.live || entry.data.download) && (
+        <div class="links">
+          {entry.data.repo && <a class="btn" href={entry.data.repo} rel="noopener">{t('projects.repo')}</a>}
+          {entry.data.live && <a class="btn btn-primary" href={entry.data.live} rel="noopener">{t('projects.live')}</a>}
+          {entry.data.download && <a class="btn btn-primary" href={entry.data.download} rel="noopener">{t('projects.download')}</a>}
+        </div>
+      )}
     </div>
     <article class="prose">
       <Content />
@@ -58,7 +65,10 @@ const { Content } = await render(entry);
     margin-block: 1rem;
   }
   .meta h2 { font-size: 1rem; color: var(--muted); margin-bottom: 0.5rem; }
-  .tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  .tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+  .tags:has(+ .links) { margin-bottom: 1rem; }
+  .role { margin: 0.9rem 0 1rem; }
+  .role span { color: var(--muted); }
   .links { display: flex; gap: 0.8rem; flex-wrap: wrap; }
   .prose { max-width: 44rem; margin-top: 2rem; }
   .prose :global(p) { color: var(--text); }

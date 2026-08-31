@@ -21,6 +21,8 @@ export default {
   'projects.description': 'Alle Projekte von Clemens Jele: Desktop-Tools, Web-Apps und Automatisierung.',
   'projects.repo': 'Repository',
   'projects.live': 'Live ansehen',
+  'projects.download': 'Download',
+  'projects.role': 'Rolle',
   'projects.stack': 'Stack',
   'projects.backToOverview': 'Zurück zur Übersicht',
   'startup.title': 'Startup — Racep Labs',

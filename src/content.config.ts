@@ -7,9 +7,16 @@ const projects = defineCollection({
     title: z.string(),
     summary: z.string(),
     stack: z.array(z.string()),
+    // Nur setzen, wo die eigene Rolle nicht selbsterklaerend ist — etwa bei Projekten,
+    // die im Team entstehen und deren Hauptrepo woanders liegt.
+    role: z.string().optional(),
     repo: z.string().url().optional(),
     live: z.string().url().optional(),
+    download: z.string().url().optional(),
     image: z.string(),
+    // Nur für generierte Cover-Karten: deren Text steht sonst nirgends auf der Seite.
+    // Echte Screenshots bleiben ohne Alt-Text, weil Titel und Zusammenfassung direkt darüber stehen.
+    imageAlt: z.string().optional(),
     order: z.number(),
     featured: z.boolean().default(false),
   }),
