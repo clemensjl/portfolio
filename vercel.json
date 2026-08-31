@@ -1,3 +1,17 @@
 {
-  "trailingSlash": true
+  "trailingSlash": true,
+  "redirects": [
+    { "source": "/de/projects/wincleaner", "destination": "/de/projects/kern-clean/", "permanent": true },
+    { "source": "/de/projects/wincleaner/", "destination": "/de/projects/kern-clean/", "permanent": true },
+    { "source": "/en/projects/wincleaner", "destination": "/en/projects/kern-clean/", "permanent": true },
+    { "source": "/en/projects/wincleaner/", "destination": "/en/projects/kern-clean/", "permanent": true },
+    { "source": "/de/projects/kina-search", "destination": "/de/projects/kern-search/", "permanent": true },
+    { "source": "/de/projects/kina-search/", "destination": "/de/projects/kern-search/", "permanent": true },
+    { "source": "/en/projects/kina-search", "destination": "/en/projects/kern-search/", "permanent": true },
+    { "source": "/en/projects/kina-search/", "destination": "/en/projects/kern-search/", "permanent": true },
+    { "source": "/de/projects/techcompare", "destination": "/de/projects/specmatch/", "permanent": true },
+    { "source": "/de/projects/techcompare/", "destination": "/de/projects/specmatch/", "permanent": true },
+    { "source": "/en/projects/techcompare", "destination": "/en/projects/specmatch/", "permanent": true },
+    { "source": "/en/projects/techcompare/", "destination": "/en/projects/specmatch/", "permanent": true }
+  ]
 }
