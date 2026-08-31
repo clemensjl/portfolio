@@ -41,6 +41,9 @@ const ventures = await Promise.all(
         {entry.data.stack.length > 0 && (
           <div class="tags">{entry.data.stack.map((s) => <span class="tag">{s}</span>)}</div>
         )}
+        {entry.data.live && (
+          <p class="links"><a class="btn" href={entry.data.live} rel="noopener">{t('projects.live')}</a></p>
+        )}
         <div class="body"><Content /></div>
       </section>
     ))}
@@ -57,5 +60,6 @@ const ventures = await Promise.all(
   dt { color: var(--muted); }
   dd { margin: 0; }
   .tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+  .links { margin-block: 0.9rem 0; }
   .body { max-width: 44rem; }
 </style>
