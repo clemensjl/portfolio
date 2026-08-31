@@ -24,3 +24,8 @@ npm run covers     # Cover-Karten für Projekte ohne Screenshot
 ```
 
 Deploy: Vercel (Projekte `portfolio` und `jele-home`).
+
+## Offen
+
+- **KernClean-Screenshot** (`public/images/projects/kern-clean.png`) zeigt noch die alte WinCleaner-Oberfläche. Das Rebranding steckt im Code, aber es gibt danach noch kein Release. Nach dem nächsten Build der GUI neu aufnehmen.
+- **Rollenangabe bei OpenPass** (`role: Eigenentwicklung`) ist ungeprüft gesetzt — das lokale Repo hat noch keinen Commit, also gibt es keine Autorenschaft zum Belegen. Bestätigen oder korrigieren.
