@@ -178,15 +178,17 @@ const t = useTranslations(lang);
   .showcase-stage .pin {
     height: auto;
     z-index: 1;
-    padding-block: 1.25rem 1.5rem;
-    background: linear-gradient(var(--bg) 88%, transparent);
+    padding-block: 1rem 1.25rem;
+    /* deckend bis unter die Stack-Zeile, erst im Polster darunter laeuft der Verlauf aus */
+    background: linear-gradient(var(--bg) calc(100% - 1.25rem), transparent);
   }
-  .showcase-stage .pin-inner :global(.pv) { max-width: calc(var(--pin-h) * 0.6 * 1.6); }
+  /* Vorschau nimmt gut die halbe Hoehe: darunter bleibt ein Band, in dem immer ein Schritt steht */
+  .showcase-stage .pin-inner :global(.pv) { max-width: calc(var(--pin-h) * 0.5 * 1.6); }
   .showcase-stage .steps {
     max-width: 34rem;
     margin-inline: auto;
-    padding: 12dvh 0 calc(var(--pin-h) * 0.22);
-    gap: calc(var(--pin-h) * 0.26);
+    padding: 8dvh 0 calc(var(--pin-h) * 0.3);
+    gap: calc(var(--pin-h) * 0.17);
   }
 
   @media (max-width: 900px) {
@@ -196,14 +198,14 @@ const t = useTranslations(lang);
       height: auto;
       z-index: 1;
       padding-block: 0.75rem 1rem;
-      background: linear-gradient(var(--bg) 90%, transparent);
+      background: linear-gradient(var(--bg) calc(100% - 1rem), transparent);
     }
     .showcase-left .pin { order: 0; }
     .pin-inner :global(.pv),
     .showcase-stage .pin-inner :global(.pv) { max-width: calc(var(--pin-h) * 0.46 * 1.6); }
     .stack { display: none; }
     .steps,
-    .showcase-stage .steps { padding: 10dvh 0 16dvh; gap: 30dvh; max-width: none; }
+    .showcase-stage .steps { padding: 8dvh 0 22dvh; gap: 20dvh; max-width: none; }
   }
 
   /* Vorschau faehrt beim Eintritt in den Viewport hoch. Nur wo der Browser scroll-driven

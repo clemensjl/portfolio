@@ -60,8 +60,13 @@ function initStories() {
       // Jeder Observer-Treffer ist nur der Anlass: gewaehlt wird immer der Schritt, dessen Mitte
       // dem Band am naechsten liegt. So stimmt der Zustand auch nach Spruengen (Ankerlinks,
       // Bild-auf/ab), bei denen einzelne Schritte das Band nie kreuzen.
+      // Lage des Bandes: neben der Vorschau die Viewport-Mitte; liegt sie gepinnt oben, dann das
+      // obere Drittel des freien Bereichs unter ihr (haengt von ihrer Hoehe ab, also messen).
+      const pin = story.querySelector<HTMLElement>('.pin');
+      const pinBottom = stacked && pin ? pin.getBoundingClientRect().height + pin.offsetTop - story.offsetTop + parseFloat(getComputedStyle(pin).top || '0') : 0;
+      const frac = stacked ? Math.min(0.85, (pinBottom + (innerHeight - pinBottom) * 0.38) / innerHeight) : 0.5;
       const pick = () => {
-        const band = innerHeight * (stacked ? 0.73 : 0.5);
+        const band = innerHeight * frac;
         let best = steps[0];
         let dist = Infinity;
         for (const el of steps) {
@@ -71,8 +76,9 @@ function initStories() {
         }
         setStep(best);
       };
+      const pct = (n: number) => `${Math.round(n * 100)}%`;
       const io = new IntersectionObserver(pick, {
-        rootMargin: stacked ? '-68% 0px -22% 0px' : '-45% 0px -45% 0px',
+        rootMargin: `-${pct(frac - 0.05)} 0px -${pct(1 - frac - 0.05)} 0px`,
         threshold: 0,
       });
       // Zweiter Anlass: die Geschichte selbst kommt ins Bild oder verlaesst es.
