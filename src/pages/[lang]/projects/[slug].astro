@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
 import Header from '../../../components/Header.astro';
 import Footer from '../../../components/Footer.astro';
+import PreviewSlot from '../../../components/PreviewSlot.astro';
 import { useTranslations, type Lang } from '../../../i18n';
 
 export async function getStaticPaths() {
@@ -18,58 +19,100 @@ const lang = Astro.params.lang as Lang;
 const slug = Astro.params.slug as string;
 const t = useTranslations(lang);
 const { Content } = await render(entry);
+const d = entry.data;
 ---
 
 <Base
   lang={lang}
-  title={`${entry.data.title} — Clemens Jele`}
-  description={entry.data.summary}
+  title={`${d.title} | Clemens Jele`}
+  description={d.summary}
   path={`/projects/${slug}/`}
-  image={entry.data.image.endsWith('.svg') ? undefined : entry.data.image}
+  image={d.image.endsWith('.svg') ? undefined : d.image}
 >
-  <Header lang={lang} />
-  <main class="container">
-    <p><a href={`/${lang}/projects/`}>← {t('projects.backToOverview')}</a></p>
-    <h1>{entry.data.title}</h1>
-    <p class="summary">{entry.data.summary}</p>
-    <!-- dekorativ: Titel und Zusammenfassung stehen direkt darüber, das Bild trägt nichts nach -->
-    <img class="shot" src={entry.data.image} alt={entry.data.imageAlt ?? ''} width="1200" height="675" loading="eager" fetchpriority="high" />
-    <div class="meta">
-      <h2>{t('projects.stack')}</h2>
-      <div class="tags">{entry.data.stack.map((s) => <span class="tag">{s}</span>)}</div>
-      {entry.data.role && (
-        <p class="role"><span>{t('projects.role')}:</span> {entry.data.role}</p>
-      )}
-      {(entry.data.repo || entry.data.live || entry.data.download) && (
+  <Header lang={lang} path={`/projects/${slug}/`} />
+  <main id="main" class="container detail">
+    <p class="back"><a href={`/${lang}/#${d.flagship !== undefined && d.story ? slug : 'more'}`}><span aria-hidden="true">←</span> {t('projects.backToOverview')}</a></p>
+    <header class="top">
+      <div>
+        {d.role && <p class="kicker mono">{d.role}</p>}
+        <h1 style={`view-transition-name: title-${slug}`}>{d.title}</h1>
+        <p class="lede">{d.summary}</p>
+      </div>
+      {(d.repo || d.live || d.download) && (
         <div class="links">
-          {entry.data.repo && <a class="btn" href={entry.data.repo} rel="noopener">{t('projects.repo')}</a>}
-          {entry.data.live && <a class="btn btn-primary" href={entry.data.live} rel="noopener">{t('projects.live')}</a>}
-          {entry.data.download && <a class="btn btn-primary" href={entry.data.download} rel="noopener">{t('projects.download')}</a>}
+          {d.live && <a class="btn btn-primary" href={d.live} rel="noopener">{t('projects.live')} <span class="arrow" aria-hidden="true">↗</span></a>}
+          {d.download && <a class:list={['btn', { 'btn-primary': !d.live }]} href={d.download} rel="noopener">{t('projects.download')} <span class="arrow" aria-hidden="true">↗</span></a>}
+          {d.repo && <a class="btn" href={d.repo} rel="noopener">{t('projects.repo')} <span class="arrow" aria-hidden="true">↗</span></a>}
         </div>
       )}
+    </header>
+
+    <div class="visual" data-autoplay data-reveal="scale">
+      <PreviewSlot lang={lang} name={d.preview} image={d.image} imageAlt={d.imageAlt} />
     </div>
-    <article class="prose">
-      <Content />
-    </article>
+
+    <div class="cols">
+      <aside class="meta" data-reveal>
+        {d.facts.length > 0 && (
+          <dl class="facts">
+            {d.facts.map((f) => (
+              <div>
+                <dt>{f.label}</dt>
+                <dd>{f.value}</dd>
+              </div>
+            ))}
+          </dl>
+        )}
+        <h2>{t('projects.stack')}</h2>
+        <ul class="tags">{d.stack.map((s) => <li class="tag">{s}</li>)}</ul>
+      </aside>
+      <article class="prose" data-reveal style="--i:1">
+        <Content />
+      </article>
+    </div>
   </main>
   <Footer lang={lang} path={`/projects/${slug}/`} />
 </Base>
 
 <style>
-  .summary { color: var(--muted); max-width: 44rem; }
-  .shot {
-    width: 100%;
-    height: auto;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    margin-block: 1rem;
+  .detail { padding-block: clamp(1.5rem, 4vh, 3rem) 2rem; }
+  .back { margin-bottom: clamp(2rem, 6vh, 4rem); font-size: 0.95rem; }
+  .back a { color: var(--muted); }
+  .back a:hover { color: var(--text); text-decoration: none; }
+  .top {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) auto;
+    gap: 2rem;
+    align-items: end;
+    margin-bottom: clamp(2rem, 5vh, 3.5rem);
   }
-  .meta h2 { font-size: 1rem; color: var(--muted); margin-bottom: 0.5rem; }
-  .tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
-  .tags:has(+ .links) { margin-bottom: 1rem; }
-  .role { margin: 0.9rem 0 1rem; }
-  .role span { color: var(--muted); }
-  .links { display: flex; gap: 0.8rem; flex-wrap: wrap; }
-  .prose { max-width: 44rem; margin-top: 2rem; }
-  .prose :global(p) { color: var(--text); }
+  .kicker { color: var(--accent); margin: 0 0 1rem; }
+  .top h1 { margin-bottom: 1.25rem; }
+  .top .lede { margin: 0; }
+  .links { display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: flex-end; }
+  .visual { max-width: 70rem; margin-inline: auto; }
+  .cols {
+    display: grid;
+    grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.6fr);
+    gap: clamp(2rem, 6vw, 6rem);
+    margin-top: clamp(3rem, 8vh, 6rem);
+  }
+  .meta { position: sticky; top: calc(var(--header-h) + 2rem); align-self: start; }
+  .meta h2 { font-family: var(--font-sans); font-size: 0.9rem; font-weight: 500; letter-spacing: 0; color: var(--muted); margin-bottom: 0.7rem; }
+  .meta .tags { list-style: none; margin: 0; padding: 0; }
+  .facts { display: grid; gap: 1.25rem; margin: 0 0 2rem; }
+  .facts div { display: flex; flex-direction: column-reverse; gap: 0.15rem; }
+  .facts dd { margin: 0; font-family: var(--font-display); font-size: 2rem; font-weight: 600; letter-spacing: -0.03em; line-height: 1; }
+  .facts dt { color: var(--muted); font-size: 0.85rem; }
+  .prose { max-width: 40rem; font-size: 1.08rem; }
+  .prose :global(p) { margin-bottom: 1.3em; color: color-mix(in srgb, var(--text) 82%, var(--muted)); }
+  .prose :global(p:first-child) { font-size: 1.2em; color: var(--text); }
+  .prose :global(code) { font-family: var(--font-mono); font-size: 0.88em; background: var(--surface); padding: 0.1em 0.4em; border-radius: 6px; }
+
+  @media (max-width: 900px) {
+    .top { grid-template-columns: 1fr; align-items: start; }
+    .links { justify-content: flex-start; }
+    .cols { grid-template-columns: 1fr; }
+    .meta { position: static; }
+  }
 </style>

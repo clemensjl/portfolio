@@ -5,29 +5,65 @@ import { useTranslations, EMAIL_HREF, GITHUB_URL, type Lang } from '../i18n';
 interface Props {
   lang: Lang;
   path: string;
+  // Startseite: grosser Kontaktblock ueber der Fusszeile
+  big?: boolean;
 }
 
-const { lang, path } = Astro.props;
+const { lang, path, big = false } = Astro.props;
 const t = useTranslations(lang);
+const email = EMAIL_HREF.replace('mailto:', '');
 ---
 
-<footer>
-  <div class="container inner">
-    <div class="links">
-      <a href={EMAIL_HREF}>{t('footer.email')}</a>
-      <a href={GITHUB_URL} rel="me noopener">{t('footer.github')}</a>
-      <a href="https://jele.at/">jele.at</a>
+<footer id="contact">
+  {big && (
+    <div class="container contact">
+      <h2 data-reveal>{t('home.contactTitle')}</h2>
+      <p class="lede" data-reveal style="--i:1">{t('home.contactText')}</p>
+      <p class="mail-wrap" data-reveal style="--i:2">
+        <a class="mail" href={EMAIL_HREF}>
+          <span>{email}</span>
+          <span class="mail-arrow" aria-hidden="true">↗</span>
+        </a>
+      </p>
     </div>
-    <LangSwitch lang={lang} path={path} />
+  )}
+  <div class="container inner">
+    <span>© 2026 Clemens Jele</span>
+    <div class="links">
+      {!big && <a href={EMAIL_HREF}>{t('footer.email')}</a>}
+      <a href={GITHUB_URL} rel="me noopener">{t('footer.github')}</a>
+      <LangSwitch lang={lang} path={path} />
+    </div>
   </div>
 </footer>
 
 <style>
-  footer {
-    border-top: 1px solid var(--border);
-    margin-top: 4rem;
-    color: var(--muted);
+  footer { border-top: 1px solid var(--border-soft); margin-top: 4rem; color: var(--muted); }
+  .contact { padding-block: clamp(5rem, 14vh, 10rem) clamp(3rem, 8vh, 6rem); }
+  .contact h2 { color: var(--text); margin-bottom: 1rem; }
+  .contact .lede { margin-bottom: 2.5rem; }
+  .mail {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.35em;
+    font-family: var(--font-display);
+    font-size: clamp(1.7rem, 0.6rem + 5.4vw, 5.5rem);
+    font-weight: 620;
+    letter-spacing: -0.045em;
+    line-height: 1.05;
+    color: var(--text);
+    background: linear-gradient(var(--accent), var(--accent)) no-repeat 0 100% / 0% 0.06em;
+    padding-bottom: 0.12em;
+    transition: background-size 260ms var(--ease-out), color var(--dur-quick) ease;
   }
+  .mail-wrap { margin: 0; }
+  .mail:hover { text-decoration: none; color: var(--accent); }
+  .mail-arrow { font-size: 0.6em; transition: transform var(--dur-quick) var(--ease-out); }
+  @media (hover: hover) and (pointer: fine) {
+    .mail:hover { background-size: 100% 0.06em; }
+    .mail:hover .mail-arrow { transform: translate(0.12em, -0.12em); }
+  }
+
   .inner {
     display: flex;
     justify-content: space-between;
@@ -35,6 +71,9 @@ const t = useTranslations(lang);
     gap: 1rem;
     flex-wrap: wrap;
     padding-block: 1.5rem;
+    font-size: 0.9rem;
   }
-  .links { display: flex; gap: 1.1rem; }
+  .links { display: flex; gap: 1.25rem; }
+  .links a { color: var(--muted); }
+  .links a:hover { color: var(--text); }
 </style>

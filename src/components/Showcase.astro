@@ -1,0 +1,224 @@
+---
+// Flaggschiff-Sektion: Kopf mit Fakten und Links, darunter die Scroll-Geschichte.
+// Die Vorschau (Slot) bleibt gepinnt, die vier Textschritte scrollen vorbei und
+// schalten ueber src/scripts/motion.ts deren data-step. Unter 900px und in der
+// Variante "stage" liegt die Vorschau oben und die Schritte laufen darunter durch.
+import { useTranslations, type Lang } from '../i18n';
+
+interface Link { href: string; label: string; primary?: boolean; external?: boolean }
+interface Props {
+  lang: Lang;
+  id: string;
+  title: string;
+  summary: string;
+  kicker?: string;
+  facts: { value: string; label: string }[];
+  stack: string[];
+  links: Link[];
+  story: { title: string; text: string }[];
+  variant?: 'right' | 'left' | 'stage';
+}
+
+const { lang, id, title, summary, kicker, facts, stack, links, story, variant = 'right' } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section class={`showcase showcase-${variant}`} id={id} aria-labelledby={`${id}-title`}>
+  <header class="container head">
+    <div class="head-main" data-reveal>
+      {kicker && <p class="kicker mono">{kicker}</p>}
+      <h2 id={`${id}-title`} style={`view-transition-name: title-${id}`}>{title}</h2>
+      <p class="lede">{summary}</p>
+    </div>
+    <div class="head-side" data-reveal style="--i:1">
+      {facts.length > 0 && (
+        <dl class="facts">
+          {facts.map((f) => (
+            <div>
+              <dt>{f.label}</dt>
+              <dd>{f.value}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
+      <div class="links">
+        {links.map((l) => (
+          <a class:list={['btn', { 'btn-primary': l.primary }]} href={l.href} rel={l.external ? 'noopener' : undefined}>
+            {l.label}
+            <span class="arrow" aria-hidden="true">{l.external ? '↗' : '→'}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </header>
+
+  <div class="container story" data-story>
+    <div class="pin">
+      <div class="pin-inner">
+        <slot />
+        <ul class="tags stack" aria-label={t('projects.stack')}>
+          {stack.map((s) => <li class="tag">{s}</li>)}
+        </ul>
+      </div>
+    </div>
+    <ol class="steps">
+      {story.map((s, i) => (
+        <li class="step" data-story-step={i}>
+          <h3>{s.title}</h3>
+          <p>{s.text}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .showcase {
+    /* Sektionen ausserhalb des Viewports kosten weder Style noch Layout. Die Hoehe wird nach
+       dem ersten Rendern gemerkt (auto), der Schaetzwert haelt Ankerspruenge bis dahin stabil. */
+    content-visibility: auto;
+    contain-intrinsic-size: auto 320vh;
+    padding-block: clamp(5rem, 12vh, 9rem) 0;
+    border-top: 1px solid var(--border-soft);
+  }
+
+  .head {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: 2rem clamp(2rem, 6vw, 6rem);
+    align-items: end;
+  }
+  .kicker { color: var(--accent); margin: 0 0 1rem; }
+  .head h2 { margin-bottom: 1.25rem; }
+  .head .lede { margin: 0; }
+
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr));
+    gap: 1.25rem 1.5rem;
+    margin: 0 0 1.75rem;
+  }
+  .facts div { display: flex; flex-direction: column-reverse; gap: 0.15rem; }
+  .facts dd {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 1.2rem + 1.2vw, 2.3rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .facts dt { color: var(--muted); font-size: 0.85rem; }
+  .links { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+
+  /* Geschichte: zwei Spalten, Vorschau gepinnt */
+  .story {
+    --pin-h: calc(100dvh - var(--header-h));
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 5.5rem);
+    margin-top: clamp(1rem, 4vh, 3rem);
+  }
+  .showcase-left .story { grid-template-columns: minmax(0, 1fr) minmax(0, 1.45fr); }
+  .showcase-left .pin { order: 2; }
+
+  .pin {
+    position: sticky;
+    top: var(--header-h);
+    height: var(--pin-h);
+    display: grid;
+    align-items: center;
+  }
+  /* Bewusst kein Grid/Flex um die Vorschau: .pv ist ein Size-Container mit cqw-Einheiten. Ein
+     Grid misst sein Kind mehrfach, jede Messung loest einen Style-Durchlauf ueber die ganze
+     Vorschau aus. Gemessen: 11 s statt 1 s Layout beim ersten Rendern (4x-CPU-Drosselung). */
+  .pin-inner { display: block; }
+  /* Vorschau nie hoeher als der Viewport: Breite aus der verfuegbaren Hoehe ableiten */
+  .pin-inner :global(.pv) { max-width: calc((var(--pin-h) - 7rem) * 1.6); margin-inline: auto; }
+  .stack { list-style: none; margin: 1rem 0 0; padding: 0; justify-content: center; }
+
+  .steps {
+    list-style: none;
+    margin: 0;
+    padding: calc(var(--pin-h) * 0.32) 0;
+    display: grid;
+    gap: calc(var(--pin-h) * 0.3);
+  }
+  .step {
+    position: relative;
+    padding-left: 1.5rem;
+    /* Inaktive Schritte bleiben lesbar (WCAG 1.4.3): der Zustand steckt im Akzentbalken
+       und in der Textfarbe, nicht in der Deckkraft. */
+  }
+  .step::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.2em;
+    bottom: 0.2em;
+    width: 2px;
+    border-radius: 2px;
+    background: var(--accent);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform var(--dur) var(--ease-out);
+  }
+  .step.is-current::before { transform: scaleY(1); }
+  .step h3 { margin-bottom: 0.6rem; }
+  .step p { color: var(--faint); margin: 0; max-width: 30em; transition: color var(--dur) ease; }
+  .step.is-current p { color: var(--muted); }
+  .step h3 { color: var(--muted); transition: color var(--dur) ease; }
+  .step.is-current h3 { color: var(--text); }
+  /* ohne JS gibt es keinen aktiven Schritt: alles lesbar lassen */
+  :global(html:not(.js)) .step p { color: var(--muted); }
+  :global(html:not(.js)) .step h3 { color: var(--text); }
+
+  /* Buehne: Vorschau oben gepinnt, Schritte laufen darunter durch und verschwinden hinter ihr */
+  .showcase-stage .story { display: block; }
+  .showcase-stage .pin {
+    height: auto;
+    z-index: 1;
+    padding-block: 1.25rem 1.5rem;
+    background: linear-gradient(var(--bg) 88%, transparent);
+  }
+  .showcase-stage .pin-inner :global(.pv) { max-width: calc(var(--pin-h) * 0.6 * 1.6); }
+  .showcase-stage .steps {
+    max-width: 34rem;
+    margin-inline: auto;
+    padding: 12dvh 0 calc(var(--pin-h) * 0.22);
+    gap: calc(var(--pin-h) * 0.26);
+  }
+
+  @media (max-width: 900px) {
+    .head { grid-template-columns: 1fr; align-items: start; }
+    .story, .showcase-left .story { display: block; }
+    .pin {
+      height: auto;
+      z-index: 1;
+      padding-block: 0.75rem 1rem;
+      background: linear-gradient(var(--bg) 90%, transparent);
+    }
+    .showcase-left .pin { order: 0; }
+    .pin-inner :global(.pv),
+    .showcase-stage .pin-inner :global(.pv) { max-width: calc(var(--pin-h) * 0.46 * 1.6); }
+    .stack { display: none; }
+    .steps,
+    .showcase-stage .steps { padding: 10dvh 0 16dvh; gap: 30dvh; max-width: none; }
+  }
+
+  /* Vorschau faehrt beim Eintritt in den Viewport hoch. Nur wo der Browser scroll-driven
+     animations kann; ueberall sonst steht sie einfach da. */
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .pin-inner {
+        animation: pin-enter linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 70%;
+      }
+      @keyframes pin-enter {
+        from { opacity: 0.2; transform: translateY(8vh) scale(0.94); }
+        to { opacity: 1; transform: none; }
+      }
+    }
+  }
+</style>

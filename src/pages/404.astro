@@ -1,4 +1,6 @@
 ---
+import '@fontsource-variable/bricolage-grotesque/wght.css';
+import '@fontsource-variable/instrument-sans/wght.css';
 import '../styles/global.css';
 import { useTranslations } from '../i18n';
 
@@ -11,12 +13,13 @@ const en = useTranslations('en');
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>404 — Clemens Jele</title>
+    <title>404 | Clemens Jele</title>
+    <meta name="description" content="Seite nicht gefunden. Page not found." />
     <meta name="robots" content="noindex" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body>
-    <main class="container notfound">
+    <main id="main" class="container notfound">
       <h1>404</h1>
       <section>
         <h2>{de('notfound.title')}</h2>
@@ -33,7 +36,8 @@ const en = useTranslations('en');
 </html>
 
 <style>
-  .notfound { text-align: center; padding-block: 4rem; }
-  .notfound h1 { font-size: 4rem; color: var(--accent); margin-bottom: 0; }
-  .notfound section { margin-top: 2.5rem; }
+  .notfound { padding-block: clamp(4rem, 14vh, 9rem); display: grid; gap: 3rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
+  .notfound h1 { grid-column: 1 / -1; font-size: clamp(5rem, 22vw, 16rem); line-height: 0.85; color: var(--accent); }
+  .notfound h2 { font-size: 1.6rem; margin-bottom: 0.75rem; }
+  .notfound p { color: var(--muted); }
 </style>

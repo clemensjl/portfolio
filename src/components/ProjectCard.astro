@@ -1,28 +1,58 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import type { Lang } from '../i18n';
+import PreviewSlot from './PreviewSlot.astro';
 
 interface Props {
   lang: Lang;
   project: CollectionEntry<'projects'>;
+  index?: number;
 }
 
-const { lang, project } = Astro.props;
+const { lang, project, index = 0 } = Astro.props;
 const slug = project.id.split('/')[1];
+const d = project.data;
 ---
 
-<a class="card project-card" href={`/${lang}/projects/${slug}/`}>
-  <h3>{project.data.title}</h3>
-  <p>{project.data.summary}</p>
-  <div class="tags">
-    {project.data.stack.map((s) => <span class="tag">{s}</span>)}
-  </div>
+<a class="project-card" href={`/${lang}/projects/${slug}/`} data-reveal style={`--i:${index % 3}`}>
+  {d.preview ? (
+    <div class="live"><PreviewSlot lang={lang} name={d.preview} decorative /></div>
+  ) : (
+    <div class="shot">
+      <img src={d.image} alt="" width="1200" height="675" loading={index < 3 ? 'eager' : 'lazy'} decoding="async" />
+    </div>
+  )}
+  <h2 style={`view-transition-name: title-${slug}`}>{d.title}</h2>
+  <p>{d.summary}</p>
+  <ul class="tags">
+    {d.stack.map((s) => <li class="tag">{s}</li>)}
+  </ul>
 </a>
 
 <style>
+  /* Block statt Grid: ein Grid wuerde die Vorschau (Size-Container) mehrfach vermessen */
   .project-card { display: block; color: var(--text); }
+  .project-card h2 { margin-bottom: 0.6rem; }
   .project-card:hover { text-decoration: none; }
-  .project-card h3 { margin: 0 0 0.4rem; color: var(--accent); }
-  .project-card p { margin: 0 0 0.9rem; color: var(--muted); }
-  .tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+  .shot {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: var(--surface);
+    margin-bottom: 0.5rem;
+    transition: border-color var(--dur) ease;
+  }
+  .live { margin-bottom: 0.5rem; }
+  .live :global(.pv) { border-radius: var(--radius); box-shadow: none; transition: border-color var(--dur) ease; }
+  .project-card:hover .live :global(.pv) { border-color: var(--faint); }
+  .shot img { width: 100%; height: 100%; object-fit: cover; transition: transform 240ms var(--ease-out); }
+  .project-card:hover .shot { border-color: var(--faint); }
+  @media (hover: hover) and (pointer: fine) {
+    .project-card:hover .shot img { transform: scale(1.035); }
+  }
+  h2 { font-size: clamp(1.3rem, 1.1rem + 0.6vw, 1.6rem); letter-spacing: -0.025em; transition: color var(--dur-quick) ease; }
+  .project-card:hover h2 { color: var(--accent); }
+  p { margin: 0 0 0.6rem; color: var(--muted); }
+  .tags { list-style: none; margin: 0.3rem 0 0; padding: 0; }
 </style>

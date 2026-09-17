@@ -1,54 +1,89 @@
 ---
-import { useTranslations, type Lang } from '../i18n';
+import LangSwitch from './LangSwitch.astro';
+import { useTranslations, EMAIL_HREF, type Lang } from '../i18n';
 
 interface Props {
   lang: Lang;
+  path?: string;
 }
 
-const { lang } = Astro.props;
+const { lang, path = '/' } = Astro.props;
 const t = useTranslations(lang);
 const items = [
-  { href: `/${lang}/`, label: t('nav.home') },
-  { href: `/${lang}/projects/`, label: t('nav.projects') },
-  { href: `/${lang}/startup/`, label: t('nav.startup') },
-  { href: `/${lang}/about/`, label: t('nav.about') },
+  // fuehrt zur Projekt-Strecke der Startseite, deshalb nie als aktuelle Seite markiert
+  { href: `/${lang}/#work`, label: t('nav.projects'), match: undefined },
+  { href: `/${lang}/startup/`, label: t('nav.startup'), match: `/${lang}/startup/` },
+  { href: `/${lang}/about/`, label: t('nav.about'), match: `/${lang}/about/` },
 ];
 const current = Astro.url.pathname;
 ---
 
-<header class="container site-header">
-  <a class="brand" href={`/${lang}/`}>
-    <img src="/favicon.svg" alt="" width="28" height="28" />
-    <span>Clemens Jele</span>
-  </a>
-  <nav aria-label={lang === 'de' ? 'Hauptnavigation' : 'Main navigation'}>
-    {items.map((item) => (
-      <a href={item.href} aria-current={current === item.href ? 'page' : undefined}>
-        {item.label}
-      </a>
-    ))}
-  </nav>
+<header class="site-header">
+  <div class="container bar">
+    <a class="brand" href={`/${lang}/`} aria-label="Clemens Jele">
+      <span class="mark" aria-hidden="true">CJ</span>
+      <span class="name">Clemens Jele</span>
+    </a>
+    <nav aria-label={lang === 'de' ? 'Hauptnavigation' : 'Main navigation'}>
+      {items.map((item) => (
+        <a href={item.href} aria-current={item.match && current.startsWith(item.match) ? 'page' : undefined}>
+          {item.label}
+        </a>
+      ))}
+    </nav>
+    <div class="end">
+      <LangSwitch lang={lang} path={path} />
+      <a class="btn mail" href={EMAIL_HREF}>{t('hero.ctaEmail')}</a>
+    </div>
+  </div>
 </header>
 
 <style>
   .site-header {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-header);
+    height: var(--header-h);
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .bar {
+    height: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
-    padding-block: 1.1rem;
+    gap: clamp(1rem, 3vw, 2.5rem);
   }
-  .brand {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    color: var(--text);
-    font-weight: 600;
-  }
+  .brand { display: flex; align-items: center; gap: 0.65rem; color: var(--text); font-weight: 600; }
   .brand:hover { text-decoration: none; }
-  nav { display: flex; gap: 1.1rem; flex-wrap: wrap; }
-  nav a { color: var(--muted); }
+  .mark {
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 9px;
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+  nav { display: flex; gap: clamp(0.9rem, 2vw, 1.6rem); margin-left: auto; }
+  nav a { color: var(--muted); font-size: 0.95rem; transition: color var(--dur-quick) ease; }
   nav a:hover { color: var(--text); text-decoration: none; }
-  nav a[aria-current='page'] { color: var(--accent); }
+  nav a[aria-current='page'] { color: var(--text); }
+  .end { display: flex; align-items: center; gap: 1rem; font-size: 0.9rem; }
+  .end :global(a[rel='alternate']) { color: var(--muted); }
+  .mail { padding: 0.45rem 1rem; font-size: 0.88rem; }
+
+  @media (max-width: 720px) {
+    .name, .mail { display: none; }
+    nav { gap: 0.9rem; }
+    nav a { font-size: 0.9rem; }
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    .site-header { background: var(--bg); backdrop-filter: none; -webkit-backdrop-filter: none; }
+  }
 </style>

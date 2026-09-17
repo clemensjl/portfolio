@@ -1,0 +1,58 @@
+---
+// Labor-Rahmen fuer Vorschau-Komponenten: drei Breiten, Schritt-Schalter, Live-Schalter.
+// Nur fuer die Entwicklung; die Seiten unter /lab/ sind noindex und nicht in der Sitemap.
+import Base from '../../layouts/Base.astro';
+
+interface Props { title: string }
+const { title } = Astro.props;
+const html = await Astro.slots.render('default');
+const widths = [1000, 640, 340];
+---
+
+<Base lang="de" title={`Lab: ${title}`} description="Lab" path="/lab/" noindex>
+  <main id="main" class="lab">
+    <h1>{title}</h1>
+    <div class="controls">
+      {[0, 1, 2, 3].map((n) => <button type="button" data-set-step={n}>Step {n}</button>)}
+      <button type="button" data-toggle-live>is-live an/aus</button>
+      <button type="button" data-auto>Auto-Durchlauf</button>
+    </div>
+    {widths.map((w) => (
+      <section>
+        <p class="mono">{w}px</p>
+        <div class="frame" style={`width:${w}px`} set:html={html} />
+      </section>
+    ))}
+  </main>
+</Base>
+
+<script>
+  const pvs = () => [...document.querySelectorAll<HTMLElement>('[data-preview]')];
+  const setStep = (n: string) => pvs().forEach((p) => (p.dataset.step = n));
+  document.querySelectorAll<HTMLElement>('[data-set-step]').forEach((b) =>
+    b.addEventListener('click', () => setStep(b.dataset.setStep!)),
+  );
+  // Im Labor steuert der Schalter .is-live allein: Observer der Seite wuerde sonst dazwischenfunken.
+  let live = true;
+  const applyLive = () => pvs().forEach((p) => p.classList.toggle('is-live', live));
+  // Der Seiten-Observer setzt .is-live ebenfalls; im Labor gewinnt der Schalter.
+  new MutationObserver(applyLive).observe(document.body, { subtree: true, attributes: true, attributeFilter: ['class'] });
+  document.querySelector('[data-toggle-live]')?.addEventListener('click', () => { live = !live; applyLive(); });
+  let timer: number | undefined;
+  document.querySelector('[data-auto]')?.addEventListener('click', () => {
+    if (timer) { clearInterval(timer); timer = undefined; return; }
+    let n = 0;
+    timer = window.setInterval(() => setStep(String((n = (n + 1) % 4))), 2600);
+  });
+  const q = new URLSearchParams(location.search);
+  if (q.has('step')) setStep(q.get('step')!);
+  if (q.get('live') === '0') { live = false; applyLive(); }
+</script>
+
+<style>
+  .lab { padding: 2rem; display: grid; gap: 2rem; }
+  .lab h1 { font-size: 1.6rem; }
+  .controls { display: flex; gap: 0.5rem; flex-wrap: wrap; position: sticky; top: 0; z-index: 5; background: var(--bg); padding: 0.5rem 0; }
+  .controls button { font: inherit; padding: 0.4rem 0.9rem; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer; }
+  .frame { max-width: none; }
+</style>

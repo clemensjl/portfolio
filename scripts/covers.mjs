@@ -3,57 +3,11 @@
 // gestaltet, nicht als Fake-Screenshot. Pro Sprache eine Datei: Die Karte steht auf
 // der de- und der en-Seite und ist dort auch das OG-Bild.
 // Keine Versionsnummern im Bild — die veralten still, weil nichts die Karten neu baut.
+// Agent Deck, KernMind und agentfenster haben inzwischen echte Vorschauen: ihre Bilder
+// kommen aus scripts/preview-shots.mjs, nicht mehr von hier.
 import { chromium } from 'playwright';
 
 const covers = [
-  {
-    slug: 'agent-deck',
-    de: {
-      kicker: 'Windows-App · Electron',
-      title: 'Agent Deck',
-      line: 'Mehrere Coding-Agenten in einem Fenster — je Session ein echtes Terminal, ein eigener Account.',
-      foot: 'Installer über das öffentliche Release-Repo',
-    },
-    en: {
-      kicker: 'Windows app · Electron',
-      title: 'Agent Deck',
-      line: 'Several coding agents in one window — a real terminal and its own account per session.',
-      foot: 'Installer from the public release repository',
-    },
-    chips: ['Electron', 'React', 'TypeScript', 'node-pty', 'xterm.js'],
-  },
-  {
-    slug: 'kernmind',
-    de: {
-      kicker: 'Self-hosted · Open Source',
-      title: 'KernMind',
-      line: 'Zweites Gehirn auf der eigenen Instanz — sammeln, per KI befragen, mit eigenem API-Key oder offline.',
-      foot: 'kernmind.vercel.app · MIT',
-    },
-    en: {
-      kicker: 'Self-hosted · Open source',
-      title: 'KernMind',
-      line: 'A second brain on your own instance — collect it, ask it, with your own API key or fully offline.',
-      foot: 'kernmind.vercel.app · MIT',
-    },
-    chips: ['Next.js', 'TypeScript', 'SQLite / Turso', 'Chrome MV3', 'Ollama'],
-  },
-  {
-    slug: 'agentfenster',
-    de: {
-      kicker: 'Windows · Vor dem Start',
-      title: 'agentfenster',
-      line: 'Der Agent arbeitet auf einem unsichtbaren zweiten Desktop — in der eigenen Sitzung, live beobachtbar, jederzeit übernehmbar.',
-      foot: 'agentfenster.com · MCP-Server mit elf Werkzeugen',
-    },
-    en: {
-      kicker: 'Windows · Pre-launch',
-      title: 'agentfenster',
-      line: 'The agent works on an invisible second desktop — inside your own session, watchable live, yours to take over.',
-      foot: 'agentfenster.com · MCP server with eleven tools',
-    },
-    chips: ['Python', 'Win32', 'MCP', 'ConPTY', 'Record & Replay'],
-  },
   {
     slug: 'openpass',
     de: {
