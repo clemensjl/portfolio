@@ -2,47 +2,14 @@
   "trailingSlash": true,
   "redirects": [
     {
-      "source": "/",
-      "has": [
-        {
-          "type": "host",
-          "value": "portfolio.jele.at"
-        }
-      ],
-      "destination": "https://jele.at/",
-      "permanent": true
-    },
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "portfolio.jele.at"
-        }
-      ],
-      "destination": "https://jele.at/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/",
+      "source": "/(.*)",
       "has": [
         {
           "type": "host",
           "value": "www.jele.at"
         }
       ],
-      "destination": "https://jele.at/",
-      "permanent": true
-    },
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.jele.at"
-        }
-      ],
-      "destination": "https://jele.at/:path*",
+      "destination": "https://jele.at/$1",
       "permanent": true
     },
     {
