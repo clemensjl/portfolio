@@ -17,7 +17,7 @@ const d = project.data;
 <a class="project-card" href={`/${lang}/projects/${slug}/`} data-reveal style={`--i:${index % 3}`}>
   {d.preview ? (
     <div class="live"><PreviewSlot lang={lang} name={d.preview} decorative /></div>
-  ) : (
+  ) : d.image && (
     <div class="shot">
       <img src={d.image} alt="" width="1200" height="675" loading={index < 3 ? 'eager' : 'lazy'} decoding="async" />
     </div>

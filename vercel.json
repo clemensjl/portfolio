@@ -104,6 +104,46 @@
       "source": "/en/projects/techcompare/",
       "destination": "/en/projects/specmatch/",
       "permanent": true
+    },
+    {
+      "source": "/de/projects/lifemate",
+      "destination": "/de/startup/#lifemate",
+      "permanent": true
+    },
+    {
+      "source": "/de/projects/lifemate/",
+      "destination": "/de/startup/#lifemate",
+      "permanent": true
+    },
+    {
+      "source": "/de/projects/maerchenfuchs",
+      "destination": "/de/startup/#maerchenfuchs",
+      "permanent": true
+    },
+    {
+      "source": "/de/projects/maerchenfuchs/",
+      "destination": "/de/startup/#maerchenfuchs",
+      "permanent": true
+    },
+    {
+      "source": "/en/projects/lifemate",
+      "destination": "/en/startup/#lifemate",
+      "permanent": true
+    },
+    {
+      "source": "/en/projects/lifemate/",
+      "destination": "/en/startup/#lifemate",
+      "permanent": true
+    },
+    {
+      "source": "/en/projects/maerchenfuchs",
+      "destination": "/en/startup/#maerchenfuchs",
+      "permanent": true
+    },
+    {
+      "source": "/en/projects/maerchenfuchs/",
+      "destination": "/en/startup/#maerchenfuchs",
+      "permanent": true
     }
   ]
 }

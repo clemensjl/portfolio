@@ -23,7 +23,8 @@ const projects = defineCollection({
     repo: z.string().url().optional(),
     live: z.string().url().optional(),
     download: z.string().url().optional(),
-    image: z.string(),
+    // optional: reine Bibliotheken ohne Oberflaeche haben kein Bild
+    image: z.string().optional(),
     // Nur für generierte Cover-Karten: deren Text steht sonst nirgends auf der Seite.
     // Echte Screenshots bleiben ohne Alt-Text, weil Titel und Zusammenfassung direkt darüber stehen.
     imageAlt: z.string().optional(),

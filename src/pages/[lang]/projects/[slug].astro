@@ -27,7 +27,7 @@ const d = entry.data;
   title={`${d.title} | Clemens Jele`}
   description={d.summary}
   path={`/projects/${slug}/`}
-  image={d.image.endsWith('.svg') ? undefined : d.image}
+  image={!d.image || d.image.endsWith('.svg') ? undefined : d.image}
 >
   <Header lang={lang} path={`/projects/${slug}/`} />
   <main id="main" class="container detail">

@@ -153,7 +153,7 @@ const restPlain = rest.filter((p) => !p.data.preview);
                   <p>{p.data.summary}</p>
                   <span class="row-stack mono">{p.data.stack.slice(0, 3).join(' / ')}</span>
                   <span class="row-arrow" aria-hidden="true">→</span>
-                  <img class="row-shot" src={p.data.image} alt="" width="480" height="270" loading="lazy" decoding="async" />
+                  {p.data.image && <img class="row-shot" src={p.data.image} alt="" width="480" height="270" loading="lazy" decoding="async" />}
                 </a>
               </li>
             );

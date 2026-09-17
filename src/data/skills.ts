@@ -11,4 +11,7 @@ export const skills = [
   'Flutter',
   'Supabase',
   'PostgreSQL',
+  'Playwright',
+  'GitHub Actions',
+  'Agent Skills / Claude Code',
 ];
