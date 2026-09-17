@@ -7,6 +7,7 @@ import { glob } from 'astro/loaders';
 const flagshipFields = {
   flagship: z.number().optional(),
   preview: z.string().optional(),
+  variant: z.enum(['right', 'left', 'stage']).optional(),
   facts: z.array(z.object({ value: z.string(), label: z.string() })).default([]),
   story: z.array(z.object({ title: z.string(), text: z.string() })).length(4).optional(),
 };

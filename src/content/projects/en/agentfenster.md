@@ -9,7 +9,8 @@ image: /images/projects/agentfenster-en.png
 imageAlt: "agentfenster: live stream of the agent desktop with an invoice form, next to it the activity log with one click marked as no effect."
 order: 5
 featured: false
-flagship: 1
+flagship: 2
+variant: left
 preview: agentfenster
 facts:
   - { value: "2,260", label: "commits" }

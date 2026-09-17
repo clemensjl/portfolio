@@ -7,6 +7,7 @@ stack: ["Next.js", "React", "TypeScript", "Firebase", "Express"]
 live: https://life-mate.tech
 order: 2
 flagship: 5
+variant: left
 preview: lifemate
 facts:
   - { value: "121", label: "Commits" }

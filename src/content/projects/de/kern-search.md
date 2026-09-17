@@ -7,12 +7,12 @@ live: https://kern-search.vercel.app
 image: /images/projects/kern-search.jpg
 order: 2
 featured: true
-flagship: 3
+flagship: 4
+variant: stage
 preview: kern-search
 facts:
   - { value: "40.139", label: "Artikel" }
   - { value: "79", label: "Quellen" }
-  - { value: "335", label: "Commits" }
 story:
   - title: "79 Spreadsheets, ein Suchfeld"
     text: "Die Community pflegte ihre Produktdaten in verstreuten Tabellen. Kern Search führt sie zu einem deduplizierten Verzeichnis zusammen."

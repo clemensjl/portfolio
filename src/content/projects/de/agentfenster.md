@@ -9,7 +9,8 @@ image: /images/projects/agentfenster.png
 imageAlt: "agentfenster: Livestream des Agent-Desktops mit einem Rechnungsformular, daneben das Aktivitätsprotokoll mit einem als no effect markierten Klick."
 order: 5
 featured: false
-flagship: 1
+flagship: 2
+variant: left
 preview: agentfenster
 facts:
   - { value: "2.260", label: "Commits" }

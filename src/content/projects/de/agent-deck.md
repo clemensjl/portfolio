@@ -7,12 +7,13 @@ image: /images/projects/agent-deck.png
 imageAlt: "Agent Deck: Seitenleiste mit Projekten und vier Terminal-Panes mit parallel laufenden Coding-Agenten, in einem Pane eine Zwischenfrage als klickbarer Dialog."
 order: 3
 featured: true
-flagship: 4
+flagship: 1
+variant: right
 preview: agent-deck
 facts:
+  - { value: "1.788", label: "Tests in 93 Dateien" }
   - { value: "5", label: "Coding-Agenten" }
-  - { value: "3.3.0", label: "aktuelle Version" }
-  - { value: "105", label: "Commits" }
+  - { value: "3.5.0", label: "aktuelle Version" }
 story:
   - title: "Ein Cockpit für alle Sessions"
     text: "Claude Code, Codex, Grok, Antigravity und OpenCode laufen nebeneinander, jede Session in einem echten Terminal und nach Projekt sortiert."
@@ -30,4 +31,6 @@ Jede Session läuft in einem echten PTY über node-pty und xterm.js: kein nachge
 
 Dazu kommt, was im reinen Terminal fehlt: Rückfragen eines Agenten erscheinen inline im Terminal-Pane als klickbarer Dialog statt im Textstrom unterzugehen, Schritt-für-Schritt-Anleitungen landen in einer eigenen Ansicht, Projekte lassen sich über den GitHub-Device-Flow direkt anbinden, und ein Graph-Tab visualisiert den Wissensgraph der verknüpften Memory-Vault-Notizen zum aktiven Projekt. Updates kommen automatisch über einen getrennten Alpha- und Stable-Kanal.
 
-Der Quellcode ist privat; der Installer und die Update-Metadaten liegen in einem öffentlichen Release-Repo. Aktuell bei Version 3.3.0.
+Seit Version 3.4 gibt es den Master-Modus: Eine Session bekommt die Rolle Master und kann andere Sessions auflisten, in ihre Bildschirme sehen, ihnen Aufträge geben, neue starten und nicht mehr gebrauchte schließen. Ein Mensch vergibt die Rolle und nimmt sie wieder weg, alles dazwischen steht im Protokoll, und die Aufsicht hat einen Not-Aus. Dazu kommen eine Kontingent-Anzeige pro Profil mit dem gleitenden 5-Stunden-Fenster und dem 7-Tage-Fenster, ein Ideen-Tab, der Einfälle in den passenden Ordner des Memory-Vaults einsortiert, und eine geführte Einführung beim ersten Start.
+
+Der Quellcode ist privat; der Installer und die Update-Metadaten liegen in einem öffentlichen Release-Repo. Aktuell bei Version 3.5.0, abgesichert durch 1.788 Tests in 93 Dateien.

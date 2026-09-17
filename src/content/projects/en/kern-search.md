@@ -7,12 +7,12 @@ live: https://kern-search.vercel.app
 image: /images/projects/kern-search.jpg
 order: 2
 featured: true
-flagship: 3
+flagship: 4
+variant: stage
 preview: kern-search
 facts:
   - { value: "40,139", label: "items" }
   - { value: "79", label: "sources" }
-  - { value: "335", label: "commits" }
 story:
   - title: "79 spreadsheets, one search box"
     text: "The community kept its product data in scattered sheets. Kern Search merges them into one deduplicated directory."

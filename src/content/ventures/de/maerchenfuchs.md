@@ -6,7 +6,8 @@ status: Vor dem Start, geschlossene Beta
 stack: ["Flutter", "Dart", "Supabase", "Riverpod", "Stripe"]
 live: https://maerchenfuchs.com
 order: 1
-flagship: 2
+flagship: 3
+variant: right
 preview: maerchenfuchs
 facts:
   - { value: "906", label: "Commits in der App" }

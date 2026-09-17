@@ -41,13 +41,13 @@ const flagships = [
         ? { href: `/${lang}/projects/${slug}/`, label: t('home.caseStudy') }
         : { href: `/${lang}/startup/#${slug}`, label: t('home.ventureMore') },
     );
-    const variants = ['right', 'left', 'stage'] as const;
+    const variants = ['right', 'left', 'stage'] as const; // Rueckfall, wenn der Eintrag keine Variante nennt
     return {
       slug,
       kind,
       d,
       links,
-      variant: variants[i % 3],
+      variant: d.variant ?? variants[i % 3],
       kicker: kind === 'venture' ? `Racep Labs / ${'role' in d ? d.role : ''}` : ('role' in d ? d.role : undefined),
     };
   });
