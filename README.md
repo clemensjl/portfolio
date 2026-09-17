@@ -4,8 +4,6 @@ Persönliche Website von Clemens Jele.
 
 Seit dem Redesign 2026 ist [jele.at](https://jele.at) selbst das Portfolio (Repo-Root, Astro 5, statisch, de/en). `portfolio.jele.at` und `www.jele.at` leiten per `vercel.json` mit 301 dorthin um, Pfade bleiben erhalten.
 
-Der Ordner `home/` ist die alte Linklisten-Startseite (Vercel-Projekt `jele-home`). Er wird nicht mehr gebraucht, sobald die Domain `jele.at` am Projekt `portfolio` hängt, und kann danach samt Vercel-Projekt gelöscht werden.
-
 ## Portfolio
 
 - Content Collections (`src/content/projects`, `src/content/ventures`): neues Projekt = zwei Markdown-Dateien (de/en), sonst nichts

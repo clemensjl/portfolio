@@ -5,7 +5,6 @@ dist/
 screenshots/
 .vercel
 .env*
-home/.vercel
 
 # Playwright MCP scratch
 .playwright-mcp/

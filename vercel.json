@@ -13,6 +13,17 @@
       "permanent": true
     },
     {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "portfolio.jele.at"
+        }
+      ],
+      "destination": "https://jele.at/$1",
+      "permanent": true
+    },
+    {
       "source": "/de/projects/wincleaner",
       "destination": "/de/projects/kern-clean/",
       "permanent": true
