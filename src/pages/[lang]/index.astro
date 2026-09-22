@@ -7,6 +7,7 @@ import Showcase from '../../components/Showcase.astro';
 import PreviewSlot from '../../components/PreviewSlot.astro';
 import { useTranslations, langStaticPaths, GITHUB_URL, EMAIL_HREF, type Lang } from '../../i18n';
 import { skills } from '../../data/skills';
+import { hasShots } from '../../lib/shots';
 
 export function getStaticPaths() {
   return langStaticPaths;
@@ -20,7 +21,9 @@ const projects = (await getCollection('projects', ofLang)).sort((a, b) => a.data
 const ventures = await getCollection('ventures', ofLang);
 
 // Ein Flaggschiff braucht Rang UND Geschichte; fehlt die Geschichte, bleibt es in der Liste unten.
-const isFlagship = (d: { flagship?: number; story?: unknown }) => d.flagship !== undefined && !!d.story;
+// Seit den echten Screenshots zaehlt zusaetzlich: alle vier Bilder muessen vorliegen.
+const isFlagship = (d: { flagship?: number; story?: unknown; preview?: string }) =>
+  d.flagship !== undefined && !!d.story && hasShots(d.preview);
 
 // Flaggschiffe kommen aus beiden Collections und werden gemeinsam sortiert.
 const flagships = [
@@ -67,8 +70,8 @@ const jsonLd = {
 };
 
 const rest = projects.filter((p) => !isFlagship(p.data));
-const restWithPreview = rest.filter((p) => p.data.preview);
-const restPlain = rest.filter((p) => !p.data.preview);
+const restWithPreview = rest.filter((p) => hasShots(p.data.preview));
+const restPlain = rest.filter((p) => !hasShots(p.data.preview));
 ---
 
 <Base lang={lang} title={t('site.title')} description={t('site.description')} path="/">

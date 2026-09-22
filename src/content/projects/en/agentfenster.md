@@ -5,8 +5,8 @@ stack: ["Python", "Win32", "MCP", "ConPTY"]
 role: Co-development in a two-person team
 repo: https://github.com/clemensjl/agentfenster-mcp
 live: https://agentfenster.com
-image: /images/projects/agentfenster-en.png
-imageAlt: "agentfenster: live stream of the agent desktop with an invoice form, next to it the activity log with one click marked as no effect."
+image: /images/projects/agentfenster.jpg
+imageAlt: "agentfenster: live stream of the agent desktop filling in a customer form, next to it the activity log."
 order: 5
 featured: false
 flagship: 2
@@ -21,10 +21,10 @@ story:
     text: "The agent works on a second, invisible Windows desktop inside your own session. Same logins, same cookies, and your screen stays free."
   - title: "Watch it click"
     text: "The window streams the agent desktop live. Every click and every keystroke ends up in the activity log."
-  - title: "Failure is reported loudly"
-    text: "After each action the window state is checked. If nothing changed, the log literally says \"no effect\" instead of a silent success."
+  - title: "Several agents, one view"
+    text: "Every agent gets its own invisible desktop. One overview shows all open runs, while your own mouse and windows stay untouched."
   - title: "Every run is kept as a film"
-    text: "Recordings keeps every run. You can scrub through it step by step on the timeline, and the click without effect stays marked in red."
+    text: "Recordings keeps every run. You can step through it on the timeline, and a task shown once replays without a single model call."
 ---
 
 GUI agents on Windows leave you with two bad options today: either the agent takes over your screen and mouse, or it sits in a cloud VM where none of your logins, cookies, VPN or two-factor codes exist. agentfenster does neither.

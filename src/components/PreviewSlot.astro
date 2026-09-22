@@ -1,14 +1,9 @@
 ---
-// Ordnet dem Feld `preview` aus dem Content die passende Vorschau-Komponente zu.
-// Unbekannter Name oder kein Feld: es wird das Projektbild gezeigt.
+// Ordnet dem Feld `preview` aus dem Content die echten Screenshots unter
+// public/images/shots/<name>/ zu. Unbekannter Name oder kein Feld: es wird das Projektbild gezeigt.
 import type { Lang } from '../i18n';
-import Agentfenster from './previews/Agentfenster.astro';
-import AgentDeck from './previews/AgentDeck.astro';
-import KernSearch from './previews/KernSearch.astro';
-import KernMind from './previews/KernMind.astro';
-import KernClean from './previews/KernClean.astro';
-import Maerchenfuchs from './previews/Maerchenfuchs.astro';
-import Lifemate from './previews/Lifemate.astro';
+import Shots from './previews/Shots.astro';
+import { hasShots } from '../lib/shots';
 
 interface Props {
   lang: Lang;
@@ -19,22 +14,28 @@ interface Props {
   decorative?: boolean;
 }
 
-const registry = {
-  agentfenster: Agentfenster,
-  'agent-deck': AgentDeck,
-  'kern-search': KernSearch,
-  kernmind: KernMind,
-  'kern-clean': KernClean,
-  maerchenfuchs: Maerchenfuchs,
-  lifemate: Lifemate,
-} as const;
+// Hochformat-Apps bekommen Geraeterahmen auf dem Hintergrund der echten App
+const registry: Record<string, { title: string; layout?: 'desktop' | 'phone'; bg?: string }> = {
+  'soul-codes': { title: 'Soul Codes' },
+  'agent-deck': { title: 'Agent Deck' },
+  agentfenster: { title: 'agentfenster' },
+  maerchenfuchs: { title: 'Märchenfuchs' },
+  lifemate: { title: 'Lifemate' },
+  kernmind: { title: 'KernMind' },
+  'kern-clean': { title: 'KernClean' },
+};
 
 const { lang, name, image, imageAlt = '', decorative = false } = Astro.props;
-const Preview = name ? registry[name as keyof typeof registry] : undefined;
+// Bilder ohne Registry-Eintrag: trotzdem zeigen, Titel ist dann der Slug
+const entry = name && hasShots(name) ? (registry[name] ?? { title: name }) : undefined;
 ---
 
-{Preview ? (
-  decorative ? <div aria-hidden="true"><Preview lang={lang} /></div> : <Preview lang={lang} />
+{entry && name ? (
+  decorative ? (
+    <div aria-hidden="true"><Shots lang={lang} slug={name} {...entry} /></div>
+  ) : (
+    <Shots lang={lang} slug={name} {...entry} />
+  )
 ) : image ? (
   <div class="pv pv-image">
     <img src={image} alt={imageAlt} width="1200" height="675" loading="lazy" decoding="async" />

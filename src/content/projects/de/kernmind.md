@@ -4,8 +4,8 @@ summary: "Selbst gehostetes zweites Gehirn: Notizen, Bookmarks, Bilder und Zitat
 stack: ["Next.js", "TypeScript", "SQLite", "Chrome Extension"]
 repo: https://github.com/clemensjl/kernmind
 live: https://kernmind.vercel.app
-image: /images/projects/kernmind.png
-imageAlt: "KernMind: Karten-Raster mit Notizen und Links, davor das Fenster Ask your Mind mit einer Antwort und der zitierten Quell-Karte."
+image: /images/projects/kernmind.jpg
+imageAlt: "KernMind: Karten-Raster mit gespeicherten Notizen, Checklisten, Produkten und Artikeln."
 order: 4
 featured: true
 preview: kernmind

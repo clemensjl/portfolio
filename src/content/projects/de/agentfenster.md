@@ -5,8 +5,8 @@ stack: ["Python", "Win32", "MCP", "ConPTY"]
 role: Mitentwicklung im Zweierteam
 repo: https://github.com/clemensjl/agentfenster-mcp
 live: https://agentfenster.com
-image: /images/projects/agentfenster.png
-imageAlt: "agentfenster: Livestream des Agent-Desktops mit einem Rechnungsformular, daneben das Aktivitätsprotokoll mit einem als no effect markierten Klick."
+image: /images/projects/agentfenster.jpg
+imageAlt: "agentfenster: Livestream des Agent-Desktops, der ein Kundenformular ausfüllt, daneben das Aktivitätsprotokoll."
 order: 5
 featured: false
 flagship: 2
@@ -21,10 +21,10 @@ story:
     text: "Der Agent arbeitet auf einem zweiten, unsichtbaren Windows-Desktop in der eigenen Sitzung. Gleiche Logins, gleiche Cookies, und der Bildschirm bleibt frei."
   - title: "Zusehen, während er klickt"
     text: "Im Fenster läuft der Livestream des Agent-Desktops. Jeder Klick und jede Eingabe landet im Aktivitätsprotokoll."
-  - title: "Scheitern wird laut gemeldet"
-    text: "Nach jeder Aktion wird der Fensterzustand geprüft. Hat sich nichts geändert, steht im Protokoll wörtlich \"no effect\" statt eines stillen Erfolgs."
+  - title: "Mehrere Agenten, ein Blick"
+    text: "Jeder Agent bekommt seinen eigenen unsichtbaren Desktop. Eine Übersicht zeigt alle offenen Läufe, die eigene Maus und die eigenen Fenster bleiben unberührt."
   - title: "Jeder Lauf bleibt als Film"
-    text: "Recordings hält jeden Lauf fest. Auf der Zeitleiste lässt er sich Schritt für Schritt abspielen, und der wirkungslose Klick bleibt rot markiert."
+    text: "Recordings hält jeden Lauf fest. Auf der Zeitleiste lässt er sich Schritt für Schritt abspielen, und einmal Vorgemachtes läuft ohne Modellaufruf erneut ab."
 ---
 
 GUI-Agenten unter Windows lassen einem bisher zwei schlechte Optionen: Entweder der Agent übernimmt Bildschirm und Maus, oder er sitzt in einer Cloud-VM, in der keine Logins, Cookies, kein VPN und keine Zwei-Faktor-Codes existieren. agentfenster macht weder das eine noch das andere.

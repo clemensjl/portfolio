@@ -3,7 +3,7 @@ title: KernClean
 summary: "Aufräum-Tool für Windows: NTFS-Schnellscan über das USN-Journal, visuelle Duplikaterkennung, Hard-Link-Deduplizierung."
 stack: ["C#", ".NET 8", "WPF"]
 repo: https://github.com/clemensjl/kern-clean
-image: /images/projects/kern-clean.png
+image: /images/projects/kern-clean.jpg
 order: 1
 featured: true
 preview: kern-clean

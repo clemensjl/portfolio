@@ -22,3 +22,17 @@ export const langStaticPaths = [
 
 export const GITHUB_URL = 'https://github.com/clemensjl';
 export const EMAIL_HREF = 'mailto:clemens@jele.at';
+
+// Kontaktwege neben der E-Mail. Leere Werte werden nicht angezeigt.
+// Nummer im internationalen Format mit +, z. B. '+43 660 1234567'.
+export const PHONE = '';
+// WhatsApp laeuft ueber dieselbe Nummer, ausser hier steht eine andere.
+export const WHATSAPP = '';
+
+// Profile in der Reihenfolge, in der sie im Kontaktblock stehen.
+export const SOCIALS: { label: string; href: string }[] = [
+  { label: 'GitHub', href: GITHUB_URL },
+];
+
+export const telHref = (n: string) => `tel:${n.replace(/[^\d+]/g, '')}`;
+export const waHref = (n: string) => `https://wa.me/${n.replace(/\D/g, '')}`;

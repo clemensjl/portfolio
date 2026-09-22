@@ -45,22 +45,22 @@
     },
     {
       "source": "/de/projects/kina-search",
-      "destination": "/de/projects/kern-search/",
+      "destination": "/de/projects/",
       "permanent": true
     },
     {
       "source": "/de/projects/kina-search/",
-      "destination": "/de/projects/kern-search/",
+      "destination": "/de/projects/",
       "permanent": true
     },
     {
       "source": "/en/projects/kina-search",
-      "destination": "/en/projects/kern-search/",
+      "destination": "/en/projects/",
       "permanent": true
     },
     {
       "source": "/en/projects/kina-search/",
-      "destination": "/en/projects/kern-search/",
+      "destination": "/en/projects/",
       "permanent": true
     },
     {
@@ -121,6 +121,26 @@
     {
       "source": "/en/projects/maerchenfuchs/",
       "destination": "/en/startup/#maerchenfuchs",
+      "permanent": true
+    },
+    {
+      "source": "/de/projects/kern-search",
+      "destination": "/de/projects/",
+      "permanent": true
+    },
+    {
+      "source": "/de/projects/kern-search/",
+      "destination": "/de/projects/",
+      "permanent": true
+    },
+    {
+      "source": "/en/projects/kern-search",
+      "destination": "/en/projects/",
+      "permanent": true
+    },
+    {
+      "source": "/en/projects/kern-search/",
+      "destination": "/en/projects/",
       "permanent": true
     }
   ]

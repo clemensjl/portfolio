@@ -1,0 +1,113 @@
+---
+// Vorschau aus echten Screenshots: vier Bilder pro Projekt unter
+// public/images/shots/<slug>/0.webp bis 3.webp, eins pro Geschichtsschritt.
+// Haelt denselben Vertrag wie die frueheren Mini-UIs (data-step 0 bis 3, .pv, 16:10),
+// damit Showcase, Kacheln und Autoplay unveraendert weiterlaufen.
+//   desktop: 1600x1000, Schritte blenden ineinander
+//   phone:   780x1688 Hochformat, vier Geraete nebeneinander, der aktive Schritt faehrt in die Mitte
+import type { Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+  slug: string;
+  title: string;
+  layout?: 'desktop' | 'phone';
+  // Hintergrund hinter den Geraeten im Hochformat, Farbe der echten App
+  bg?: string;
+}
+
+const { lang, slug, title, layout = 'desktop', bg } = Astro.props;
+const label = lang === 'de' ? `Screenshots von ${title}` : `Screenshots of ${title}`;
+const steps = [0, 1, 2, 3];
+const size = layout === 'phone' ? { width: 780, height: 1688 } : { width: 1600, height: 1000 };
+---
+
+<div
+  class={`pv pv-shots pv-shots-${layout}`}
+  data-preview
+  data-step="0"
+  role="img"
+  aria-label={label}
+  style={bg ? `--pv-bg: ${bg}` : undefined}
+>
+  {layout === 'phone' ? (
+    <div class="track">
+      {steps.map((i) => (
+        <div class="phone" data-i={i}>
+          <img src={`/images/shots/${slug}/${i}.webp`} alt="" {...size} loading="lazy" decoding="async" />
+        </div>
+      ))}
+    </div>
+  ) : (
+    steps.map((i) => (
+      <img class="shot" data-i={i} src={`/images/shots/${slug}/${i}.webp`} alt="" {...size} loading="lazy" decoding="async" />
+    ))
+  )}
+</div>
+
+<style>
+  /* Desktop: alle vier Bilder liegen uebereinander, der aktive Schritt ist sichtbar */
+  .pv-shots-desktop .shot {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    opacity: 0;
+    transform: scale(1.02);
+    transition: opacity 450ms var(--ease-out), transform 600ms var(--ease-out);
+  }
+  .pv-shots[data-step='0'] .shot[data-i='0'],
+  .pv-shots[data-step='1'] .shot[data-i='1'],
+  .pv-shots[data-step='2'] .shot[data-i='2'],
+  .pv-shots[data-step='3'] .shot[data-i='3'] {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Hochformat: Reihe aus vier Geraeten, per translateX so verschoben, dass der aktive mittig steht.
+     Geraetebreite 23cqw, Abstand 5cqw, Schrittweite also 28cqw. */
+  .pv-shots-phone { background: var(--pv-bg, var(--bg-raised)); }
+  .track {
+    --w: 23cqw;
+    --gap: 5cqw;
+    --i: 0;
+    position: absolute;
+    top: 50%;
+    left: calc(50% - var(--w) / 2);
+    display: flex;
+    gap: var(--gap);
+    transform: translate(calc(var(--i) * (var(--w) + var(--gap)) * -1), -50%);
+    transition: transform 600ms var(--ease-in-out);
+  }
+  .pv-shots[data-step='1'] .track { --i: 1; }
+  .pv-shots[data-step='2'] .track { --i: 2; }
+  .pv-shots[data-step='3'] .track { --i: 3; }
+  .phone {
+    flex: none;
+    width: var(--w);
+    aspect-ratio: 780 / 1688;
+    border-radius: 3.4cqw;
+    padding: 0.7cqw;
+    background: #0b0b0c;
+    box-shadow: 0 0 0 0.15cqw rgb(255 255 255 / 0.14), 0 3cqw 6cqw -2cqw rgb(0 0 0 / 0.6);
+    opacity: 0.4;
+    transform: scale(0.88);
+    transition: opacity 450ms var(--ease-out), transform 600ms var(--ease-in-out);
+  }
+  .phone img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 2.8cqw; }
+  .pv-shots[data-step='0'] .phone[data-i='0'],
+  .pv-shots[data-step='1'] .phone[data-i='1'],
+  .pv-shots[data-step='2'] .phone[data-i='2'],
+  .pv-shots[data-step='3'] .phone[data-i='3'] {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pv-shots-desktop .shot,
+    .phone { transform: none; transition: opacity 150ms ease; }
+    .track { transition: none; }
+  }
+</style>

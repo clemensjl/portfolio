@@ -3,7 +3,7 @@ title: KernClean
 summary: "Disk-cleanup tool for Windows: NTFS fast scan via the USN journal, visual duplicate detection, hard-link deduplication."
 stack: ["C#", ".NET 8", "WPF"]
 repo: https://github.com/clemensjl/kern-clean
-image: /images/projects/kern-clean.png
+image: /images/projects/kern-clean.jpg
 order: 1
 featured: true
 preview: kern-clean

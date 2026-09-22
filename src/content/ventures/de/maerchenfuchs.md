@@ -15,12 +15,12 @@ facts:
 story:
   - title: "Jeden Abend eine neue Geschichte"
     text: "Der Heute-Screen zeigt, was Fuchsi für den Abend vorbereitet hat. Ein Tipp auf Vorlesen genügt."
-  - title: "Eltern stellen ein, was das Kind mag"
-    text: "Name, Alter und Lieblingsthemen werden einmal festgelegt. Daraus entsteht jede weitere Geschichte."
-  - title: "Fuchsi webt die Geschichte"
-    text: "Die App sucht einen Ort, setzt das Kind mitten hinein und schreibt eine Geschichte, die es so nur einmal gibt."
-  - title: "Vorlesen und einschlafen"
-    text: "Im Vorlese-Modus wird der Himmel dunkler, der Text läuft mit, und der Schlummer-Timer beendet den Abend leise."
+  - title: "Drei Angaben, eine Märchenprobe"
+    text: "Name, Alter und eine Idee genügen. Schon auf der Website schreibt Fuchsi daraus eine kurze Probe, bevor jemand die App installiert."
+  - title: "Ein Wunsch, eine Geschichte"
+    text: "Das Kind sagt, wovon es heute träumen will, und Fuchsi erzählt daraus in Sekunden eine neue Geschichte. Eltern sehen sie vorher in der Vorschau."
+  - title: "Vorlesen wird zum Ritual"
+    text: "Ein gedimmter Lesemodus begleitet den Abend. Sterne, Abzeichen und eine Serie machen das Vorlesen zur Gewohnheit, ohne Push-Nachrichten."
 ---
 
 Märchenfuchs erzählt Kindern Gutenachtgeschichten, die es so nur einmal gibt: mit dem eigenen Namen, den eigenen Lieblingsthemen, angepasst ans Alter. Eltern stellen einmal ein, was das Kind mag; die App macht daraus jeden Abend eine neue Geschichte.

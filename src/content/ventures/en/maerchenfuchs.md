@@ -15,12 +15,12 @@ facts:
 story:
   - title: "A new story every evening"
     text: "The Today screen shows what Fuchsi has prepared for tonight. One tap on read aloud is enough."
-  - title: "Parents set what the child likes"
-    text: "Name, age and favourite themes are set once. Every further story grows out of that."
-  - title: "Fuchsi weaves the story"
-    text: "The app finds a place, puts the child right in the middle of it and writes a story that exists only once."
-  - title: "Read aloud and fall asleep"
-    text: "In read-aloud mode the sky dims, the text follows along, and the sleep timer ends the evening quietly."
+  - title: "Three inputs, one sample story"
+    text: "Name, age and an idea are enough. Right on the website Fuchsi writes a short sample from them, before anyone installs the app."
+  - title: "One wish, one story"
+    text: "The child says what it wants to dream about tonight, and Fuchsi turns it into a new story within seconds. Parents check it first in the preview."
+  - title: "Reading becomes a ritual"
+    text: "A dimmed reading mode carries the evening. Stars, badges and a streak turn reading aloud into a habit, without push notifications."
 ---
 
 Märchenfuchs tells children bedtime stories that exist only once: with their own name, their favorite topics, matched to their age. Parents set up once what their child loves; the app turns that into a new story every evening.

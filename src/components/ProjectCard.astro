@@ -2,6 +2,7 @@
 import type { CollectionEntry } from 'astro:content';
 import type { Lang } from '../i18n';
 import PreviewSlot from './PreviewSlot.astro';
+import { hasShots } from '../lib/shots';
 
 interface Props {
   lang: Lang;
@@ -15,7 +16,7 @@ const d = project.data;
 ---
 
 <a class="project-card" href={`/${lang}/projects/${slug}/`} data-reveal style={`--i:${index % 3}`}>
-  {d.preview ? (
+  {hasShots(d.preview) ? (
     <div class="live"><PreviewSlot lang={lang} name={d.preview} decorative /></div>
   ) : d.image && (
     <div class="shot">

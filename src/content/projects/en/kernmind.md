@@ -4,8 +4,8 @@ summary: "A self-hosted second brain: collect notes, bookmarks, images and quote
 stack: ["Next.js", "TypeScript", "SQLite", "Chrome Extension"]
 repo: https://github.com/clemensjl/kernmind
 live: https://kernmind.vercel.app
-image: /images/projects/kernmind-en.png
-imageAlt: "KernMind: card grid with notes and links, in front of it the Ask your Mind window with an answer and the cited source card."
+image: /images/projects/kernmind.jpg
+imageAlt: "KernMind: card grid with saved notes, checklists, products and articles."
 order: 4
 featured: true
 preview: kernmind

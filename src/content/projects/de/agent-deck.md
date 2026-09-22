@@ -3,8 +3,8 @@ title: Agent Deck
 summary: "Windows-Cockpit für Coding-Agenten: Claude Code, Codex, Grok, Antigravity und OpenCode parallel in Sessions, jede in ihrem eigenen Terminal und mit eigenem Account."
 stack: ["Electron", "React", "TypeScript", "node-pty"]
 download: https://github.com/clemensjl/agent-deck-releases/releases
-image: /images/projects/agent-deck.png
-imageAlt: "Agent Deck: Seitenleiste mit Projekten und vier Terminal-Panes mit parallel laufenden Coding-Agenten, in einem Pane eine Zwischenfrage als klickbarer Dialog."
+image: /images/projects/agent-deck.jpg
+imageAlt: "Agent Deck: eine Session stellt eine Zwischenfrage als klickbaren Dialog, links die Seitenleiste mit Demo-Projekten und Profilen."
 order: 3
 featured: true
 flagship: 1
@@ -20,7 +20,7 @@ story:
   - title: "Alle arbeiten gleichzeitig"
     text: "Jede Session hat ihr eigenes Account-Profil. Der Status zeigt auf einen Blick, wer arbeitet, wer fertig ist und wer wartet."
   - title: "Rückfragen gehen nicht mehr unter"
-    text: "Braucht ein Agent eine Entscheidung, erscheint sie als klickbarer Dialog direkt im Pane, und die Seitenleiste markiert die wartende Session."
+    text: "Braucht ein Agent eine Entscheidung, erscheint sie als klickbarer Dialog direkt im Fenster der Session. Fragt gerade eine andere, zeigt ein Hinweis oben rechts, wohin man springen muss."
   - title: "Ein Klick, und es geht weiter"
     text: "Die Antwort landet im Terminal, der Agent arbeitet weiter, und alle Sessions laufen wieder."
 ---
