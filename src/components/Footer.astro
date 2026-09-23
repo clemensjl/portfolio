@@ -96,7 +96,7 @@ const sites = big
     btn?.addEventListener('click', async () => {
       btn.disabled = true;
       try {
-        const r = await fetch('/api/kontakt', { method: 'POST', headers: { 'Content-Type': 'application/json' } });
+        const r = await fetch('/api/kontakt/', { method: 'POST', headers: { 'Content-Type': 'application/json' } });
         const d = await r.json();
         if (!r.ok || !d.ok) throw new Error('denied');
         const tel = box.querySelector<HTMLAnchorElement>('[data-tel]')!;
