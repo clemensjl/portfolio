@@ -115,6 +115,8 @@ const sites = big
 <style>
   .phone { margin-bottom: 2.5rem; }
   .phone .pills { margin: 0; }
+  /* .pills setzt display: flex und wuerde das hidden-Attribut sonst ueberstimmen */
+  .phone [hidden] { display: none; }
   .phone-note { color: var(--muted); margin: 0; max-width: 34rem; }
   footer { border-top: 1px solid var(--border-soft); margin-top: 4rem; color: var(--muted); }
   .contact { padding-block: clamp(5rem, 14vh, 10rem) clamp(3rem, 8vh, 6rem); }
