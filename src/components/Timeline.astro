@@ -1,0 +1,69 @@
+---
+// Werdegang als Zeitleiste, gepflegt in src/data/timeline.ts.
+import { timeline } from '../data/timeline';
+import { useTranslations, type Lang } from '../i18n';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<div class="tl">
+  <p class="kicker mono" data-reveal>{t('timeline.kicker')}</p>
+  <h2 id="timeline-title" data-reveal>{t('timeline.title')}</h2>
+  <ol>
+    {timeline.map((e, i) => (
+      <li data-reveal style={`--i:${Math.min(i, 4)}`}>
+        <time class="mono">{e.when[lang]}</time>
+        <div>
+          <h3>{e.href ? <a href={`/${lang}/${e.href}`}>{e.title[lang]}</a> : e.title[lang]}</h3>
+          <p>{e.text[lang]}</p>
+        </div>
+      </li>
+    ))}
+  </ol>
+</div>
+
+<style>
+  .kicker { color: var(--accent); margin: 0 0 1rem; }
+  h2 { margin-bottom: clamp(1.5rem, 4vh, 2.5rem); }
+  ol { list-style: none; margin: 0; padding: 0; position: relative; }
+  ol::before {
+    content: '';
+    position: absolute;
+    left: calc(9rem + 0.3rem);
+    top: 0.5rem;
+    bottom: 0.5rem;
+    width: 1px;
+    background: var(--border);
+  }
+  li {
+    display: grid;
+    grid-template-columns: 9rem minmax(0, 1fr);
+    gap: 1.75rem;
+    padding-block: 0 1.75rem;
+    position: relative;
+  }
+  li::before {
+    content: '';
+    position: absolute;
+    left: 9rem;
+    top: 0.45rem;
+    width: 0.65rem;
+    height: 0.65rem;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--accent);
+  }
+  time { color: var(--muted); font-size: 0.85rem; padding-top: 0.2rem; text-align: right; padding-right: 0.5rem; }
+  h3 { margin: 0 0 0.35rem; font-size: 1.1rem; }
+  h3 a { color: var(--text); }
+  h3 a:hover { color: var(--accent); text-decoration: none; }
+  li p { margin: 0; color: var(--muted); max-width: 38rem; }
+  @media (max-width: 640px) {
+    ol::before { left: 0.3rem; }
+    li { grid-template-columns: 1fr; gap: 0.25rem; padding-left: 1.75rem; }
+    li::before { left: 0; }
+    time { text-align: left; padding: 0; }
+  }
+</style>

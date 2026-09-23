@@ -6,6 +6,7 @@ import { useTranslations, langStaticPaths, type Lang } from '../../i18n';
 import AiSkills from '../../components/AiSkills.astro';
 import CodingSkills from '../../components/CodingSkills.astro';
 import Certificates from '../../components/Certificates.astro';
+import Timeline from '../../components/Timeline.astro';
 
 // Wichtig: klassische Funktionsform. Ein Arrow-Export (`export const getStaticPaths = () => …`)
 // bringt den Astro-Compiler dazu, die restliche Frontmatter auf Modulebene zu hoisten,
@@ -54,6 +55,9 @@ const paragraphs: Record<Lang, string[]> = {
       <div class="stack" data-reveal><CodingSkills lang={lang} /></div>
     </div>
   </main>
+  <section class="container ki" aria-labelledby="timeline-title">
+    <Timeline lang={lang} />
+  </section>
   <section class="container ki" aria-label={t('ai.title')}>
     <AiSkills lang={lang} />
   </section>

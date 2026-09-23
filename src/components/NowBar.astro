@@ -1,0 +1,62 @@
+---
+// "Gerade dran": schmale Leiste unter dem Hero, gepflegt in src/data/now.ts.
+import { now, nowUpdated } from '../data/now';
+import { useTranslations, type Lang } from '../i18n';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const kind = { building: t('now.building'), next: t('now.next'), done: t('now.done') };
+const stand = new Date(nowUpdated).toLocaleDateString(lang === 'de' ? 'de-AT' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+
+<aside class="now" aria-labelledby="now-title">
+  <div class="container now-inner">
+    <p class="now-head">
+      <span class="dot" aria-hidden="true"></span>
+      <span id="now-title">{t('now.title')}</span>
+      <time class="mono" datetime={nowUpdated}>{t('now.updated')} {stand}</time>
+    </p>
+    <ul>
+      {now.map((n) => (
+        <li class={`is-${n.kind}`}>
+          <a href={n.href ?? '#'}>
+            <span class="kind mono">{kind[n.kind]}</span>
+            <span class="text">{n.text[lang]}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</aside>
+
+<style>
+  .now { border-block: 1px solid var(--border-soft); background: var(--bg-raised); }
+  .now-inner {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 1rem clamp(1.5rem, 4vw, 3rem);
+    align-items: center;
+    padding-block: 1.1rem;
+  }
+  .now-head { display: flex; flex-direction: column; gap: 0.15rem; margin: 0; font-weight: 600; position: relative; padding-left: 1.1rem; }
+  .now-head time { font-weight: 400; color: var(--faint); font-size: 0.75rem; }
+  .dot { position: absolute; left: 0; top: 0.45em; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--accent); }
+  @media (prefers-reduced-motion: no-preference) {
+    .dot { animation: now-pulse 2.4s var(--ease-in-out) infinite; }
+    @keyframes now-pulse { 50% { opacity: 0.35; } }
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: 0.5rem 1.5rem;
+  }
+  a { display: flex; flex-direction: column; gap: 0.15rem; color: var(--text); font-size: 0.92rem; line-height: 1.35; }
+  a:hover { text-decoration: none; color: var(--accent); }
+  .kind { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+  .is-building .kind { color: var(--accent); }
+  @media (max-width: 760px) { .now-inner { grid-template-columns: 1fr; } }
+</style>
