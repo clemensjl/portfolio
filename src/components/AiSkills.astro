@@ -1,0 +1,62 @@
+---
+// Eigener Bereich: was Clemens mit KI kann. Sechs Karten, jede mit Beleg aus den Projekten.
+import { withAi } from '../data/skills';
+import { useTranslations, type Lang } from '../i18n';
+
+interface Props { lang: Lang; headingLevel?: 'h2' | 'h3' }
+const { lang, headingLevel = 'h2' } = Astro.props;
+const t = useTranslations(lang);
+const H = headingLevel;
+---
+
+<div class="ai">
+  <div class="ai-head">
+    <p class="kicker mono" data-reveal>{t('ai.kicker')}</p>
+    <H class="ai-title" id="ki-title" data-reveal>{t('ai.title')}</H>
+    <p class="lede" data-reveal style="--i:1">{t('ai.lede')}</p>
+  </div>
+  <ol class="cards">
+    {withAi[lang].map((c, i) => (
+      <li class="card" data-reveal style={`--i:${i % 3}`}>
+        <span class="num mono" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+        <h3>{c.title}</h3>
+        <p>{c.text}</p>
+        <p class="proof"><span>{t('ai.proof')}</span> {c.proof}</p>
+      </li>
+    ))}
+  </ol>
+</div>
+
+<style>
+  .ai-head { max-width: 46rem; margin-bottom: clamp(2rem, 5vh, 3.5rem); }
+  .kicker { color: var(--accent); margin: 0 0 1rem; }
+  .ai-title { margin-bottom: 1.25rem; }
+  .ai-head .lede { margin: 0; }
+  .cards {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    /* feste Spaltenzahl: sechs Karten gehen in 3, 2 und 1 Spalten ohne Leerfeld auf */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    background: var(--border-soft);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: clamp(1.4rem, 2.5vw, 2rem);
+    background: var(--bg);
+  }
+  .num { color: var(--accent); font-size: 0.85rem; }
+  .card h3 { margin: 0.25rem 0 0; font-size: clamp(1.15rem, 1rem + 0.4vw, 1.35rem); }
+  .card p { margin: 0; color: var(--muted); }
+  .proof { margin-top: auto !important; padding-top: 0.75rem; font-size: 0.9rem; color: var(--text) !important; }
+  .proof span { color: var(--faint); }
+  @media (max-width: 1000px) { .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 640px) { .cards { grid-template-columns: 1fr; } }
+</style>

@@ -3,7 +3,9 @@ import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { useTranslations, langStaticPaths, type Lang } from '../../i18n';
-import { skills } from '../../data/skills';
+import AiSkills from '../../components/AiSkills.astro';
+import CodingSkills from '../../components/CodingSkills.astro';
+import Certificates from '../../components/Certificates.astro';
 
 // Wichtig: klassische Funktionsform. Ein Arrow-Export (`export const getStaticPaths = () => …`)
 // bringt den Astro-Compiler dazu, die restliche Frontmatter auf Modulebene zu hoisten,
@@ -17,15 +19,17 @@ const t = useTranslations(lang);
 
 const paragraphs: Record<Lang, string[]> = {
   de: [
-    'Ich bin Clemens Jele, Jahrgang 2010, Schüler an der HTL Mössingerstraße in Klagenfurt in der Abteilung Elektronik & IT und Softwareentwickler.',
-    'Angefangen hat es mit kleinen Tools für den eigenen Rechner: daraus wurden Desktop-Utilities wie KernClean, Web-Apps wie die Soul Codes App und Automatisierung rund um echte Workflows. Mich interessiert Software, die ein konkretes Problem löst und danach einfach läuft.',
+    'Ich bin Clemens Jele, Jahrgang 2010, Schüler an der HTL Mössingerstraße in Klagenfurt in der Abteilung Elektronik & IT.',
+    'Ehrlich zum Können: Selbst programmieren kann ich ein bisschen HTML und Java, das lerne ich seit drei Jahren an der HTL, dazu arbeite ich täglich mit Git und GitHub. Alles, was darüber hinausgeht, entsteht gemeinsam mit KI. Ich plane, beschreibe genau, was gebaut werden soll, lasse Coding-Agenten arbeiten und prüfe das Ergebnis, bis es wirklich läuft.',
+    'Angefangen hat es mit kleinen Tools für den eigenen Rechner, gebaut mit KI: daraus wurden Desktop-Utilities wie KernClean, Web-Apps wie die Soul Codes App und Automatisierung rund um echte Workflows. Mich interessiert Software, die ein konkretes Problem löst und danach einfach läuft.',
     'Zuletzt drehte sich das meiste um KI-Werkzeuge: Agent Deck als Cockpit für mehrere Coding-Agenten, agentfenster als Kontrollraum für Klick-Agenten auf einem eigenen Windows-Desktop, KernMind als selbst gehostetes zweites Gehirn, dazu eine Sammlung von Agent Skills für Rechtstexte nach österreichischem und europäischem Recht.',
     'Neben der Schule baue ich mit zwei Freunden als Racep Labs an Märchenfuchs und Lifemate.',
     'Abseits vom Code: Skifahren, Mopedfahren, Fitness sowie alles rund um KI-Automation und KI-gestütztes Programmieren.',
   ],
   en: [
-    'I am Clemens Jele, born 2010, a student in the Electronics & IT department at HTL Mössingerstraße in Klagenfurt, Austria, and a software developer.',
-    'It started with small tools for my own machine: that turned into desktop utilities like KernClean, web apps like the Soul Codes App and automation around real workflows. I care about software that solves a concrete problem and then just keeps running.',
+    'I am Clemens Jele, born 2010, a student in the Electronics & IT department at HTL Mössingerstraße in Klagenfurt, Austria.',
+    'To be honest about my skills: I can write a bit of HTML and Java myself, which I have been learning at HTL for three years, and I work with Git and GitHub every day. Everything beyond that is built together with AI. I plan, describe precisely what should be built, let coding agents do the work and check the result until it really runs.',
+    'It started with small tools for my own machine, built with AI: that turned into desktop utilities like KernClean, web apps like the Soul Codes App and automation around real workflows. I care about software that solves a concrete problem and then just keeps running.',
     'Lately most of it has revolved around AI tooling: Agent Deck as a cockpit for running several coding agents, agentfenster as a control room for click agents on a desktop of their own, KernMind as a self-hosted second brain, plus a set of agent skills for legal texts under Austrian and European law.',
     'Outside of school I am building Märchenfuchs and Lifemate with two friends as Racep Labs.',
     'Away from the keyboard: skiing, riding my moped, fitness, as well as everything around AI automation and AI-assisted coding.',
@@ -49,12 +53,15 @@ const paragraphs: Record<Lang, string[]> = {
       <div class="prose">
         {paragraphs[lang].map((p, i) => <p data-reveal style={`--i:${Math.min(i, 4)}`}>{p}</p>)}
       </div>
-      <div class="stack" data-reveal>
-        <p class="stack-label">{t('home.stackLabel')}</p>
-        <ul class="tags">{skills.map((s) => <li class="tag">{s}</li>)}</ul>
-      </div>
+      <div class="stack" data-reveal><CodingSkills lang={lang} /></div>
     </div>
   </main>
+  <section class="container ki" aria-label={t('ai.title')}>
+    <AiSkills lang={lang} />
+  </section>
+  <section class="container ki" aria-labelledby="certs-title">
+    <Certificates lang={lang} />
+  </section>
   <Footer lang={lang} path="/about/" big />
 </Base>
 
@@ -77,4 +84,5 @@ const paragraphs: Record<Lang, string[]> = {
     .page { grid-template-columns: 1fr; }
     .photo { position: static; max-width: 14rem; }
   }
+  .ki { padding-block: clamp(3rem, 8vh, 6rem) 1rem; }
 </style>

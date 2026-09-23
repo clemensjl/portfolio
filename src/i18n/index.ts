@@ -30,7 +30,11 @@ export const PHONE = '';
 export const WHATSAPP = '';
 
 // Profile in der Reihenfolge, in der sie im Kontaktblock stehen.
+// LinkedIn-Profil, z. B. 'https://www.linkedin.com/in/...'. Leer: kein Link.
+export const LINKEDIN_URL = '';
+
 export const SOCIALS: { label: string; href: string }[] = [
+  ...(LINKEDIN_URL ? [{ label: 'LinkedIn', href: LINKEDIN_URL }] : []),
   { label: 'GitHub', href: GITHUB_URL },
 ];
 

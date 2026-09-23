@@ -5,8 +5,10 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import Showcase from '../../components/Showcase.astro';
 import PreviewSlot from '../../components/PreviewSlot.astro';
-import { useTranslations, langStaticPaths, GITHUB_URL, EMAIL_HREF, type Lang } from '../../i18n';
-import { skills } from '../../data/skills';
+import { useTranslations, langStaticPaths, GITHUB_URL, EMAIL_HREF, SOCIALS, type Lang } from '../../i18n';
+import AiSkills from '../../components/AiSkills.astro';
+import CodingSkills from '../../components/CodingSkills.astro';
+import Certificates from '../../components/Certificates.astro';
 import { hasShots } from '../../lib/shots';
 
 export function getStaticPaths() {
@@ -63,9 +65,9 @@ const jsonLd = {
   url: `${site}/${lang}/`,
   image: `${site}/images/clemens.jpg`,
   email: EMAIL_HREF,
-  jobTitle: lang === 'de' ? 'Softwareentwickler' : 'Software developer',
+  jobTitle: lang === 'de' ? 'Schüler, KI-gestützte Softwareentwicklung' : 'Student, AI-assisted software development',
   description: t('site.description'),
-  sameAs: [GITHUB_URL],
+  sameAs: SOCIALS.map((s) => s.href),
   affiliation: { '@type': 'Organization', name: 'Racep Labs' },
 };
 
@@ -166,6 +168,14 @@ const restPlain = rest.filter((p) => !hasShots(p.data.preview));
       </div>
     </section>
 
+    <section class="ki container" id="ki" aria-labelledby="ki-title">
+      <AiSkills lang={lang} />
+    </section>
+
+    <section class="certs-sec container" id="zertifikate" aria-labelledby="certs-title">
+      <Certificates lang={lang} />
+    </section>
+
     <section class="about container" id="about" aria-labelledby="about-title">
       <div class="about-photo" data-reveal="scale">
         <img
@@ -181,10 +191,7 @@ const restPlain = rest.filter((p) => !hasShots(p.data.preview));
         <h2 id="about-title" data-reveal>{t('home.aboutTitle')}</h2>
         <p class="lede" data-reveal style="--i:1">{t('home.aboutText')}</p>
         <p data-reveal style="--i:2"><a class="btn" href={`/${lang}/about/`}>{t('home.aboutCta')} <span class="arrow" aria-hidden="true">→</span></a></p>
-        <div class="stack" data-reveal style="--i:3">
-          <p class="stack-label">{t('home.stackLabel')}</p>
-          <ul class="tags">{skills.map((s) => <li class="tag">{s}</li>)}</ul>
-        </div>
+        <div class="stack" data-reveal style="--i:3"><CodingSkills lang={lang} /></div>
       </div>
     </section>
   </main>
@@ -360,4 +367,6 @@ const restPlain = rest.filter((p) => !hasShots(p.data.preview));
     .about { grid-template-columns: 1fr; }
     .about-photo { max-width: 14rem; }
   }
+  .ki { padding-block: clamp(5rem, 12vh, 9rem); }
+  .certs-sec { padding-block: 0 clamp(5rem, 12vh, 9rem); }
 </style>
