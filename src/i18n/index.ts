@@ -23,20 +23,14 @@ export const langStaticPaths = [
 export const GITHUB_URL = 'https://github.com/clemensjl';
 export const EMAIL_HREF = 'mailto:clemens@jele.at';
 
-// Kontaktwege neben der E-Mail. Leere Werte werden nicht angezeigt.
-// Nummer im internationalen Format mit +, z. B. '+43 660 1234567'.
-export const PHONE = '';
-// WhatsApp laeuft ueber dieselbe Nummer, ausser hier steht eine andere.
-export const WHATSAPP = '';
+// Telefon und WhatsApp stehen bewusst NICHT hier (das Repo ist oeffentlich): die Nummer liegt in
+// der Vercel-Umgebungsvariable CONTACT_PHONE und kommt nur ueber api/kontakt.js, nach IP-Pruefung.
+
+export const LINKEDIN_URL = 'https://www.linkedin.com/in/clemens-jele-a18b373a2/';
 
 // Profile in der Reihenfolge, in der sie im Kontaktblock stehen.
-// LinkedIn-Profil, z. B. 'https://www.linkedin.com/in/...'. Leer: kein Link.
-export const LINKEDIN_URL = '';
-
 export const SOCIALS: { label: string; href: string }[] = [
-  ...(LINKEDIN_URL ? [{ label: 'LinkedIn', href: LINKEDIN_URL }] : []),
+  { label: 'LinkedIn', href: LINKEDIN_URL },
   { label: 'GitHub', href: GITHUB_URL },
+  { label: 'X', href: 'https://x.com/clemensjl' },
 ];
-
-export const telHref = (n: string) => `tel:${n.replace(/[^\d+]/g, '')}`;
-export const waHref = (n: string) => `https://wa.me/${n.replace(/\D/g, '')}`;

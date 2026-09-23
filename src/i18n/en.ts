@@ -51,6 +51,8 @@ const en: Record<keyof typeof de, string> = {
   'footer.github': 'GitHub',
   'contact.phone': 'Call',
   'contact.whatsapp': 'WhatsApp',
+  'contact.reveal': 'Show phone and WhatsApp',
+  'contact.denied': 'I only show my number without a VPN or proxy. Feel free to email me, I will reply.',
   'contact.profiles': 'Profiles',
   'contact.sites': 'Projects on the web',
   'ai.kicker': 'With AI',

@@ -49,6 +49,8 @@ export default {
   'footer.github': 'GitHub',
   'contact.phone': 'Anrufen',
   'contact.whatsapp': 'WhatsApp',
+  'contact.reveal': 'Telefon und WhatsApp anzeigen',
+  'contact.denied': 'Die Nummer zeige ich nur ohne VPN oder Proxy. Schreib mir gern per E-Mail, ich antworte.',
   'contact.profiles': 'Profile',
   'contact.sites': 'Projekte im Netz',
   'ai.kicker': 'Mit KI',

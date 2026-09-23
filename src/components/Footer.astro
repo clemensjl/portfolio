@@ -1,7 +1,7 @@
 ---
 import LangSwitch from './LangSwitch.astro';
 import { getCollection } from 'astro:content';
-import { useTranslations, EMAIL_HREF, GITHUB_URL, PHONE, WHATSAPP, SOCIALS, telHref, waHref, type Lang } from '../i18n';
+import { useTranslations, EMAIL_HREF, GITHUB_URL, SOCIALS, type Lang } from '../i18n';
 
 interface Props {
   lang: Lang;
@@ -13,7 +13,8 @@ interface Props {
 const { lang, path, big = false } = Astro.props;
 const t = useTranslations(lang);
 const email = EMAIL_HREF.replace('mailto:', '');
-const wa = WHATSAPP || PHONE;
+// Vorbefuellte erste Zeile im WhatsApp-Chat
+const waText = lang === 'de' ? 'Hallo Clemens, ' : 'Hi Clemens, ';
 
 // Websites der Projekte, gesammelt aus dem Content: Live-Seite, sonst Repo, sonst Download
 const host = (u: string) => {
@@ -44,12 +45,15 @@ const sites = big
         </a>
       </p>
       <div class="channels" data-reveal style="--i:3">
-        {wa && (
-          <ul class="pills">
-            {PHONE && <li><a class="btn" href={telHref(PHONE)}>{t('contact.phone')} <span class="mono">{PHONE}</span></a></li>}
-            <li><a class="btn" href={waHref(wa)} rel="noopener">{t('contact.whatsapp')} <span class="arrow" aria-hidden="true">↗</span></a></li>
+        <!-- Nummer kommt erst nach Klick von api/kontakt.js (IP-Pruefung gegen VPN, Proxy, Tor, Rechenzentren) -->
+        <div class="phone" data-phone data-wa-text={waText}>
+          <button type="button" class="btn" data-phone-reveal>{t('contact.reveal')}</button>
+          <ul class="pills" data-phone-links hidden>
+            <li><a class="btn" data-tel href="#">{t('contact.phone')} <span class="mono" data-tel-label></span></a></li>
+            <li><a class="btn btn-primary" data-wa href="#" rel="noopener" target="_blank">{t('contact.whatsapp')} <span class="arrow" aria-hidden="true">↗</span></a></li>
           </ul>
-        )}
+          <p class="phone-note" data-phone-denied hidden>{t('contact.denied')}</p>
+        </div>
         <div class="lists">
           <div>
             <h3>{t('contact.profiles')}</h3>
@@ -83,7 +87,35 @@ const sites = big
   </div>
 </footer>
 
+<script>
+  // Telefonnummer erst auf Klick vom Server holen; der gibt sie nur ohne VPN/Proxy/Tor/Rechenzentrum heraus.
+  document.querySelectorAll<HTMLElement>('[data-phone]').forEach((box) => {
+    const btn = box.querySelector<HTMLButtonElement>('[data-phone-reveal]');
+    const links = box.querySelector<HTMLElement>('[data-phone-links]');
+    const denied = box.querySelector<HTMLElement>('[data-phone-denied]');
+    btn?.addEventListener('click', async () => {
+      btn.disabled = true;
+      try {
+        const r = await fetch('/api/kontakt', { method: 'POST', headers: { 'Content-Type': 'application/json' } });
+        const d = await r.json();
+        if (!r.ok || !d.ok) throw new Error('denied');
+        const tel = box.querySelector<HTMLAnchorElement>('[data-tel]')!;
+        tel.href = d.tel;
+        box.querySelector<HTMLElement>('[data-tel-label]')!.textContent = d.phone;
+        box.querySelector<HTMLAnchorElement>('[data-wa]')!.href = `${d.whatsapp}?text=${encodeURIComponent(box.dataset.waText ?? '')}`;
+        links?.removeAttribute('hidden');
+      } catch {
+        denied?.removeAttribute('hidden');
+      }
+      btn.remove();
+    });
+  });
+</script>
+
 <style>
+  .phone { margin-bottom: 2.5rem; }
+  .phone .pills { margin: 0; }
+  .phone-note { color: var(--muted); margin: 0; max-width: 34rem; }
   footer { border-top: 1px solid var(--border-soft); margin-top: 4rem; color: var(--muted); }
   .contact { padding-block: clamp(5rem, 14vh, 10rem) clamp(3rem, 8vh, 6rem); }
   .contact h2 { color: var(--text); margin-bottom: 1rem; }
