@@ -16,7 +16,7 @@ export const timeline: { when: Record<Lang, string>; title: Record<Lang, string>
   {
     when: { de: 'Sommer 2025', en: 'Summer 2025' },
     title: { de: 'Erste Nebenjobs', en: 'First side jobs' },
-    text: { de: 'Bei G&D Gelato zum Eisverkäufer ausgebildet, samt Kaffeezubereitung, danach rund einen Monat ausgeholfen. Im September als Aushilfe bei einzelnen Events der Eventschmiede.', en: 'Trained as an ice cream seller at G&D Gelato, coffee included, then helped out for about a month. In September I worked as a helper at individual Eventschmiede events.' },
+    text: { de: 'Bei G&D Gelato zum Eisverkäufer ausgebildet, samt Kaffeezubereitung, danach den Sommer über im Verkauf ausgeholfen. Im September als Aushilfe bei einzelnen Events der Eventschmiede.', en: 'Trained as an ice cream seller at G&D Gelato, coffee included, then helped out at the counter over the summer. In September I worked as a helper at individual Eventschmiede events.' },
   },
   {
     when: { de: 'Mai 2026', en: 'May 2026' },
