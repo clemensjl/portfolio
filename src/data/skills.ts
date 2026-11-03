@@ -7,12 +7,12 @@ interface Capability { title: string; text: string; proof: string }
 
 export const coding: Record<Lang, Item[]> = {
   de: [
-    { name: 'Java', detail: 'Seit drei Jahren im Unterricht an der HTL' },
+    { name: 'Java', detail: 'Seit 2024 im Unterricht an der HTL' },
     { name: 'HTML', detail: 'Grundlagen' },
     { name: 'Git und GitHub', detail: 'Jeden Tag: Repos, Branches, Releases' },
   ],
   en: [
-    { name: 'Java', detail: 'Three years of classes at HTL' },
+    { name: 'Java', detail: 'Classes at HTL since 2024' },
     { name: 'HTML', detail: 'The basics' },
     { name: 'Git and GitHub', detail: 'Every day: repos, branches, releases' },
   ],

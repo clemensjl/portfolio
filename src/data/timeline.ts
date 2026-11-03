@@ -4,9 +4,9 @@ import type { Lang } from '../i18n';
 
 export const timeline: { when: Record<Lang, string>; title: Record<Lang, string>; text: Record<Lang, string>; href?: string }[] = [
   {
-    when: { de: 'Herbst 2023', en: 'Autumn 2023' },
+    when: { de: 'Herbst 2024', en: 'Autumn 2024' },
     title: { de: 'HTL Mössingerstraße, Klagenfurt', en: 'HTL Mössingerstraße, Klagenfurt' },
-    text: { de: 'Abteilung Elektronik und IT. Hier lerne ich seit drei Jahren Java.', en: 'Electronics and IT department. This is where I have been learning Java for three years.' },
+    text: { de: 'Abteilung Elektronik und IT. Hier lerne ich Java.', en: 'Electronics and IT department. This is where I learn Java.' },
   },
   {
     when: { de: 'Mai 2026', en: 'May 2026' },
