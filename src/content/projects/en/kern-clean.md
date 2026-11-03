@@ -1,6 +1,6 @@
 ---
 title: KernClean
-summary: "Disk-cleanup tool for Windows: NTFS fast scan via the USN journal, visual duplicate detection, hard-link deduplication."
+summary: "A disk cleanup tool for Windows: fast NTFS scans through the USN journal, visual duplicate detection and hard-link deduplication."
 stack: ["C#", ".NET 8", "WPF"]
 repo: https://github.com/clemensjl/kern-clean
 image: /images/projects/kern-clean.jpg
@@ -9,10 +9,10 @@ featured: true
 preview: kern-clean
 ---
 
-KernClean cleans up full Windows drives without blindly deleting things. The scan reads the NTFS USN journal directly, which makes it many times faster than a classic directory walk.
+KernClean cleans up full Windows drives without deleting things blindly. The scan reads the NTFS USN journal directly, which makes it many times faster than walking the directory tree the classic way.
 
-Exact duplicates are detected via a SHA-256 hash and deduplicated through hard links: space is freed while every path keeps working. Visually similar images, such as renamed, recompressed or slightly edited variants, are found by a separate perceptual-hash comparison and shown for selection, without being merged automatically. Results end up in an interactive HTML report with a treemap that shows at a glance where the space went.
+Exact duplicates are found by SHA-256 hash and deduplicated with hard links: the space is freed and every path still works. Visually similar images, such as renamed, recompressed or slightly edited copies, are found by a separate perceptual hash comparison. They are shown for you to choose from and never merged automatically. The results go into an interactive HTML report with a treemap that shows at a glance where your space went.
 
-On top of that: junk and browser cleaning, autostart and service management, reversible privacy tweaks and a clearly marked secure delete. Nothing changes without confirmation, deleted files go to the recycle bin, and larger operations create a restore point first.
+It also handles junk and browser cleanup, startup apps and services, reversible privacy tweaks and a clearly labeled secure delete. Nothing changes without your confirmation, deleted files go to the Recycle Bin, and a restore point is created before bigger changes.
 
-A WPF interface and a CLI share the same command registry; GitHub Actions build a self-contained executable from it. The tool was called WinCleaner until August 2026 and now runs under the Kern umbrella.
+A WPF interface and a CLI share the same command registry, and GitHub Actions build a self-contained executable from it. The tool was called WinCleaner until August 2026 and is now part of the Kern brand.

@@ -2,6 +2,8 @@
 title: Iris RGB
 summary: "RGB-Beleuchtung für Windows ohne Konto, Werbung und Telemetrie: Effekte, Bildschirm-Ambient und Spiele-Anbindung auf Basis von OpenRGB, mit einem Dienst unter 60 MB Arbeitsspeicher."
 stack: ["Rust", "Tauri", "OpenRGB"]
+preview: iris-rgb
+image: /images/projects/iris-rgb.jpg
 order: 12
 ---
 

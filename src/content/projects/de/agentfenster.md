@@ -15,7 +15,7 @@ preview: agentfenster
 facts:
   - { value: "2.400", label: "Commits" }
   - { value: "13", label: "MCP-Werkzeuge" }
-  - { value: "16", label: "Desktops parallel, maximal" }
+  - { value: "16", label: "Desktops maximal parallel" }
 story:
   - title: "Ein Kontrollraum statt einer Cloud-VM"
     text: "Der Agent arbeitet auf einem zweiten, unsichtbaren Windows-Desktop in der eigenen Sitzung. Gleiche Logins, gleiche Cookies, und der Bildschirm bleibt frei."

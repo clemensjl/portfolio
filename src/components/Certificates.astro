@@ -31,7 +31,7 @@ const done = certificates.filter((c) => c.status === 'done').length;
         <ul>
           {certificates.filter((c) => c.phase === ph).map((c) => (
             <li class:list={['cert', `is-${c.status}`]}>
-              <a href={c.credential ?? c.url} rel="noopener">
+              <a href={c.credential ?? c.url} rel="noopener" target="_blank">
                 <span class="name">{c.name}</span>
                 <span class="issuer">{c.issuer}</span>
                 <span class="topic">{c.topic[lang]}</span>

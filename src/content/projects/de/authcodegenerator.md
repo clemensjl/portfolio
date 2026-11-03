@@ -3,6 +3,7 @@ title: authcodegenerator
 summary: "Python-Package für Auth-Codes, die man vorlesen und tippen kann: BOLD-MAPLE-0 statt 483920."
 stack: ["Python", "HMAC"]
 repo: https://github.com/clemensjl/authcodegenerator
+image: /images/projects/authcodegenerator.png
 order: 11
 featured: false
 ---

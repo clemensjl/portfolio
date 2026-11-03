@@ -5,16 +5,16 @@ stack: ["Next.js", "TypeScript", "SQLite", "Chrome Extension"]
 repo: https://github.com/clemensjl/kernmind
 live: https://kernmind.vercel.app
 image: /images/projects/kernmind.jpg
-imageAlt: "KernMind: card grid with saved notes, checklists, products and articles."
+imageAlt: "KernMind: a grid of cards with saved notes, checklists, products and articles."
 order: 4
 featured: true
 preview: kernmind
 ---
 
-KernMind is an open alternative to mymind.com: one place for everything worth remembering, such as notes, links, images, quotes, colors, products, books. The difference is where the data lives. KernMind runs on your own instance, the database is yours, and the AI layer works with your own API key.
+KernMind is an open alternative to mymind.com: one place for everything you want to remember, from notes, links, images and quotes to colors, products and books. The difference is where the data lives. KernMind runs on your own instance, the database belongs to you, and the AI layer uses your own API key.
 
-What you save is not just searchable but answerable: the chat answers questions from your own collection and cites the card each answer came from. Images are read via OCR, long articles get a reader mode.
+You can do more than search what you save. You can ask it questions: the chat answers from your own collection and cites the card each answer comes from. Images are read with OCR, and long articles get a reader mode.
 
-You are not locked into one model: Gemini, OpenAI, Claude, Groq and OpenRouter all work, and anyone who wants nothing leaving the machine can point it at a local Ollama model. Capture happens through a Chrome extension or a Windows app with a global hotkey; the whole collection exports to JSON or Markdown in one click.
+You are not tied to one model. Gemini, OpenAI, Claude, Groq and OpenRouter all work, and if nothing should leave your machine, you can connect a local Ollama model. You capture things with a Chrome extension or a Windows app with a global hotkey, and the whole collection exports to JSON or Markdown in one click.
 
-One-click deployment on Vercel with Turso as the database, or locally via Docker Compose.
+Deploys in one click to Vercel with Turso as the database, or runs locally with Docker Compose.

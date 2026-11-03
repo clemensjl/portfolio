@@ -9,6 +9,8 @@ const covers = {
   agentfenster: 1,
   kernmind: 0,
   'kern-clean': 3,
+  agentshot: 1,
+  'iris-rgb': 1,
 };
 
 for (const [slug, step] of Object.entries(covers)) {

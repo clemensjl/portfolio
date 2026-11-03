@@ -4,8 +4,6 @@ summary: Lokaler, ende-zu-ende-verschlüsselter Passwort-Manager mit eigenem Syn
 stack: ["Rust", "SQLite", "TypeScript", "Tauri"]
 role: Eigenentwicklung
 image: /images/projects/openpass.png
-imageAlt: >-
-  Cover-Karte: OpenPass, selbst gehostet unter AGPL-3.0, gebaut mit Rust, SQLite, Argon2id, XChaCha20 und Tauri. Pre-Audit-Alpha, noch nicht veröffentlicht.
 order: 6
 featured: false
 ---

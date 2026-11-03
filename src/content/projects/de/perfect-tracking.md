@@ -2,6 +2,7 @@
 title: Perfect Tracking
 summary: "Kalorien-Tracker mit österreichischen Lebensmitteln: Daten aus dem Bundeslebensmittelschlüssel und Open Food Facts, Suche mit AT-Synonymen und Plausibilitätsprüfung für jeden Eintrag."
 stack: ["Expo", "React Native", "TypeScript", "Supabase"]
+preview: perfect-tracking
 order: 15
 ---
 

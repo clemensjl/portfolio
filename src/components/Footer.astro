@@ -59,7 +59,7 @@ const sites = big
             <h3>{t('contact.profiles')}</h3>
             <ul>
               {SOCIALS.map((s) => (
-                <li><a href={s.href} rel="me noopener">{s.label} <span class="arrow" aria-hidden="true">↗</span></a></li>
+                <li><a href={s.href} rel="me noopener" target="_blank">{s.label} <span class="arrow" aria-hidden="true">↗</span></a></li>
               ))}
             </ul>
           </div>
@@ -68,7 +68,7 @@ const sites = big
               <h3>{t('contact.sites')}</h3>
               <ul class="sites">
                 {sites.map((p) => (
-                  <li><a href={p.href} rel="noopener"><span>{p.title}</span> <span class="mono host">{p.host}</span></a></li>
+                  <li><a href={p.href} rel="noopener" target="_blank"><span>{p.title}</span> <span class="mono host">{p.host}</span></a></li>
                 ))}
               </ul>
             </div>
@@ -81,7 +81,7 @@ const sites = big
     <span>© 2026 Clemens Jele</span>
     <div class="links">
       {!big && <a href={EMAIL_HREF}>{t('footer.email')}</a>}
-      <a href={GITHUB_URL} rel="me noopener">{t('footer.github')}</a>
+      <a href={GITHUB_URL} rel="me noopener" target="_blank">{t('footer.github')}</a>
       <LangSwitch lang={lang} path={path} />
     </div>
   </div>

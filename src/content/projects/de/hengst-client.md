@@ -3,6 +3,7 @@ title: Hengst Client
 summary: "Quelloffener Launcher für Minecraft: Java Edition mit aufgeräumter Oberfläche, maximalen FPS auf jeder Version und Mods aus Modrinth und CurseForge."
 stack: ["Rust"]
 repo: https://github.com/clemensjl/hengst-client
+image: /images/projects/hengst-client.png
 order: 13
 ---
 

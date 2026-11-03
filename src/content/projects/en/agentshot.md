@@ -1,13 +1,15 @@
 ---
 title: AgentShot
-summary: "A screenshot tool for Windows 11 with a second mode for coding agents: marks become data records with the UI element, recognized text and page URL instead of one large image."
+summary: "A screenshot tool for Windows 11 with a second mode for coding agents: instead of one big image, each mark becomes a record with the UI element, the recognized text and the page URL."
 stack: ["Rust", "Tauri", "Svelte", "TypeScript"]
-role: My own version, merged into Agent Labs' AgentShot
+role: My own version, which fed into AgentShot by Agent Labs
+preview: agentshot
+image: /images/projects/agentshot.jpg
 order: 14
 ---
 
-In normal mode AgentShot behaves like a good screenshot tool: a hotkey freezes the screen, you pick an area, a window or a single UI element, annotate, redact, and copy, save or pin the result.
+In normal mode AgentShot works like a good screenshot tool. A hotkey freezes the screen, you select an area, a window or a single UI element, annotate and redact it, then copy, save or pin the result.
 
-The second mode is built for coding agents. Instead of a full-screen image it produces a small data package: every mark becomes a numbered record, enriched with the UI element underneath, the text recognized by OCR and, for browsers, the cleaned page URL. The agent gets a short text and a few small crops it understands much faster than one large image.
+The second mode is built for coding agents. Instead of a full-screen image, it produces a small data package. Each mark becomes a numbered record with the UI element underneath it, the text found by OCR and, in browsers, the cleaned-up page URL. The agent gets a short text and a few small crops, which it understands much faster than one big image.
 
-Everything runs locally, without telemetry. I built this version; Philipp built the native Agent Labs version, and parts of mine went into it. The source is private.
+Everything runs locally, with no telemetry. I built this version, Philipp built the native Agent Labs version, and parts of mine went into his. The source code is private.

@@ -67,7 +67,7 @@ export const certificates: Certificate[] = [
     url: 'https://learn.microsoft.com/en-us/credentials/certifications/github-foundations/',
     phase: 'now',
     status: 'planned',
-    topic: { de: 'Git und GitHub, offiziell geprüft', en: 'Git and GitHub, officially examined' },
+    topic: { de: 'Git und GitHub, offiziell geprüft', en: 'Git and GitHub, officially certified' },
   },
   {
     name: 'AWS Certified AI Practitioner',
@@ -83,7 +83,7 @@ export const certificates: Certificate[] = [
     url: 'https://learn.microsoft.com/en-us/credentials/certifications/exams/ai-901/',
     phase: 'next',
     status: 'planned',
-    topic: { de: 'Grundlagen von KI-Diensten in der Cloud', en: 'Foundations of AI services in the cloud' },
+    topic: { de: 'Grundlagen von KI-Diensten in der Cloud', en: 'The basics of cloud AI services' },
   },
   {
     name: 'Java Foundations (1Z0-811)',
@@ -91,7 +91,7 @@ export const certificates: Certificate[] = [
     url: 'https://education.oracle.com/java-foundations/pexam_1Z0-811',
     phase: 'next',
     status: 'planned',
-    topic: { de: 'Java aus der HTL nachweisen', en: 'Proof of my Java from HTL' },
+    topic: { de: 'Java aus der HTL nachweisen', en: 'Certifying the Java I learn at HTL' },
   },
   {
     name: 'GitHub Actions (GH-200)',

@@ -3,6 +3,8 @@ title: AgentShot
 summary: "Screenshot-Tool für Windows 11 mit zweitem Modus für Coding-Agenten: Markierungen werden zu Datensätzen mit UI-Element, erkanntem Text und Seiten-URL statt zu einem großen Bild."
 stack: ["Rust", "Tauri", "Svelte", "TypeScript"]
 role: Eigene Version, eingeflossen in AgentShot von Agent Labs
+preview: agentshot
+image: /images/projects/agentshot.jpg
 order: 14
 ---
 

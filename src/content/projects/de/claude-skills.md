@@ -4,8 +4,6 @@ summary: "17 Agent Skills für Claude Code, Cursor und Codex: Impressum, Datensc
 stack: ["Agent Skills", "Markdown"]
 repo: https://github.com/clemensjl/claude-skills
 image: /images/projects/claude-skills.png
-imageAlt: >-
-  Cover-Karte: Agent Skills für Rechtstexte, MIT-lizenziert, mit Skills für Österreich, Deutschland, die Schweiz, Frankreich, Italien, Großbritannien, die USA, Australien und die EU-Ebene. Installation über npx skills add clemensjl/claude-skills.
 order: 8
 featured: false
 ---

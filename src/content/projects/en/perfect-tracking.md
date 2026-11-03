@@ -1,12 +1,13 @@
 ---
 title: Perfect Tracking
-summary: "A calorie tracker that knows Austrian food: data from the German Federal Food Key and Open Food Facts, search with Austrian synonyms and a plausibility check for every entry."
+summary: "A calorie tracker that knows Austrian food: data from the German Federal Food Key and Open Food Facts, search that understands Austrian food names and a plausibility check on every entry."
 stack: ["Expo", "React Native", "TypeScript", "Supabase"]
+preview: perfect-tracking
 order: 15
 ---
 
-Most calorie trackers have never heard of a Semmerl or Leberkäse. Perfect Tracking therefore builds on version 4.0 of the German Federal Food Key (BLS) from the Max Rubner Institute and the Austrian and German entries of Open Food Facts, plus curated entries such as McDonald's Austria.
+Most calorie trackers have never heard of a Semmerl, the Austrian bread roll, or of Leberkäse. So Perfect Tracking builds on version 4.0 of the German Federal Food Key (BLS) from the Max Rubner Institute and on the Austrian and German entries in Open Food Facts, plus curated entries such as McDonald's Austria.
 
-Search understands Austrian terms and remembers recent foods and favorites, and the Today view shows the day at a glance. Every nutrient value goes through a plausibility check, so a macro total above 100 grams per 100 grams never slips through.
+Search understands Austrian food names and remembers what you ate recently and your favorites. The Today view shows the whole day at a glance. Every nutrient value goes through a plausibility check, so a macro total above 100 grams per 100 grams, for example, never slips through.
 
-Data lives in Supabase with row level security, and sign-up works by invite code only. A private project; the source is not public.
+Data is stored in Supabase with row level security, and you can only sign up with an invite code. It is a private project, and the source code is not public.

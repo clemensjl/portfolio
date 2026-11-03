@@ -1,10 +1,10 @@
 ---
 title: Agent Deck
-summary: "A Windows cockpit for coding agents: Claude Code, Codex, Gemini CLI, Grok, Antigravity and OpenCode sessions side by side, each in its own terminal and under its own account."
+summary: "A Windows cockpit for coding agents: run Claude Code, Codex, Gemini CLI, Grok, Antigravity and OpenCode side by side, each session in its own terminal with its own account."
 stack: ["Electron", "React", "TypeScript", "node-pty"]
 download: https://github.com/clemensjl/agent-deck-releases/releases
 image: /images/projects/agent-deck.jpg
-imageAlt: "Agent Deck: a session asks a question as a clickable dialog, on the left the sidebar with demo projects and profiles."
+imageAlt: "Agent Deck: a session asks a question through a clickable dialog, with the sidebar of demo projects and profiles on the left."
 order: 3
 featured: true
 flagship: 1
@@ -15,23 +15,23 @@ facts:
   - { value: "6", label: "coding agents" }
 story:
   - title: "One cockpit for every session"
-    text: "Claude Code, Codex, Gemini CLI, Grok, Antigravity and OpenCode run side by side, each session in a real terminal and sorted by project."
-  - title: "Everyone works at once"
-    text: "Each session has its own account profile. The status shows at a glance who is working, who is done and who is waiting."
-  - title: "Questions no longer get lost"
-    text: "When an agent needs a decision, it appears as a clickable dialog right inside that session. If another session is asking, a notice in the top right shows where to jump."
-  - title: "One click and it moves on"
-    text: "The answer lands in the terminal, the agent continues, and every session is running again."
+    text: "Claude Code, Codex, Gemini CLI, Grok, Antigravity and OpenCode run side by side, each session in a real terminal and grouped by project."
+  - title: "All of them work at once"
+    text: "Every session has its own account profile. The status shows at a glance which ones are working, done or waiting."
+  - title: "Questions stop getting buried"
+    text: "When an agent needs a decision, it pops up as a clickable dialog inside that session. If a different session is asking, a notice in the top right tells you where to go."
+  - title: "One click and it keeps going"
+    text: "Your answer goes to the terminal, the agent carries on, and every session is running again."
 ---
 
-Working with several coding agents at once otherwise means juggling a dozen terminal windows and losing track of which agent is waiting on what. Agent Deck pulls that together: every session in its own pane, grouped by project, all visible at the same time.
+Running several coding agents at once usually means juggling a dozen terminal windows and losing track of which agent is waiting for what. Agent Deck brings it all into one place: every session in its own pane, grouped by project, all visible at the same time.
 
-Each session runs in a real PTY through node-pty and xterm.js: not a reimplemented terminal, but the CLI exactly as it would run in a shell. Sessions get separate account profiles, so multiple logins can run in parallel without signing each other out. Besides Claude Code, Codex, Gemini CLI, Grok, Antigravity and OpenCode run as agents too.
+Each session runs in a real PTY through node-pty and xterm.js. It is not a terminal lookalike but the CLI exactly as it would run in a shell. Sessions get separate account profiles, so several logins can run in parallel without signing each other out. Besides Claude Code, it also runs Codex, Gemini CLI, Grok, Antigravity and OpenCode.
 
-On top of that come the things a plain terminal lacks: when an agent asks a question, it shows up inline in the terminal pane as a clickable dialog instead of scrolling past, step-by-step instructions land in their own view, projects can be connected through the GitHub device flow, and a graph tab visualizes the knowledge graph of linked memory-vault notes for the active project. Updates arrive automatically over separate alpha and stable channels.
+On top of that, it adds what a plain terminal lacks. When an agent asks a question, the question appears in the terminal pane as a clickable dialog instead of scrolling past. Step-by-step instructions get their own view. Projects can be connected through the GitHub device flow, and a graph tab shows the knowledge graph of linked memory-vault notes for the active project. Updates arrive automatically through separate alpha and stable channels.
 
-Since version 3.4 there is a master mode: one session gets the master role and can list other sessions, look at their screens, give them tasks, start new ones and close those no longer needed. A human grants the role and takes it away again, everything in between is logged, and the supervision view has an emergency stop. On top of that come a quota display per profile with the rolling 5-hour window and the 7-day window, an ideas tab that files thoughts into the matching folder of the memory vault, and a guided tour on first launch.
+Version 3.4 added a master mode. One session gets the master role and can list other sessions, look at their screens, give them tasks, start new ones and close the ones that are no longer needed. A human grants the role and takes it back, everything in between is logged, and the supervision view has an emergency stop. There is also a usage display per profile with the rolling 5-hour window and the 7-day window, an ideas tab that files notes into the right folder of the memory vault, and a guided tour on first launch.
 
-Since version 4.4 you pick the model and reasoning effort right at launch, live from whatever the CLI currently offers. Outdated agent CLIs get updated by Agent Deck on startup.
+Since version 4.4 you choose the model and reasoning effort at launch, pulled live from whatever the CLI currently offers. Agent Deck also updates outdated agent CLIs when it starts.
 
-The source is private; the installer and update metadata live in a public release repository. Currently at version 4.4.2.
+The source code is private. The installer and update metadata live in a public release repository. Current version: 4.4.2.

@@ -21,8 +21,8 @@ export const sessions: Session[] = [
     href: '#agent-deck',
     state: 'working',
     log: {
-      de: ['Version 4.4.2 veröffentlicht', 'Modell und Denkaufwand live aus der CLI wählen', 'Nächste Version in Arbeit'],
-      en: ['Shipped version 4.4.2', 'Pick model and effort live from the CLI', 'Next version in progress'],
+      de: ['Version 4.4.2 ist da', 'Das KI-Modell wählst du jetzt direkt beim Start', 'Die nächste Version ist in Arbeit'],
+      en: ['Version 4.4.2 is out', 'You now pick the AI model right at launch', 'The next version is in the works'],
     },
   },
   {
@@ -30,8 +30,8 @@ export const sessions: Session[] = [
     href: 'projects/iris-rgb/',
     state: 'working',
     log: {
-      de: ['RGB-Dienst in Rust unter 60 MB', 'Installer auf echtem PC getestet'],
-      en: ['Rust RGB daemon under 60 MB', 'Installer tested on a real PC'],
+      de: ['RGB-Licht für Windows, ohne Konto und ohne Werbung', 'Läuft schon auf dem ersten echten PC'],
+      en: ['RGB lighting for Windows, no account and no ads', 'Already running on the first real PC'],
     },
   },
   {
@@ -39,8 +39,17 @@ export const sessions: Session[] = [
     href: 'projects/perfect-tracking/',
     state: 'working',
     log: {
-      de: ['Lebensmittel aus BLS 4.0 importiert', 'Heute-Ansicht und schnelles Eintragen'],
-      en: ['Imported foods from BLS 4.0', 'Today view and quick logging'],
+      de: ['Kalorien zählen mit österreichischen Lebensmitteln', 'Semmel und Leberkäse kennt die App schon'],
+      en: ['Calorie tracking with Austrian food', 'It already knows Semmel and Leberkäse'],
+    },
+  },
+  {
+    title: 'Hengst Client',
+    href: 'projects/hengst-client/',
+    state: 'working',
+    log: {
+      de: ['Ein eigener Minecraft-Launcher', 'Lädt schon jede Spielversion herunter'],
+      en: ['My own Minecraft launcher', 'Already downloads any game version'],
     },
   },
   {
@@ -48,17 +57,8 @@ export const sessions: Session[] = [
     href: '#soul-codes',
     state: 'done',
     log: {
-      de: ['Oberfläche in fünf Runden neu gestaltet', 'PDF-Report im Kapitel-Stil'],
-      en: ['Interface redesigned over five rounds', 'Chapter-style PDF report'],
-    },
-  },
-  {
-    title: 'Lifemate',
-    href: '#lifemate',
-    state: 'waiting',
-    log: {
-      de: ['Google Cloud gekündigt', 'Backend-Umzug auf Vercel steht aus'],
-      en: ['Google Cloud cancelled', 'Backend move to Vercel pending'],
+      de: ['Neue Oberfläche ist live', 'Der PDF-Bericht ist jetzt in Kapitel gegliedert'],
+      en: ['The new design is live', 'The PDF report now comes in chapters'],
     },
   },
   {

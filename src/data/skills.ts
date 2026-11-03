@@ -12,7 +12,7 @@ export const coding: Record<Lang, Item[]> = {
     { name: 'Git und GitHub', detail: 'Jeden Tag: Repos, Branches, Releases' },
   ],
   en: [
-    { name: 'Java', detail: 'Classes at HTL since 2024' },
+    { name: 'Java', detail: 'In class at HTL since 2024' },
     { name: 'HTML', detail: 'The basics' },
     { name: 'Git and GitHub', detail: 'Every day: repos, branches, releases' },
   ],
@@ -53,33 +53,33 @@ export const withAi: Record<Lang, Capability[]> = {
   ],
   en: [
     {
-      title: 'Building whole apps with coding agents',
-      text: 'I plan, describe precisely what should exist and let Claude Code or Codex write the code. Desktop, web and mobile.',
+      title: 'Building complete apps with coding agents',
+      text: 'I plan, describe exactly what I want built and let Claude Code or Codex write the code. Desktop, web and mobile.',
       proof: 'Agent Deck, KernClean, KernMind, Märchenfuchs',
     },
     {
       title: 'Running several agents at once',
-      text: 'Splitting up tasks, running them in parallel, merging the results. Agent Deck grew out of exactly this way of working.',
+      text: 'Splitting up work, running it in parallel and merging the results. Agent Deck came out of exactly this way of working.',
       proof: 'Agent Deck',
     },
     {
       title: 'Writing agent skills and instructions',
       text: 'Reusable skills that give an agent domain knowledge and fixed rules, for example for legal texts under Austrian law.',
-      proof: 'Agent skills for legal texts',
+      proof: 'Agent Skills for Legal Texts',
     },
     {
-      title: 'Putting AI into products',
-      text: 'Stories written for one child, a coach that reviews the week, a search box that answers from your own notes.',
+      title: 'Building AI into products',
+      text: 'Stories written for one particular child, a coach that reviews your week, a search box that answers from your own notes.',
       proof: 'Märchenfuchs, Lifemate, KernMind',
     },
     {
       title: 'Automating workflows',
-      text: 'Browser tests, screenshots, translations into several languages, deploys: whatever repeats is handled by a script or an agent.',
+      text: 'Browser tests, screenshots, translations into several languages, deploys: anything that repeats gets handed to a script or an agent.',
       proof: 'Soul Codes App, this portfolio',
     },
     {
-      title: 'Checking instead of trusting blindly',
-      text: 'I test what the AI builds in the real program, run reviews and only ship once it actually works.',
+      title: 'Testing, not trusting blindly',
+      text: 'I test what the AI builds in the real program, run reviews and only ship it once it really works.',
       proof: 'Every project here',
     },
   ],
