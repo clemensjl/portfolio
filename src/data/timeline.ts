@@ -6,7 +6,7 @@ export const timeline: { when: Record<Lang, string>; title: Record<Lang, string>
   {
     when: { de: 'Februar 2024', en: 'February 2024' },
     title: { de: 'Praktikum bei Comm-Unity EDV', en: 'Internship at Comm-Unity EDV' },
-    text: { de: 'Mein erstes Praktikum in einem IT-Betrieb in Klagenfurt.', en: 'My first internship at an IT company in Klagenfurt.' },
+    text: { de: 'Drei Tage Einblick in den Arbeitsalltag eines IT-Betriebs in Klagenfurt: die Programme und das Team kennengelernt.', en: 'Three days inside the daily work of an IT company in Klagenfurt: getting to know their software and the team.' },
   },
   {
     when: { de: 'Herbst 2024', en: 'Autumn 2024' },
@@ -16,7 +16,7 @@ export const timeline: { when: Record<Lang, string>; title: Record<Lang, string>
   {
     when: { de: 'Sommer 2025', en: 'Summer 2025' },
     title: { de: 'Erste Nebenjobs', en: 'First side jobs' },
-    text: { de: 'Saisonarbeit bei G&D Gelato, im September dazu bei der Eventschmiede in Klagenfurt.', en: 'Seasonal work at G&D Gelato, plus the Eventschmiede in Klagenfurt in September.' },
+    text: { de: 'Bei G&D Gelato zum Eisverkäufer ausgebildet, samt Kaffeezubereitung, danach rund einen Monat ausgeholfen. Im September als Aushilfe bei einzelnen Events der Eventschmiede.', en: 'Trained as an ice cream seller at G&D Gelato, coffee included, then helped out for about a month. In September I worked as a helper at individual Eventschmiede events.' },
   },
   {
     when: { de: 'Mai 2026', en: 'May 2026' },
@@ -39,7 +39,7 @@ export const timeline: { when: Record<Lang, string>; title: Record<Lang, string>
   {
     when: { de: 'Juli 2026', en: 'July 2026' },
     title: { de: 'Praktikum bei der Informatik Werkstatt', en: 'Internship at Informatik Werkstatt' },
-    text: { de: 'Zwei Monate Praktikum in Klagenfurt, nebenbei wieder Saisonarbeit bei G&D Gelato.', en: 'Two months of internship in Klagenfurt, alongside seasonal work at G&D Gelato again.' },
+    text: { de: 'Zwei Monate lang das Social Media übernommen: Videos und Posts erstellt, dazu Einblick in die Workshops und dort mitgemacht. Von Mai bis Ende August parallel wieder Verkäufer bei G&D Gelato.', en: 'Two months running their social media: making videos and posts, plus getting a look into the workshops and joining in. From May to the end of August I was also back as a seller at G&D Gelato.' },
   },
   {
     when: { de: 'August 2026', en: 'August 2026' },
@@ -56,7 +56,8 @@ export const timeline: { when: Record<Lang, string>; title: Record<Lang, string>
   {
     when: { de: 'Oktober 2026', en: 'October 2026' },
     title: { de: 'IT-Techniker bei der School of motivation & happiness', en: 'IT technician at School of motivation & happiness' },
-    text: { de: 'Befristete Stelle bei Ilse Grabner, hybrid in Kärnten.', en: 'Fixed-term position with Ilse Grabner, hybrid in Carinthia.' },
+    text: { de: 'Befristete Stelle bei Ilse Grabner, hybrid in Kärnten. Ich betreue dort die Soul Codes App mit: Anmeldung per Mail-Link statt Passwort, automatisches Konto nach dem Kauf, Zugangsmails über Brevo und Resend, eine Besucheranalyse ohne Cookies, Promocodes für Partnerinnen über Digistore24, eine neu gestaltete Startseite und eine in fünf Runden überarbeitete App samt PDF-Report und neuem App-Icon.', en: 'Fixed-term position with Ilse Grabner, hybrid in Carinthia. I help run the Soul Codes App: sign-in by email link instead of a password, an account created automatically after purchase, access emails via Brevo and Resend, visitor analytics without cookies, partner promo codes via Digistore24, a redesigned landing page and an app reworked over five rounds, including the PDF report and a new app icon.' },
+    href: 'projects/soul-codes/',
   },
   {
     when: { de: 'Oktober 2026', en: 'October 2026' },
