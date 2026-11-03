@@ -1,30 +1,73 @@
-// "Gerade dran": die Leiste unter dem Hero. Bei jeder Aenderung `updated` mitziehen.
-// Nur Dinge eintragen, die wirklich laufen oder wirklich fertig sind.
+// Session-Board im Hero: jedes Projekt eine "Session" mit Status und den letzten Log-Zeilen.
+// href: Anker auf der Startseite (#slug) oder relativ zur Sprachseite (projects/slug/).
+// Bei jeder Aenderung `nowUpdated` mitziehen. Nur eintragen, was wirklich laeuft oder fertig ist.
 import type { Lang } from '../i18n';
 
-export type NowKind = 'building' | 'next' | 'done';
+// working = baue gerade, waiting = wartet auf etwas (Freigabe, Umzug, Pruefung), done = zuletzt fertig
+export type SessionState = 'working' | 'waiting' | 'done';
 
-export const nowUpdated = '2026-09-23';
+export const nowUpdated = '2026-11-03';
 
-export const now: { kind: NowKind; text: Record<Lang, string>; href?: string }[] = [
+export interface Session {
+  title: string;
+  href: string;
+  state: SessionState;
+  log: Record<Lang, string[]>;
+}
+
+export const sessions: Session[] = [
   {
-    kind: 'building',
-    text: { de: 'Lifemate: Backend zieht von Google Cloud auf Vercel', en: 'Lifemate: moving the backend from Google Cloud to Vercel' },
-    href: '#lifemate',
-  },
-  {
-    kind: 'building',
-    text: { de: 'Agent Deck: laufend neue Versionen, zuletzt 3.5.0', en: 'Agent Deck: shipping new versions, latest 3.5.0' },
+    title: 'Agent Deck',
     href: '#agent-deck',
+    state: 'working',
+    log: {
+      de: ['Version 4.4.2 veröffentlicht', 'Modell und Denkaufwand live aus der CLI wählen', 'Nächste Version in Arbeit'],
+      en: ['Shipped version 4.4.2', 'Pick model and effort live from the CLI', 'Next version in progress'],
+    },
   },
   {
-    kind: 'next',
-    text: { de: 'Zertifikat „Claude Code in Action“ der Anthropic Academy', en: '“Claude Code in Action” certificate from Anthropic Academy' },
-    href: '#zertifikate',
+    title: 'Iris RGB',
+    href: 'projects/iris-rgb/',
+    state: 'working',
+    log: {
+      de: ['RGB-Dienst in Rust unter 60 MB', 'Installer auf echtem PC getestet'],
+      en: ['Rust RGB daemon under 60 MB', 'Installer tested on a real PC'],
+    },
   },
   {
-    kind: 'done',
-    text: { de: 'Soul Codes App jetzt auch auf Spanisch, Portugiesisch und Französisch', en: 'Soul Codes App now also in Spanish, Portuguese and French' },
+    title: 'Perfect Tracking',
+    href: 'projects/perfect-tracking/',
+    state: 'working',
+    log: {
+      de: ['Lebensmittel aus BLS 4.0 importiert', 'Heute-Ansicht und schnelles Eintragen'],
+      en: ['Imported foods from BLS 4.0', 'Today view and quick logging'],
+    },
+  },
+  {
+    title: 'Soul Codes App',
     href: '#soul-codes',
+    state: 'done',
+    log: {
+      de: ['Oberfläche in fünf Runden neu gestaltet', 'PDF-Report im Kapitel-Stil'],
+      en: ['Interface redesigned over five rounds', 'Chapter-style PDF report'],
+    },
+  },
+  {
+    title: 'Lifemate',
+    href: '#lifemate',
+    state: 'waiting',
+    log: {
+      de: ['Google Cloud gekündigt', 'Backend-Umzug auf Vercel steht aus'],
+      en: ['Google Cloud cancelled', 'Backend move to Vercel pending'],
+    },
+  },
+  {
+    title: 'Anthropic Academy',
+    href: '#zertifikate',
+    state: 'done',
+    log: {
+      de: ['Vier Kurse bestanden', 'Zuletzt: Claude Code in Action'],
+      en: ['Passed four courses', 'Latest: Claude Code in Action'],
+    },
   },
 ];

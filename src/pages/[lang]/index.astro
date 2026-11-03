@@ -9,7 +9,7 @@ import { useTranslations, langStaticPaths, GITHUB_URL, EMAIL_HREF, SOCIALS, type
 import AiSkills from '../../components/AiSkills.astro';
 import CodingSkills from '../../components/CodingSkills.astro';
 import Certificates from '../../components/Certificates.astro';
-import NowBar from '../../components/NowBar.astro';
+import SessionBoard from '../../components/SessionBoard.astro';
 import { hasShots } from '../../lib/shots';
 
 export function getStaticPaths() {
@@ -94,23 +94,8 @@ const restPlain = rest.filter((p) => !hasShots(p.data.preview));
         </div>
       </div>
 
-      <nav class="hero-index" aria-label={t('hero.indexLabel')}>
-        <p class="index-label">{t('hero.indexLabel')}</p>
-        <ol>
-          {flagships.map((f, i) => (
-            <li style={`--d:${i}`}>
-              <a href={`#${f.slug}`}>
-                <span class="i-title">{f.d.title}</span>
-                <span class="i-fact mono">{f.d.facts[0] ? `${f.d.facts[0].value} ${f.d.facts[0].label}` : ''}</span>
-                <span class="i-arrow" aria-hidden="true">↓</span>
-              </a>
-            </li>
-          ))}
-        </ol>
-      </nav>
+      <div class="hero-board"><SessionBoard lang={lang} /></div>
     </section>
-
-    <NowBar lang={lang} />
 
     <div id="work">
       {flagships.map((f) => (
@@ -204,16 +189,15 @@ const restPlain = rest.filter((p) => !hasShots(p.data.preview));
 <style>
   /* Hero: Name und Satz links, rechts das Inhaltsverzeichnis der Flaggschiffe */
   .hero {
-    /* Platz fuer die Gerade-dran-Leiste, damit sie beim Laden im Bild ist */
-    min-height: calc(100dvh - var(--header-h) - 6rem);
+    min-height: calc(100dvh - var(--header-h));
     display: grid;
-    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
     gap: clamp(2rem, 6vw, 6rem);
     align-items: center;
     padding-block: clamp(2rem, 6vh, 5rem);
   }
   .hero h1 {
-    font-size: clamp(3.6rem, 1.2rem + 11vw, 10.5rem);
+    font-size: clamp(3.6rem, 1.2rem + 8.5vw, 8.5rem);
     line-height: 0.9;
     letter-spacing: -0.055em;
     font-weight: 680;
@@ -224,43 +208,12 @@ const restPlain = rest.filter((p) => !hasShots(p.data.preview));
   .hero-sub { margin-bottom: 2rem; }
   .cta { display: flex; gap: 0.7rem; flex-wrap: wrap; }
 
-  .index-label { color: var(--muted); font-size: 0.9rem; margin: 0 0 0.75rem; }
-  .hero-index ol { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--border); }
-  .hero-index li { border-bottom: 1px solid var(--border); }
-  .hero-index a {
-    display: grid;
-    grid-template-columns: 1fr auto 1.2rem;
-    align-items: baseline;
-    gap: 1rem;
-    padding: clamp(0.8rem, 1.9vh, 1.15rem) 0.25rem;
-    color: var(--text);
-    transition: color var(--dur-quick) ease;
-  }
-  .hero-index a:hover { text-decoration: none; color: var(--accent); }
-  .i-title {
-    font-family: var(--font-display);
-    font-size: clamp(1.25rem, 1rem + 1vw, 1.8rem);
-    font-weight: 600;
-    letter-spacing: -0.025em;
-  }
-  .i-fact { color: var(--muted); }
-  .i-title { transition: transform 180ms var(--ease-out); }
-  .i-arrow { color: var(--faint); transition: transform 180ms var(--ease-out), color var(--dur-quick) ease; }
-  .hero-index a:hover .i-arrow { color: var(--accent); }
-  /* Bewegte Hover nur mit Maus: auf Touch bliebe der Zustand nach dem Tippen kleben */
-  @media (hover: hover) and (pointer: fine) {
-    .hero-index a:hover .i-title { transform: translateX(0.6rem); }
-    .hero-index a:hover .i-arrow { transform: translateY(3px); }
-  }
-
   /* Auftritt beim Laden: Name faehrt zeilenweise hoch, der Rest folgt gestaffelt */
   @media (prefers-reduced-motion: no-preference) {
     .line > span { animation: hero-rise 900ms var(--ease-out) both; animation-delay: calc(var(--d, 0) * 90ms + 60ms); }
     .hero-sub, .cta { animation: hero-fade-up 700ms var(--ease-out) both; }
     .hero-sub { animation-delay: 320ms; }
     .cta { animation-delay: 400ms; }
-    .index-label { animation: hero-fade-up 700ms var(--ease-out) 420ms both; }
-    .hero-index li { animation: hero-fade-up 700ms var(--ease-out) both; animation-delay: calc(var(--d) * 60ms + 460ms); }
   }
   @keyframes hero-rise { from { transform: translateY(105%); } }
   @keyframes hero-fade-up { from { opacity: 0; transform: translateY(0.9rem); } }
@@ -268,14 +221,14 @@ const restPlain = rest.filter((p) => !hasShots(p.data.preview));
   /* Beim Wegscrollen sinkt der Hero leicht zurueck: gibt dem ersten Projekt die Buehne */
   @supports (animation-timeline: view()) {
     @media (prefers-reduced-motion: no-preference) and (min-width: 901px) {
-      .hero-copy, .hero-index {
+      .hero-copy, .hero-board {
         animation: hero-out linear both;
         animation-timeline: view();
         animation-range: exit 10% exit 90%;
       }
       @keyframes hero-out { to { opacity: 0; transform: translateY(-6vh) scale(0.97); } }
       /* Tastaturfokus im Hero: nichts ausblenden, worauf gerade der Fokus liegt */
-      .hero-copy:has(:focus-visible), .hero-index:has(:focus-visible) { animation: none; }
+      .hero-copy:has(:focus-visible), .hero-board:has(:focus-visible) { animation: none; }
     }
   }
 
@@ -316,8 +269,7 @@ const restPlain = rest.filter((p) => !hasShots(p.data.preview));
   .row p { margin: 0; color: var(--muted); }
   .row-stack { color: var(--faint); white-space: nowrap; }
   .row-arrow { color: var(--faint); transition: transform 180ms var(--ease-out), color var(--dur-quick) ease; }
-  .row:hover .row-arrow { color: var(--accent); }
-  .row:hover h3 { color: var(--accent); }
+  .row:hover .row-arrow { color: var(--text); }
   .row h3 { transition: color var(--dur-quick) ease, transform 180ms var(--ease-out); }
   @media (hover: hover) and (pointer: fine) {
     .row:hover h3 { transform: translateX(0.6rem); }

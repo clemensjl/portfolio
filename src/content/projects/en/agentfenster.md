@@ -13,7 +13,7 @@ flagship: 2
 variant: left
 preview: agentfenster
 facts:
-  - { value: "2,260", label: "commits" }
+  - { value: "2,400", label: "commits" }
   - { value: "13", label: "MCP tools" }
   - { value: "16", label: "parallel desktops, max" }
 story:

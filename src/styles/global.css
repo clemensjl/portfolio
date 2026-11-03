@@ -1,18 +1,22 @@
 :root {
-  /* Flaechen: kuehles Fast-Schwarz, eine Tonfamilie */
-  --bg: #0d0f12;
-  --bg-raised: #13161b;
-  --surface: #181c22;
-  --surface-2: #20252d;
-  --border: #2a3039;
-  --border-soft: #1d2229;
-  --text: #eceef1;
-  --muted: #98a1ad;
-  --faint: #7b8592;
-  /* genau ein Akzent, auf der ganzen Seite derselbe */
-  --accent: #56d97f;
-  --accent-dim: #2f9e57;
-  --accent-ink: #06130b;
+  /* Flaechen: Graphit mit Blaustich, wie ein Leitstand bei Nacht */
+  --bg: #0f1319;
+  --bg-raised: #151a22;
+  --surface: #1a2029;
+  --surface-2: #222a35;
+  --border: #2b3441;
+  --border-soft: #1e252f;
+  --text: #e6e9ee;
+  --muted: #9aa3af;
+  --faint: #8792a2;
+  /* Farbe heisst Zustand: arbeitet, wartet, fertig. Kein dekorativer Akzent. */
+  --st-working: #f2b33d;
+  --st-waiting: #6cb6ff;
+  --st-done: #7bd88f;
+  --st-idle: #6b7480;
+  /* Links und Fokus nehmen das ruhige Blau, der Hauptknopf bleibt neutral hell */
+  --accent: var(--st-waiting);
+  --accent-ink: #0f1319;
 
   /* Radien: Flaechen 14/22, interaktive Elemente Pille */
   --radius: 14px;
@@ -34,10 +38,9 @@
   --gutter: clamp(1.25rem, 4vw, 3rem);
   --page: 84rem;
 
-  /* z-Skala: 10 Header, 20 Overlays, 30 Grain */
+  /* z-Skala: 10 Header, 20 Overlays */
   --z-header: 10;
   --z-overlay: 20;
-  --z-grain: 30;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -62,16 +65,6 @@ body { margin: 0; min-height: 100vh; min-height: 100dvh; display: flex; flex-dir
 main { flex: 1; }
 img, svg, video { display: block; max-width: 100%; }
 
-/* Filmkorn: fixe Ebene, nie auf scrollenden Containern */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: var(--z-grain);
-  pointer-events: none;
-  opacity: 0.05;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
 
 h1, h2, h3 {
   font-family: var(--font-display);
@@ -141,8 +134,8 @@ a:hover { text-decoration: underline; }
 }
 .btn:hover { background: var(--surface-2); border-color: var(--faint); text-decoration: none; }
 .btn:active { transform: scale(0.97); }
-.btn-primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 650; }
-.btn-primary:hover { background: #6fe593; border-color: #6fe593; }
+.btn-primary { background: var(--text); border-color: var(--text); color: var(--bg); font-weight: 650; }
+.btn-primary:hover { background: #ffffff; border-color: #ffffff; }
 .btn .arrow { transition: transform var(--dur-quick) var(--ease-out); }
 @media (hover: hover) and (pointer: fine) {
   .btn:hover .arrow { transform: translateX(3px); }

@@ -30,3 +30,5 @@ The Soul Codes App is the product of Elite Leaders: a consulting app that turns 
 The reading itself is a single, very large web file that calculates everything in the browser. Planet positions come from astronomy-engine, the interpretation texts ship as text banks inside the app. In front of it sits a lean Node.js server without any npm dependencies, with SQLite for accounts and packages, running in Docker behind Caddy.
 
 I work on the app and the server as part of the team. My contributions include the Spanish, Portuguese and French versions with all interpretation banks, fixes to the astrocartography map and the search engine setup of the landing page with structured data, sitemap and IndexNow.
+
+In late October I redesigned the app interface over five rounds: the input form, the report, the language picker and the extra modules, plus a chapter-style PDF report with a cover page and a divider page per system, and a new app icon.

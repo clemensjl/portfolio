@@ -47,7 +47,7 @@ const done = certificates.filter((c) => c.status === 'done').length;
 
 <style>
   .certs-head { max-width: 46rem; margin-bottom: clamp(2rem, 5vh, 3.5rem); }
-  .kicker { color: var(--accent); margin: 0 0 1rem; }
+  .kicker { color: var(--muted); margin: 0 0 1rem; }
   .certs-head h2 { margin-bottom: 1.25rem; }
   .certs-head .lede { margin: 0 0 1rem; }
   .count { color: var(--muted); margin: 0; font-size: 0.9rem; }
@@ -97,7 +97,7 @@ const done = certificates.filter((c) => c.status === 'done').length;
     pointer-events: none;
   }
   .is-learning .status { color: var(--text); border-color: var(--muted); }
-  .is-done { border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); }
-  .is-done .status { color: var(--bg); background: var(--accent); border-color: var(--accent); }
+  .is-done { border-color: color-mix(in srgb, var(--st-done) 45%, var(--border)); }
+  .is-done .status { color: var(--bg); background: var(--st-done); border-color: var(--st-done); }
   @media (max-width: 900px) { .phases { grid-template-columns: 1fr; } }
 </style>

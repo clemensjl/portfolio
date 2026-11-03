@@ -30,3 +30,5 @@ Die Soul Codes App ist das Produkt von Elite Leaders: eine Beratungs-App, die au
 Die Auswertung selbst ist eine einzige, sehr große Web-Datei, die alles im Browser berechnet. Planetenpositionen kommen aus astronomy-engine, die Deutungstexte liegen als Textbanken in der App. Davor steht ein schlanker Node.js-Server ohne npm-Abhängigkeiten, mit SQLite für Konten und Pakete, betrieben in Docker hinter Caddy.
 
 Ich arbeite im Team mit an der App und am Server. Von mir stammen unter anderem die spanische, portugiesische und französische Fassung mit allen Deutungsbanken, Korrekturen an der Astrocartographie-Karte und die Suchmaschinen-Anbindung der Startseite mit strukturierten Daten, Sitemap und IndexNow.
+
+Ende Oktober habe ich die Oberfläche der App in fünf Runden neu gestaltet: Eingabeformular, Bericht, Sprachwahl und Zusatzmodule, dazu ein PDF-Report im Kapitel-Stil mit Deckblatt und einer Trennseite pro System sowie ein neues App-Icon.
