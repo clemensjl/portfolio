@@ -2,6 +2,8 @@
 # Holt den aktuellen Stand, laesst Claude Code nach prompt.md arbeiten und schreibt ein Log.
 # Continue statt Stop: git und claude schreiben Fortschritt auf stderr, das ist kein Fehler.
 $ErrorActionPreference = 'Continue'
+# claude.exe schreibt UTF-8; ohne das landen Umlaute verstuemmelt im Log
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 $repo = Resolve-Path (Join-Path $PSScriptRoot '..\..')
 $logDir = Join-Path $env:LOCALAPPDATA 'jele-board'
 New-Item -ItemType Directory -Force $logDir | Out-Null
