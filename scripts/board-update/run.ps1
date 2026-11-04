@@ -32,5 +32,19 @@ $tools = @(
   'Bash(git pull --rebase origin main)', 'Bash(git checkout -- src/data/now.ts)',
   'Bash(gh release list:*)', 'Bash(npm run build)'
 ) -join ','
-$prompt | claude -p --model sonnet --allowedTools $tools 2>&1 | Out-File $log -Append -Encoding utf8
-Log "=== $(Get-Date -Format s) Ende (Exit $LASTEXITCODE)"
+# Native exe direkt aufrufen (die npm-Starter reichen stdin nicht weiter). Bis zu 3 Versuche:
+# laeuft gerade ein Claude-Update, ist die exe kurz nicht startbar.
+$exe = Join-Path $env:USERPROFILE '.local\bin\claude.exe'
+if (-not (Test-Path $exe)) { $exe = 'claude' }
+$code = 1
+for ($try = 1; $try -le 3 -and $code -ne 0; $try++) {
+  try {
+    & $exe -p $prompt --model sonnet --allowedTools $tools 2>&1 | Out-File $log -Append -Encoding utf8
+    $code = $LASTEXITCODE
+  } catch {
+    Log "Versuch ${try}: $($_.Exception.Message)"; $code = 1
+  }
+  if ($code -ne 0 -and $try -lt 3) { Log "Versuch $try fehlgeschlagen (Exit $code), neuer Versuch in 3 Minuten"; Start-Sleep -Seconds 180 }
+}
+Log "=== $(Get-Date -Format s) Ende (Exit $code)"
+exit $code
