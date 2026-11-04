@@ -6,7 +6,7 @@ import type { Lang } from '../i18n';
 // working = baue gerade, waiting = wartet auf etwas (Freigabe, Umzug, Pruefung), done = zuletzt fertig
 export type SessionState = 'working' | 'waiting' | 'done';
 
-export const nowUpdated = '2026-11-03';
+export const nowUpdated = '2026-11-04';
 
 export interface Session {
   title: string;
@@ -39,8 +39,8 @@ export const sessions: Session[] = [
     href: 'projects/perfect-tracking/',
     state: 'working',
     log: {
-      de: ['Kalorien zählen mit österreichischen Lebensmitteln', 'Semmel und Leberkäse kennt die App schon'],
-      en: ['Calorie tracking with Austrian food', 'It already knows Semmel and Leberkäse'],
+      de: ['Kalorien zählen mit österreichischen Lebensmitteln', 'Neu: Barcode scannen direkt im Browser', 'Eigene Rezepte und Kombis trägst du mit einem Tipp ein'],
+      en: ['Calorie tracking with Austrian food', 'New: scan barcodes right in the browser', 'Log your own recipes and combos with one tap'],
     },
   },
   {
