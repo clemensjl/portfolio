@@ -4,6 +4,8 @@
 $ErrorActionPreference = 'Continue'
 # claude.exe schreibt UTF-8; ohne das landen Umlaute verstuemmelt im Log
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+# Der Prompt geht per stdin an claude.exe, ohne das kommen Umlaute als ? an
+$OutputEncoding = [System.Text.Encoding]::UTF8
 $repo = Resolve-Path (Join-Path $PSScriptRoot '..\..')
 $logDir = Join-Path $env:LOCALAPPDATA 'jele-board'
 New-Item -ItemType Directory -Force $logDir | Out-Null
@@ -41,7 +43,8 @@ if (-not (Test-Path $exe)) { $exe = 'claude' }
 $code = 1
 for ($try = 1; $try -le 3 -and $code -ne 0; $try++) {
   try {
-    & $exe -p $prompt --model sonnet --allowedTools $tools 2>&1 | Out-File $log -Append -Encoding utf8
+    # Prompt per stdin: als Argument schneidet PowerShell 5.1 ihn am ersten inneren Anfuehrungszeichen ab
+    $prompt | & $exe -p --model sonnet --allowedTools $tools 2>&1 | Out-File $log -Append -Encoding utf8
     $code = $LASTEXITCODE
   } catch {
     Log "Versuch ${try}: $($_.Exception.Message)"; $code = 1

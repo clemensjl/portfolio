@@ -6,7 +6,7 @@ import type { Lang } from '../i18n';
 // working = baue gerade, waiting = wartet auf etwas (Freigabe, Umzug, Pruefung), done = zuletzt fertig
 export type SessionState = 'working' | 'waiting' | 'done';
 
-export const nowUpdated = '2026-11-05';
+export const nowUpdated = '2026-11-06';
 
 export interface Session {
   title: string;
@@ -16,6 +16,15 @@ export interface Session {
 }
 
 export const sessions: Session[] = [
+  {
+    title: 'Perfect Tracking',
+    href: 'projects/perfect-tracking/',
+    state: 'working',
+    log: {
+      de: ['Kalorien zählen mit österreichischen Lebensmitteln', 'Neuer Look: Tagesziel als Halbkreis, Gewicht auf einem Lineal', 'Barcode-Scan, eigene Rezepte und Freunde sind schon drin'],
+      en: ['Calorie tracking with Austrian food', 'New look: your daily goal as a half circle, weight on a ruler', 'Barcode scanning, your own recipes and friends are already in'],
+    },
+  },
   {
     title: 'Agent Deck',
     href: '#agent-deck',
@@ -32,15 +41,6 @@ export const sessions: Session[] = [
     log: {
       de: ['RGB-Licht für Windows, ohne Konto und ohne Werbung', 'Läuft schon auf dem ersten echten PC'],
       en: ['RGB lighting for Windows, no account and no ads', 'Already running on the first real PC'],
-    },
-  },
-  {
-    title: 'Perfect Tracking',
-    href: 'projects/perfect-tracking/',
-    state: 'working',
-    log: {
-      de: ['Kalorien zählen mit österreichischen Lebensmitteln', 'Neu: Barcode scannen direkt im Browser', 'Eigene Rezepte und Kombis trägst du mit einem Tipp ein', 'Neu: Freunde hinzufügen und Rezepte teilen', 'Getränke zählen jetzt in Milliliter'],
-      en: ['Calorie tracking with Austrian food', 'New: scan barcodes right in the browser', 'Log your own recipes and combos with one tap', 'New: add friends and share recipes', 'Drinks are now counted in milliliters'],
     },
   },
   {
