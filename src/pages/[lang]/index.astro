@@ -13,7 +13,7 @@ import SessionBoard from '../../components/SessionBoard.astro';
 import { hasShots } from '../../lib/shots';
 
 export function getStaticPaths() {
-  return langStaticPaths;
+  return langStaticPaths();
 }
 
 const lang = Astro.params.lang as Lang;

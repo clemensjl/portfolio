@@ -15,7 +15,8 @@ export function otherLang(lang: Lang): Lang {
   return lang === 'de' ? 'en' : 'de';
 }
 
-export const langStaticPaths = [
+// Funktion statt geteiltem Array: Astro 7 verbraucht das zurueckgegebene Array je Route, ein gemeinsam genutztes Array fehlt der naechsten Seite.
+export const langStaticPaths = () => [
   { params: { lang: 'de' as Lang } },
   { params: { lang: 'en' as Lang } },
 ];

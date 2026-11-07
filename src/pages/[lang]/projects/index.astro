@@ -10,7 +10,7 @@ import { useTranslations, langStaticPaths, type Lang } from '../../../i18n';
 // bringt den Astro-Compiler dazu, die restliche Frontmatter auf Modulebene zu hoisten,
 // wo Astro.params undefined ist — Build bricht mit "Cannot read properties of undefined (reading 'lang')".
 export function getStaticPaths() {
-  return langStaticPaths;
+  return langStaticPaths();
 }
 
 const lang = Astro.params.lang as Lang;
