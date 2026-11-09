@@ -1,6 +1,6 @@
 # jele.at
 
-Persönliche Website von Clemens Jele.
+Persönliche Website und Portfolio von Clemens Jele, zweisprachig (de/en) mit Astro gebaut: <https://jele.at>
 
 Seit dem Redesign 2026 ist [jele.at](https://jele.at) selbst das Portfolio (Repo-Root, Astro 5, statisch, de/en). `portfolio.jele.at` und `www.jele.at` leiten per `vercel.json` mit 301 dorthin um, Pfade bleiben erhalten.
 
@@ -18,7 +18,7 @@ Seit dem Redesign 2026 ist [jele.at](https://jele.at) selbst das Portfolio (Repo
 ## Befehle
 
 ```sh
-npm run dev        # Dev-Server
+npm install && npm run dev   # Dev-Server
 npm run build      # Statischer Build nach dist/
 npm run shots      # Playwright-Screenshots aller Seiten (Desktop + Mobile)
 npm run og         # OG-Default-Image neu generieren
@@ -31,3 +31,7 @@ Deploy: Vercel, Projekt `portfolio` mit den Domains `jele.at`, `www.jele.at` und
 ## Offen
 
 - **Rollenangabe bei OpenPass** (`role: Eigenentwicklung`) ist ungeprüft gesetzt — das lokale Repo hat noch keinen Commit, also gibt es keine Autorenschaft zum Belegen. Bestätigen oder korrigieren.
+
+## License
+
+Der Code steht unter der [MIT License](LICENSE). Texte, Bilder, Logos und Projektdarstellungen unter `src/content` und `public` fallen nicht darunter, alle Rechte bleiben bei Clemens Jele.
