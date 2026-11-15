@@ -6,7 +6,7 @@ import type { Lang } from '../i18n';
 // working = baue gerade, waiting = wartet auf etwas (Freigabe, Umzug, Pruefung), done = zuletzt fertig
 export type SessionState = 'working' | 'waiting' | 'done';
 
-export const nowUpdated = '2026-11-13';
+export const nowUpdated = '2026-11-15';
 
 export interface Session {
   title: string;
