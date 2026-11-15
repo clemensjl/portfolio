@@ -32,8 +32,8 @@ export const withAi: Record<Lang, Capability[]> = {
     },
     {
       title: 'Agent Skills und Anweisungen schreiben',
-      text: 'Wiederverwendbare Skills, die einem Agenten Fachwissen und feste Regeln mitgeben, etwa für Rechtstexte nach österreichischem Recht.',
-      proof: 'Agent Skills für Rechtstexte',
+      text: 'Wiederverwendbare Skills, die einem Agenten Fachwissen und feste Regeln mitgeben, etwa für Rechtstexte je Rechtsordnung oder für UX-Prüfungen vor dem Release.',
+      proof: 'Claude Skills',
     },
     {
       title: 'KI in Produkte einbauen',
@@ -64,8 +64,8 @@ export const withAi: Record<Lang, Capability[]> = {
     },
     {
       title: 'Writing agent skills and instructions',
-      text: 'Reusable skills that give an agent domain knowledge and fixed rules, for example for legal texts under Austrian law.',
-      proof: 'Agent Skills for Legal Texts',
+      text: 'Reusable skills that give an agent domain knowledge and fixed rules, for example for legal texts per jurisdiction or UX checks before a release.',
+      proof: 'Claude Skills',
     },
     {
       title: 'Building AI into products',

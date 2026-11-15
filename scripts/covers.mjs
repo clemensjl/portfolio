@@ -28,17 +28,17 @@ const covers = [
     slug: 'claude-skills',
     de: {
       kicker: 'Agent Skills · MIT',
-      title: 'Agent Skills für Rechtstexte',
-      line: 'Impressum, Datenschutz und Compliance mit den Paragrafen, die tatsächlich gelten.',
+      title: 'Claude Skills',
+      line: 'Rechtstexte je Rechtsordnung, Compliance in der Umsetzung, Prüfungen für UX und Design.',
       foot: 'npx skills@latest add clemensjl/claude-skills',
     },
     en: {
       kicker: 'Agent skills · MIT',
-      title: 'Agent Skills for Legal Texts',
-      line: 'Imprint, privacy and compliance citing the provisions that actually apply.',
+      title: 'Claude Skills',
+      line: 'Legal texts per jurisdiction, compliance in the code, checks for UX and design.',
       foot: 'npx skills@latest add clemensjl/claude-skills',
     },
-    chips: ['AT', 'DE', 'CH', 'FR', 'IT', 'UK', 'US', 'AU', 'EU'],
+    chips: ['GDPR', 'AI Act', 'Compliance', 'UX', 'Design', 'i18n'],
   },
 ];
 

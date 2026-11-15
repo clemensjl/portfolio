@@ -1,6 +1,6 @@
 ---
-title: Agent Skills für Rechtstexte
-summary: "17 Agent Skills für Claude Code, Cursor und Codex: Impressum, Datenschutz und Compliance nach Rechtsordnung statt aus US-Vorlagen."
+title: Claude Skills
+summary: "19 Agent Skills für Claude Code, Cursor und Codex: Rechtstexte je Rechtsordnung, Compliance in der Umsetzung und Prüfungen für UX und Design."
 stack: ["Agent Skills", "Markdown"]
 repo: https://github.com/clemensjl/claude-skills
 image: /images/projects/claude-skills.png
@@ -9,10 +9,12 @@ order: 8
 featured: false
 ---
 
-Fragt man ein Sprachmodell nach einem Impressum, bekommt man zuverlässig deutsches oder US-Recht: Paragrafen, die in Österreich nicht gelten, und Formulierungen, die schlicht falsch sind. Diese Skill-Sammlung stellt das um: Für jede Rechtsordnung eigene Regeln, mit den tatsächlich geltenden Paragrafen.
+Agent Skills geben einem Coding-Agenten Fachwissen und feste Regeln mit, die er sonst nicht hat. Die Sammlung deckt zwei Bereiche ab: Recht und Compliance, wo Sprachmodelle zuverlässig deutsches oder US-Recht ausgeben, und Produktqualität, wo sie zuverlässig nach Template aussehen.
 
-Neun `legal-*`-Skills decken Impressum, Datenschutzerklärung und AGB für Österreich, Deutschland, die Schweiz, Frankreich, Italien, Großbritannien, die USA, Australien und die EU-Ebene ab. Dazu kommen vier Skills für die technische Umsetzung (Cookie-Consent, Vendor-Prüfung, Löschfristen, AI-Act) sowie drei zu E-Rechnung, österreichischem Steuerrecht und Lokalisierung. Neu ist ein Skill, der Apps und Websites auf fehlende UX-Details prüft, bevor sie veröffentlicht werden.
+Neun `legal-*`-Skills schreiben Impressum, Datenschutzerklärung und AGB für Österreich, Deutschland, die Schweiz, Frankreich, Italien, Großbritannien, die USA, Australien und die EU-Ebene, mit den Paragrafen, die dort tatsächlich gelten. Vier weitere übernehmen die technische Umsetzung (Cookie-Consent, Vendor-Prüfung, Löschfristen, AI Act), drei kümmern sich um E-Rechnung, österreichisches Steuerrecht und korrekte Lokalisierung von Namen, Adressen und Zahlen.
 
-Die Inhalte sind gegen Primärquellen geprüft, nicht aus dem Modellgedächtnis geschrieben. Wo eine Angabe nicht belegt werden konnte, setzt der Skill einen sichtbaren Marker in den Entwurf, statt zu raten; jeder erzeugte Text trägt den Hinweis, dass er keine Rechtsberatung ersetzt.
+Drei Skills drehen sich um Produktqualität: ein Regelwerk für Bedienbarkeit, Formulare, Barrierefreiheit, Checkout und Kündigung mit Verbotsliste für Dark Patterns, ein Audit auf fehlende UX-Details vor dem Release und ein Skill, der KI-generierte Oberflächen entslopt.
 
-Installation über `npx skills@latest add clemensjl/claude-skills`, MIT-lizenziert.
+Die rechtlichen Inhalte sind gegen Primärquellen geprüft, nicht aus dem Modellgedächtnis geschrieben. Wo eine Angabe nicht belegt werden konnte, setzt der Skill einen sichtbaren Marker, statt zu raten; jeder erzeugte Text trägt den Hinweis, dass er keine Rechtsberatung ersetzt.
+
+Installation über `npx skills@latest add clemensjl/claude-skills`, MIT-lizenziert, `design-unslop` unter CC BY 4.0.
