@@ -10,7 +10,6 @@ const routes = [
   '/de/', '/en/',
   '/de/projects/', '/en/projects/',
   '/de/projects/kern-clean/', '/en/projects/kern-clean/',
-  '/de/projects/kern-search/', '/en/projects/kern-search/',
   '/de/projects/agent-deck/', '/en/projects/agent-deck/',
   '/de/projects/kernmind/', '/en/projects/kernmind/',
   '/de/projects/agentfenster/', '/en/projects/agentfenster/',
