@@ -23,7 +23,7 @@ const d = project.data;
       <img src={d.image} alt="" width="1200" height="675" loading={index < 3 ? 'eager' : 'lazy'} decoding="async" />
     </div>
   )}
-  <h2 style={`view-transition-name: title-${slug}`}>{d.title}</h2>
+  <h3 style={`view-transition-name: title-${slug}`}>{d.title}</h3>
   <p>{d.summary}</p>
   <ul class="tags">
     {d.stack.map((s) => <li class="tag">{s}</li>)}
@@ -33,7 +33,7 @@ const d = project.data;
 <style>
   /* Block statt Grid: ein Grid wuerde die Vorschau (Size-Container) mehrfach vermessen */
   .project-card { display: block; color: var(--text); }
-  .project-card h2 { margin-bottom: 0.6rem; }
+  .project-card h3 { margin-bottom: 0.6rem; font-size: clamp(1.5rem, 1.1rem + 1.2vw, 2.1rem); }
   .project-card:hover { text-decoration: none; }
   .shot {
     aspect-ratio: 16 / 9;

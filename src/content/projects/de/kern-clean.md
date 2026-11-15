@@ -4,6 +4,7 @@ summary: "Aufräum-Tool für Windows: NTFS-Schnellscan über das USN-Journal, vi
 stack: ["C#", ".NET 8", "WPF"]
 repo: https://github.com/clemensjl/kern-clean
 image: /images/projects/kern-clean.jpg
+category: apps
 order: 1
 featured: true
 preview: kern-clean

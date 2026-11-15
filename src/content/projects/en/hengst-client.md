@@ -4,6 +4,7 @@ summary: "An open-source launcher for Minecraft: Java Edition with a clean inter
 stack: ["Rust"]
 repo: https://github.com/clemensjl/hengst-client
 image: /images/projects/hengst-client.png
+category: apps
 order: 13
 ---
 

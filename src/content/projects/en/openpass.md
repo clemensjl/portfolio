@@ -4,6 +4,7 @@ summary: "A local, end-to-end encrypted password manager with its own sync serve
 stack: ["Rust", "SQLite", "TypeScript", "Tauri"]
 role: Solo project
 image: /images/projects/openpass-en.png
+category: apps
 order: 6
 featured: false
 ---

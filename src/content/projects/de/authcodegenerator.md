@@ -4,6 +4,7 @@ summary: "Python-Package für Auth-Codes, die man vorlesen und tippen kann: BOLD
 stack: ["Python", "HMAC"]
 repo: https://github.com/clemensjl/authcodegenerator
 image: /images/projects/authcodegenerator.png
+category: experiments
 order: 11
 featured: false
 ---

@@ -6,6 +6,7 @@ repo: https://github.com/clemensjl/kernmind
 live: https://kernmind.vercel.app
 image: /images/projects/kernmind.jpg
 imageAlt: "KernMind: a grid of cards with saved notes, checklists, products and articles."
+category: apps
 order: 4
 featured: true
 preview: kernmind

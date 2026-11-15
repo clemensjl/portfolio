@@ -7,6 +7,7 @@ repo: https://github.com/clemensjl/agentfenster-mcp
 live: https://agentfenster.com
 image: /images/projects/agentfenster.jpg
 imageAlt: "agentfenster: live view of the agent desktop filling in a customer form, with the activity log next to it."
+category: agent-labs
 order: 5
 featured: false
 flagship: 2

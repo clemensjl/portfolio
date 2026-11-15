@@ -4,6 +4,7 @@ summary: Lokaler, ende-zu-ende-verschlüsselter Passwort-Manager mit eigenem Syn
 stack: ["Rust", "SQLite", "TypeScript", "Tauri"]
 role: Eigenentwicklung
 image: /images/projects/openpass.png
+category: apps
 order: 6
 featured: false
 ---

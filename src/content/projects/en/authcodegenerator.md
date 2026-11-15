@@ -4,6 +4,7 @@ summary: "A Python package for auth codes you can read out loud and type: BOLD-M
 stack: ["Python", "HMAC"]
 repo: https://github.com/clemensjl/authcodegenerator
 image: /images/projects/authcodegenerator.png
+category: experiments
 order: 11
 featured: false
 ---

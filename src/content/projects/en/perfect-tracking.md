@@ -3,6 +3,7 @@ title: Perfect Tracking
 summary: "A calorie tracker that knows Austrian food: data from the German Federal Food Key and Open Food Facts, search that understands Austrian food names and a plausibility check on every entry."
 stack: ["Expo", "React Native", "TypeScript", "Supabase"]
 preview: perfect-tracking
+category: apps
 order: 15
 ---
 

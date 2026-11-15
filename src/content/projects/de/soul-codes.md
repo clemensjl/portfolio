@@ -6,6 +6,7 @@ role: Kundenprojekt, Entwicklung im Team
 live: https://soulcodes.app
 image: /images/projects/soul-codes.jpg
 imageAlt: "Soul Codes App: Auswertung einer Demo-Person mit den Bereichen Human Design, Numerologie, Astrologie, Astrocartographie, chinesische Metaphysik, Kabbala, Maya und keltisches Baumhoroskop."
+category: client
 order: 2
 featured: true
 flagship: 4

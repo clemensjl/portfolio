@@ -4,6 +4,7 @@ summary: "17 agent skills for Claude Code, Cursor and Codex: legal notice, priva
 stack: ["Agent Skills", "Markdown"]
 repo: https://github.com/clemensjl/claude-skills
 image: /images/projects/claude-skills-en.png
+category: claude-skills
 order: 8
 featured: false
 ---

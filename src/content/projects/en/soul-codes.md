@@ -6,6 +6,7 @@ role: Client project, built in a team
 live: https://soulcodes.app
 image: /images/projects/soul-codes.jpg
 imageAlt: "Soul Codes App: a reading for a demo person with sections for Human Design, numerology, astrology, astrocartography, Chinese metaphysics, Kabbalah, Maya and the Celtic tree horoscope."
+category: client
 order: 2
 featured: true
 flagship: 4

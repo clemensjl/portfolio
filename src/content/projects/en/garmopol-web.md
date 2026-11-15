@@ -5,6 +5,7 @@ stack: ["HTML", "CSS", "GitHub Pages"]
 repo: https://github.com/clemensjl/garmopol-web
 live: https://garmopol.net
 image: /images/projects/garmopol-web.png
+category: experiments
 order: 10
 featured: false
 ---

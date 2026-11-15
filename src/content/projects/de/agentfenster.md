@@ -7,6 +7,7 @@ repo: https://github.com/clemensjl/agentfenster-mcp
 live: https://agentfenster.com
 image: /images/projects/agentfenster.jpg
 imageAlt: "agentfenster: Livestream des Agent-Desktops, der ein Kundenformular ausfüllt, daneben das Aktivitätsprotokoll."
+category: agent-labs
 order: 5
 featured: false
 flagship: 2

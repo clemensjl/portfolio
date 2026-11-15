@@ -6,6 +6,7 @@ repo: https://github.com/clemensjl/kernmind
 live: https://kernmind.vercel.app
 image: /images/projects/kernmind.jpg
 imageAlt: "KernMind: Karten-Raster mit gespeicherten Notizen, Checklisten, Produkten und Artikeln."
+category: apps
 order: 4
 featured: true
 preview: kernmind

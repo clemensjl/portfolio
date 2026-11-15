@@ -4,6 +4,7 @@ summary: "Quelloffener Launcher für Minecraft: Java Edition mit aufgeräumter O
 stack: ["Rust"]
 repo: https://github.com/clemensjl/hengst-client
 image: /images/projects/hengst-client.png
+category: apps
 order: 13
 ---
 

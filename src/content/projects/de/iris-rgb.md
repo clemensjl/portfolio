@@ -4,6 +4,7 @@ summary: "RGB-Beleuchtung für Windows ohne Konto, Werbung und Telemetrie: Effek
 stack: ["Rust", "Tauri", "OpenRGB"]
 preview: iris-rgb
 image: /images/projects/iris-rgb.jpg
+category: apps
 order: 12
 ---
 

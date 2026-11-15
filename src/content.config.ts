@@ -29,6 +29,8 @@ const projects = defineCollection({
     // Nur für generierte Cover-Karten: deren Text steht sonst nirgends auf der Seite.
     // Echte Screenshots bleiben ohne Alt-Text, weil Titel und Zusammenfassung direkt darüber stehen.
     imageAlt: z.string().optional(),
+    // Rubrik auf der Projektseite; Racep Labs kommt aus der ventures-Collection.
+    category: z.enum(['agent-labs', 'claude-skills', 'client', 'apps', 'experiments']),
     order: z.number(),
     featured: z.boolean().default(false),
     ...flagshipFields,

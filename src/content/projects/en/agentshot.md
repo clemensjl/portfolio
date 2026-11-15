@@ -5,6 +5,7 @@ stack: ["Rust", "Tauri", "Svelte", "TypeScript"]
 role: My own version, which fed into AgentShot by Agent Labs
 preview: agentshot
 image: /images/projects/agentshot.jpg
+category: agent-labs
 order: 14
 ---
 

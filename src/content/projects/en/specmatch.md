@@ -5,6 +5,7 @@ stack: ["React", "TypeScript", "Vite", "Tailwind CSS"]
 repo: https://github.com/clemensjl/TechCompare
 live: https://tech-compare-j1k5.vercel.app
 image: /images/projects/specmatch.png
+category: apps
 order: 7
 featured: false
 ---

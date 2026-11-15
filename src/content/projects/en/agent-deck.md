@@ -5,6 +5,7 @@ stack: ["Electron", "React", "TypeScript", "node-pty"]
 download: https://github.com/clemensjl/agent-deck-releases/releases
 image: /images/projects/agent-deck.jpg
 imageAlt: "Agent Deck: a session asks a question through a clickable dialog, with the sidebar of demo projects and profiles on the left."
+category: agent-labs
 order: 3
 featured: true
 flagship: 1

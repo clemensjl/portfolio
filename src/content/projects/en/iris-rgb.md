@@ -4,6 +4,7 @@ summary: "RGB lighting for Windows with no account, ads or telemetry: effects, s
 stack: ["Rust", "Tauri", "OpenRGB"]
 preview: iris-rgb
 image: /images/projects/iris-rgb.jpg
+category: apps
 order: 12
 ---
 
